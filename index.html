@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prom Design, live demos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Trirong:wght@300&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F7F2E9;--panel:#FFFDF8;--ink:#40301D;--muted:#8A7A64;--line:#E4DACA;--gold:#9C6B2F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Archivo,sans-serif;line-height:1.6}
+.wrap{max-width:1060px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,32px) 90px}
+.eyebrow{font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+h1{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(38px,7vw,64px);line-height:1.05;margin:0}
+h1 .th{font-family:Trirong,serif;color:var(--gold)}
+.sub{color:var(--muted);max-width:52ch;margin:18px 0 0;font-size:15.5px}
+.sub a{color:var(--gold)}
+h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:26px;margin:56px 0 6px}
+.note{font-size:13px;color:var(--muted);margin:0 0 16px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.pair{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);text-decoration:none;color:inherit;display:block}
+.card img{width:100%;display:block;border-bottom:1px solid var(--line)}
+.card .cap{padding:12px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card .cap b{font-size:13px;letter-spacing:.06em}
+.card .cap span{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.card.wo .cap b{color:#96463C}.card.wi .cap b{color:#3C5A46}
+.phones{background:var(--panel);border:1px solid var(--line);display:block;text-decoration:none}
+.phones img{width:100%;display:block}
+.install{margin-top:64px;background:var(--panel);border:1px solid var(--line);padding:22px 24px}
+.install code{display:block;background:#26221B;color:#F5EFE4;padding:13px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;overflow-x:auto;margin-top:10px}
+footer{margin-top:56px;font-size:12.5px;color:var(--muted)}
+footer a{color:var(--gold)}
+</style></head><body>
+<div class="wrap">
+<p class="eyebrow">SV Academy presents</p>
+<h1><span class="th">พร้อม</span> Design, live</h1>
+<p class="sub">Every comparison below is a real page you can open. Same fictional
+brand, same one-line request, one difference: the skill. View them at any
+width; they hold. Repo and install:
+<a href="https://github.com/sva-admin/sv-academy-prom-design">github.com/sva-admin/sv-academy-prom-design</a></p>
+
+<h2>A beachfront condominium</h2>
+<p class="note">The purple gradient special, against tinted ground and proof over promise.</p>
+<div class="pair">
+<a class="card wo" href="demo/without-skill.html"><img src="demo/without-skill.png" alt="AURA Heights without the skill" loading="lazy"><div class="cap"><b>WITHOUT</b><span>open live page</span></div></a>
+<a class="card wi" href="demo/with-skill.html"><img src="demo/with-skill.png" alt="AURA Heights with the skill" loading="lazy"><div class="cap"><b>WITH PROM DESIGN</b><span>open live page</span></div></a>
+</div>
+
+<h2>A restaurant</h2>
+<p class="note">The emoji card grid, against a room you can almost smell.</p>
+<div class="pair">
+<a class="card wo" href="demo/ember-without.html"><img src="demo/ember-without.png" alt="Ember Cafe without" loading="lazy"><div class="cap"><b>WITHOUT</b><span>open live page</span></div></a>
+<a class="card wi" href="demo/ember-with.html"><img src="demo/ember-with.png" alt="Ember Cafe with" loading="lazy"><div class="cap"><b>WITH PROM DESIGN</b><span>open live page</span></div></a>
+</div>
+
+<h2>A SaaS dashboard</h2>
+<p class="note">Neon glassmorphism, against an instrument you could run a business on.</p>
+<div class="pair">
+<a class="card wo" href="demo/ledgerline-without.html"><img src="demo/ledgerline-without.png" alt="Ledgerline without" loading="lazy"><div class="cap"><b>WITHOUT</b><span>open live page</span></div></a>
+<a class="card wi" href="demo/ledgerline-with.html"><img src="demo/ledgerline-with.png" alt="Ledgerline with" loading="lazy"><div class="cap"><b>WITH PROM DESIGN</b><span>open live page</span></div></a>
+</div>
+
+<h2>A portfolio</h2>
+<p class="note">The my-first-website special, against a page that costs what the work costs.</p>
+<div class="pair">
+<a class="card wo" href="demo/northlight-without.html"><img src="demo/northlight-without.png" alt="Northlight without" loading="lazy"><div class="cap"><b>WITHOUT</b><span>open live page</span></div></a>
+<a class="card wi" href="demo/northlight-with.html"><img src="demo/northlight-with.png" alt="Northlight with" loading="lazy"><div class="cap"><b>WITH PROM DESIGN</b><span>open live page</span></div></a>
+</div>
+
+<h2>A mobile web app</h2>
+<p class="note">Link soup, against seats with names. Open either page at phone width.</p>
+<a class="phones" href="demo/pair-harness.html"><img src="demo/assembly-mobile-pair.png" alt="The Assembly booking app, without and with" loading="lazy"></a>
+
+<div class="install">
+<b>Install the taste</b>
+<code>npx skills add sva-admin/sv-academy-prom-design</code>
+<code>claude plugin marketplace add sva-admin/sv-academy-prom-design
+claude plugin install prom-design@sv-academy-prom-design</code>
+</div>
+
+<footer>All brands fictional. Photography is Unsplash stock, labelled on the
+pages themselves. MIT licensed. Built by Prom at
+<a href="https://loop.sv-academy.org">SV Academy</a>. Verify responsiveness
+yourself: <a href="demo/measure.html">demo/measure.html</a>.</footer>
+</div>
+</body></html>

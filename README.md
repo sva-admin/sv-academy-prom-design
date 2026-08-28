@@ -34,19 +34,25 @@ Same brand. Same one-line request. One difference: the skill.
 
 ## Install once
 
+The universal way, verified on 19+ agents including Claude Code and Cursor:
+
+```bash
+npx skills add sva-admin/sv-academy-prom-design
+```
+
+Or as a Claude Code plugin:
+
 ```bash
 claude plugin marketplace add sva-admin/sv-academy-prom-design
 claude plugin install prom-design@sv-academy-prom-design
 ```
 
-Or as a plain skill, which recent Cursor versions also read automatically:
-
-```bash
-git clone https://github.com/sva-admin/sv-academy-prom-design
-cp -r sv-academy-prom-design/skills/prom-design ~/.claude/skills/
-```
-
 **Claude Cowork:** zip `skills/prom-design/` and upload it as a skill.
+
+Never installed a skill before? **[GETTING-STARTED.md](GETTING-STARTED.md)**
+walks you from zero to your first page in five minutes. And every demo below
+is a real page you can open live:
+**[sva-admin.github.io/sv-academy-prom-design](https://sva-admin.github.io/sv-academy-prom-design/)**
 
 ## Then run it on YOUR page
 
