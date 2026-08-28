@@ -1,90 +1,163 @@
-# SV Academy Prom Design
+<div align="center">
 
-**Prom** is a pun: พร้อม (*prom*) is Thai for **ready**. This is ready-to-use
-design taste for AI coding agents, the actual house-style skill a working
-studio runs to ship client websites with Claude, published for anyone to use.
+<img src="demo/banner.png" alt="Prom Design. Ready-to-use design taste for AI coding agents." width="920">
 
-Same brand, same request, one difference: the skill.
+**Your AI ships pages that look expensive. Starting today.**
 
-| Without the skill | With the skill |
-|---|---|
-| ![Generic AI output](demo/without-skill.png) | ![House style output](demo/with-skill.png) |
+*Prom is a pun: พร้อม (prom) is Thai for ready. This is the actual house-style
+skill a working studio runs to ship client websites with Claude, installable
+by anyone in one command. You do not need to know design. The taste is in the
+file.*
 
-The left page is what agents produce by default: the purple gradient, the
-emoji hero, "revolutionize your living experience", the rounded pill button.
-The right page is the same fictional brand through this skill: a tinted
-ground instead of pure white, editorial serif at display size, and copy that
-proves instead of promises ("48 residences, all filmed", "90 sec walk, timed"). Both screenshots are unedited browser renders of the files in
-[`demo/`](demo/).
+</div>
 
-## Install
+---
 
-**Claude Code**, as a plugin:
+## The 50 millisecond problem
+
+People form a verdict on your page in about 50 milliseconds, and they rarely
+revise it (Lindgaard et al., 2006). Stanford's Web Credibility Project found
+roughly 75% of users judge an organisation's credibility by its visual design
+(Fogg, 2002). Your product gets judged before anyone reads a word of it.
+
+AI coding agents make this worse, because they all default to the same look:
+the purple gradient, the emoji card grid, the rounded pill button, copy that
+promises everything and proves nothing. Everyone can see it now. It has a
+name: **AI slop.**
+
+Same brand. Same one-line request. One difference: the skill.
+
+| Without | With Prom Design |
+|:---:|:---:|
+| <img src="demo/without-skill.png" width="460"> | <img src="demo/with-skill.png" width="460"> |
+| The purple gradient special | Tinted ground, one serif, proof over promise |
+
+## Install once
 
 ```bash
 claude plugin marketplace add sva-admin/sv-academy-prom-design
 claude plugin install prom-design@sv-academy-prom-design
 ```
 
-or as a plain skill:
+Or as a plain skill, which recent Cursor versions also read automatically:
 
 ```bash
 git clone https://github.com/sva-admin/sv-academy-prom-design
 cp -r sv-academy-prom-design/skills/prom-design ~/.claude/skills/
 ```
 
-**Cursor** (recent versions) reads the same folder via the open Agent Skills
-standard, so the second install path can cover both tools at once; confirm on
-your Cursor version.
+**Claude Cowork:** zip `skills/prom-design/` and upload it as a skill.
 
-**Claude Cowork**: zip `skills/prom-design/` and upload it as a skill.
+## Then run it on YOUR page
 
-## Use
-
-Ask for design work and mention the style, or invoke it directly:
+Do not take the gallery's word for it. The only demo that matters is your own
+project:
 
 ```
-Build a landing page for my coffee shop. Use the prom-design skill.
+Apply the prom-design skill to this page. Show me before and after, and name
+every rule you applied.
 ```
 
-```
-This dashboard looks like AI slop. Apply prom-design and tell me what you changed.
-```
+The diff is the sales pitch. If you do not like what you see, uninstall it,
+nothing else changed.
 
-```
-/prom-design redesign this booking page, keep the copy honest and specific
-```
+## What it does to real work
 
-## What is inside
+Every "without" below is a look you have shipped or seen shipped. Every
+"with" is the same fictional brand through the skill. Nothing here is a
+mockup of a real client; all brands are invented so the rules can be shown at
+full specificity.
 
-| File | What it carries |
+**A restaurant.** The emoji card grid, versus a room you can almost smell.
+
+| Without | With Prom Design |
+|:---:|:---:|
+| <img src="demo/ember-without.png" width="460"> | <img src="demo/ember-with.png" width="460"> |
+| "The BEST dining experience in town!!!" | Eight chairs, one seating, doors 18:40 sharp |
+
+**A SaaS dashboard.** The neon glassmorphism special, versus an instrument
+you could run a business on.
+
+| Without | With Prom Design |
+|:---:|:---:|
+| <img src="demo/ledgerline-without.png" width="460"> | <img src="demo/ledgerline-with.png" width="460"> |
+| "Supercharge your workflow" | 412,900 collected, 3 due this week, tabular numerals |
+
+**A portfolio.** The my-first-website special, versus a page that costs what
+your work costs.
+
+| Without | With Prom Design |
+|:---:|:---:|
+| <img src="demo/northlight-without.png" width="460"> | <img src="demo/northlight-with.png" width="460"> |
+| Centered Times, blue links, crammed grid | One photograph, one serif, 214 frames kept of 41,800 |
+
+**A mobile web app.** Link soup, versus seats you can count.
+
+<div align="center"><img src="demo/assembly-mobile-pair.png" width="920"></div>
+
+## Why one opinionated style, not a toolkit
+
+Because choice is exactly what a non-designer does not need. Fifty palettes
+and a hundred font pairings are homework; one proven aesthetic is a result.
+The skill carries two registers and the agent picks by task, so your only
+decision is recognizing which page you are making:
+
+| Register | For | Feels like |
+|---|---|---|
+| **Cinematic** | Landing pages, brands, portfolios | Full-bleed photography, editorial serif, an argument you scroll |
+| **Instrument** | Apps, dashboards, booking flows | Dense, quiet, tabular, everything provable at a glance |
+
+The style is opinionated, your content is not: your brand's colors, imagery,
+and copy all flow through the same rules, which is why the four demos above
+share a spine and still look like four different businesses.
+
+## What is actually in the box
+
+Engineering, not vibes. 12 files, ~2,600 lines of working rules:
+
+| File | What it enforces |
 |---|---|
-| `SKILL.md` | The style thesis, the two moods (Cinematic, Instrument), and the working loop: brief, design contract, build, review gate, audit, ship |
-| `references/taste.md` | The taste rules: what the style always does, never does, and why |
-| `references/tokens.md` + `assets/tokens-starter.css` | Two verified token systems, ready to drop in |
-| `references/patterns.md` | The signature components, with the measurements that make them |
-| `references/copy.md` | Proof-over-promise copywriting: evidence next to every claim |
-| `references/imagery.md` | Real-photography rules: specific place, season, hour, object |
-| `references/webapp.md` | The mobile web-app playbook: density budget, bottom tab bar, coach overlays |
+| `SKILL.md` | The thesis, both registers, and the working loop: brief, contract, build, review gate, audit, ship |
+| `references/taste.md` | What the style always does, never does, and the expensive lessons behind each rule |
+| `references/tokens.md` + `assets/tokens-starter.css` | Two shipped token systems, drop-in ready |
+| `references/patterns.md` | Signature components with the measurements that make them work |
+| `references/copy.md` | Proof-over-promise copywriting: evidence beside every claim |
+| `references/imagery.md` | Real photography rules: specific place, season, hour, honest labels |
+| `references/webapp.md` | The mobile playbook: density budget, bottom tab bar, compaction |
 | `references/audit.md` | The multi-lens audit that rejects slop before a client sees it |
-| `scripts/` | Screenshot and audit harnesses the loop uses |
+| `scripts/shots.mjs` | Review gate: every route, three widths, screenshots plus defect metrics |
+| `scripts/design-audit.mjs` | Generates a six-agent design audit tuned to your repo |
 
-## Honesty notes
+## Objections, answered honestly
 
-- **All example brands are fictional.** AURA Heights and The Assembly exist
-  only in this repo. The rules they illustrate shipped real client work; the
-  clients stay private.
-- This is one deliberate aesthetic, not a neutral toolkit. If you want an
-  agent to invent a fresh visual direction, use a different skill. If you want
-  it to stop producing the same generic page, this is the one.
-- Works best with Claude models; nothing in it is model-locked.
+**"Will everything I make look the same?"** Less than now. Every default
+agent output already converges on one look, and it is the bad one. Two
+registers plus your own brand tokens diverge far more than the purple
+gradient ever will. The four demos above are the proof.
 
-## From SV Academy
+**"My MVP does not need design."** Your MVP needs trust, and 75% of that
+judgment is visual. A page that looks cheap makes the product underneath it
+look cheap. That is the whole reason this skill exists.
 
-Built by Prom at [SV Academy](https://loop.sv-academy.org). We teach people to
-build real things with AI. Learn free at
-[loop.sv-academy.org](https://loop.sv-academy.org). More open skills:
-[github.com/sva-admin](https://github.com/sva-admin?tab=repositories).
+**"I cannot judge design."** You do not have to generate taste, only
+recognize it. You just did, four times, in the gallery above.
 
-MIT licensed. Use it, fork it, ship something that does not look like
-everything else.
+**"What is the catch?"** It is one deliberate aesthetic. If you want an agent
+to invent a fresh visual identity from a blank page, use a different skill.
+If you want to stop shipping slop today, this is the one.
+
+## Who made this
+
+Built by **Prom** at [SV Academy](https://loop.sv-academy.org), distilled
+from the house style a working studio uses on real client sites (the clients
+stay private; the fictional brands here carry their lessons). SV Academy
+teaches people to build real things with AI, free, at
+[loop.sv-academy.org](https://loop.sv-academy.org).
+
+If the skill saved your page from the purple gradient, **star the repo** so
+the next person finds it, and send the before/after to one friend who ships
+slop. More open skills: [github.com/sva-admin](https://github.com/sva-admin?tab=repositories).
+
+MIT licensed. All example brands are fictional. Landscape and interior
+photographs in the demos are Unsplash stock, labelled "demonstration imagery"
+on the page itself, exactly as the skill's own honesty rules require.

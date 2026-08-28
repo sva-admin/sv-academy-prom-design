@@ -172,8 +172,8 @@ evening. The pattern is: name one physical detail and one temporal detail, and
 let the reader assemble the rest.
 
 Interface copy in the instrument register carries scarcity plainly and without
-pressure tactics: "12 dates open. 84 places left." then "Small tables. You can
-count the seats." The second line is what stops the first reading as a growth
+pressure tactics: "12 dates open. 84 places left." then "Eight tables. Every seat
+has a name." The second line is what stops the first reading as a growth
 hack. It explains the constraint instead of exploiting it.
 
 ---

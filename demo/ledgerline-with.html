@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Ledgerline</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F6F3EC;--panel:#FFFDF8;--ink:#26221B;--muted:#7C7466;--line:#E5DFD2;--accent:#315C45;--accent-soft:#EAF0EC}
+*{box-sizing:border-box}body{margin:0;font-family:Archivo,sans-serif;background:var(--ground);color:var(--ink);font-size:14px}
+.app{display:grid;grid-template-columns:216px 1fr;height:740px}
+.side{background:var(--panel);border-right:1px solid var(--line);padding:22px 18px}
+.logo{font-family:"Cormorant Garamond",serif;font-size:22px;margin:0 0 26px}
+.nav a{display:block;padding:9px 12px;color:var(--muted);text-decoration:none;font-size:13.5px;border-radius:3px}
+.nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:500}
+.main{padding:26px 34px;overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
+h1{font-size:19px;margin:0;font-weight:500}
+.btn{background:var(--ink);color:var(--ground);padding:10px 18px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.stats{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:22px}
+.s{background:var(--panel);padding:14px 18px;flex:1}
+.s b{display:block;font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
+.s span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.s .up{color:var(--accent);font-size:11px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--line)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+td.r,th.r{text-align:right}
+.chip{font-size:10.5px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
+.chip.paid{color:var(--accent);border-color:var(--accent)}
+.chip.due{color:#8A5A24;border-color:#C8A16A}
+</style></head><body>
+<div class="app">
+<div class="side"><p class="logo">Ledgerline</p>
+<nav class="nav"><a class="on" href="#">Invoices</a><a href="#">Clients</a><a href="#">Recurring</a><a href="#">Reports</a><a href="#">Settings</a></nav></div>
+<div class="main">
+<div class="top"><h1>Invoices · this month</h1><a class="btn" href="#">New invoice</a></div>
+<div class="stats">
+<div class="s"><b>412,900</b><span>collected this month</span></div>
+<div class="s"><b>86,400</b><span>outstanding</span> <span class="up">3 due this week</span></div>
+<div class="s"><b>11 days</b><span>median time to paid</span></div>
+</div>
+<table>
+<tr><th>No.</th><th>Client</th><th>Issued</th><th class="r">Amount</th><th class="r">Status</th></tr>
+<tr><td>0114</td><td>Harborline Films</td><td>Mar 04</td><td class="r">48,000.00</td><td class="r"><span class="chip paid">Paid Mar 09</span></td></tr>
+<tr><td>0113</td><td>Northlight Studio</td><td>Mar 02</td><td class="r">36,000.00</td><td class="r"><span class="chip paid">Paid Mar 12</span></td></tr>
+<tr><td>0112</td><td>Ember Café</td><td>Feb 27</td><td class="r">22,400.00</td><td class="r"><span class="chip due">Due Mar 27</span></td></tr>
+<tr><td>0111</td><td>The Assembly</td><td>Feb 24</td><td class="r">64,000.00</td><td class="r"><span class="chip due">Due Mar 24</span></td></tr>
+<tr><td>0110</td><td>Quay and Sons</td><td>Feb 20</td><td class="r">18,500.00</td><td class="r"><span class="chip paid">Paid Feb 28</span></td></tr>
+</table>
+</div></div>
+</body></html>
