@@ -1,0 +1,181 @@
+/* tokens-starter.css
+ *
+ * A starting design contract in the house style. Copy this into a new project,
+ * then REPLACE the palette and the type roles for the brand in front of you.
+ *
+ * What to keep: the structure. Radius by role, colour by state, a named z
+ * ladder, app-chrome heights, a three-step line ramp, one easing curve.
+ * What to change: every hex value and all three font roles.
+ *
+ * The two proven palettes are in references/tokens.md if you want a reference
+ * implementation rather than a blank start.
+ *
+ * House rule: after this file exists, no component may contain a raw hex,
+ * rgb(), hsl(), or px value. Enforce it in CI or it will decay in a week.
+ */
+
+:root {
+  /* ---- ground and ink -----------------------------------------------------
+   * Never pure white, never pure black. Tint every neutral toward the brand
+   * hue; the eye reads the tint as intent even when it cannot name it. */
+  --paper:        #F7F2E9;   /* page ground */
+  --paper-2:      #FDFAF3;   /* raised surface */
+  --ink:          #40301D;   /* body text */
+  --ink-2:        #7A6448;   /* secondary text */
+  --ink-3:        #9A8875;   /* tertiary text, still tinted */
+
+  /* ---- brand accent, three weights ---------------------------------------
+   * An accent almost always needs a darker sibling for type, because the
+   * accent itself usually fails contrast on a light ground. Budget for it. */
+  --accent:       #C9A227;
+  --accent-soft:  #D9B351;   /* hover, gradients */
+  --accent-ink:   #8A6A11;   /* the accent AS TEXT, contrast-safe */
+
+  /* ---- lines, as the brand hue at low alpha, never neutral grey -----------
+   * Three steps so borders can express hierarchy instead of merely existing.
+   * Keep every line value unequal to every surface value: a border that
+   * matches an elevated surface makes that surface invisible. */
+  --line:         rgba(96, 56, 19, .16);
+  --line-soft:    rgba(96, 56, 19, .09);
+  --line-strong:  rgba(96, 56, 19, .34);
+
+  /* ---- state, named for the product fact rather than the colour ---------- */
+  --ok:           #0F7A62;
+  --warn:         #8F5500;
+  --error:        #A81E14;
+  --muted:        #5B6360;
+
+  /* ---- elevation: ring plus shadow reads crisp on light and dark ---------
+   * Blur is 3 to 4x the Y offset. Alpha never above .35 on a light ground.
+   * The colour is the warm near-black, never #000. */
+  --lift-1: 0 0 0 1px rgba(28,16,6,.08), 0 1px 2px rgba(28,16,6,.05);
+  --lift-2: 0 0 0 1px rgba(28,16,6,.05), 0 6px 16px rgba(28,16,6,.10);
+  --lift-3: 0 26px 64px rgba(28,16,6,.18);
+  --focus:  0 0 0 2px var(--accent-soft);   /* as a shadow, so it follows radius */
+
+  /* ---- radius BY ROLE, not by size ---------------------------------------
+   * "Is this a --r-md or --r-lg?" is a coin flip. "Is this a control or a
+   * sheet?" is obvious, so the system stays coherent as it grows.
+   * Drop one step on phones: the same radius reads heavier on a small screen. */
+  --r-control: 10px;
+  --r-media:   14px;
+  --r-sheet:   20px;
+  --r-commit:  999px;
+
+  /* ---- named z ladder, so raw z-index never appears in a component ------- */
+  --z-bar:    45;
+  --z-scrim:  48;
+  --z-header: 50;
+  --z-menu:   52;
+  --z-viewer: 60;
+  --z-grain:  80;
+
+  /* ---- type roles --------------------------------------------------------
+   * REPLACE these three. Inherit the ROLE STRUCTURE, not the font names:
+   * one display face, one letterspaced working sans, at most one script used
+   * once. Run impeccable's font selection procedure so the pick is a choice
+   * rather than the category reflex.
+   * For Thai, prefer one face carrying both scripts (e.g. LINE Seed Sans TH). */
+  --display: 'Cormorant Garamond', Georgia, serif;
+  --ui:      'Tenor Sans', system-ui, -apple-system, sans-serif;
+  --script:  'Sacramento', cursive;
+
+  /* ---- type scale, with a DELIBERATE empty middle -------------------------
+   * Micro labels live at 8 to 12px, body and display start at 15px. The hole
+   * between them is what produces the couture feel. Resist filling it. */
+  --t-micro:  .625rem;   /* 10px, tracked labels */
+  --t-meta:   .75rem;    /* 12px */
+  /* nothing between 12px and 15px, on purpose */
+  --t-body:   .9375rem;  /* 15px */
+  --t-lede:   clamp(17px, 1.5vw, 21px);
+  /* nothing between 21px and 30px, on purpose */
+  --t-h2:     clamp(32px, 4.4vw, 60px);
+  --t-h1:     clamp(38px, 5vw, 72px);
+
+  /* ---- letterspacing: two worlds, nothing in between --------------------- */
+  --ls-display: .03em;   /* serif display: .02 to .06em only */
+  --ls-label:   .3em;    /* sans micro-labels: .2 to .52em only */
+  --ls-eyebrow: .42em;
+
+  /* ---- line heights, with Thai in the token layer so all components inherit */
+  --lh-tight: 1.2;
+  --lh-body:  1.75;
+  --lh-thai:  1.65;
+
+  /* ---- spacing, 4px base ------------------------------------------------- */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
+  --s7: 48px; --s8: 64px; --s9: 96px; --s10: 144px; --s11: 200px;
+
+  /* ---- layout ------------------------------------------------------------ */
+  --shell:    1360px;
+  --pad:      clamp(20px, 4vw, 56px);   /* reuse on EVERY fixed element too */
+  --band:     clamp(56px, 6.5vw, 92px); /* section rhythm */
+  --measure:  62ch;
+
+  /* ---- app chrome, needed for a bottom-tab web app ----------------------- */
+  --header-h:    52px;
+  --tabbar-h:    58px;
+  --actionbar-h: 68px;
+
+  /* ---- motion: ONE curve for the whole product --------------------------- */
+  --ease:      cubic-bezier(.23, 1, .32, 1);
+  --t-fast:    .25s;
+  --t-state:   .4s;
+  --t-slow:    .55s;   /* keep everything the user operates under .7s */
+}
+
+/* Thai needs more leading and no tracking. Uppercase does not exist in Thai,
+ * so a letterspaced uppercase eyebrow is a Latin-only device. */
+:lang(th) {
+  line-height: var(--lh-thai);
+  letter-spacing: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Reduced motion is a LAYOUT decision, not just an animation switch. A tall
+   * scroll runway that exists only to drive a scrubbed film must collapse, and
+   * whatever the scrub revealed has to be shown statically instead. */
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- the primitives ------------------------------------------------------ */
+* { margin: 0; padding: 0; box-sizing: border-box }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  font-variant-numeric: tabular-nums;   /* prices and counts must align */
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, video { display: block; max-width: 100% }
+/* Pair this with real width/height attributes on every <img>: the attributes
+ * reserve the aspect ratio so layout never shifts, and height:auto stops them
+ * stretching the rendered image. Both halves are needed. */
+img { height: auto }
+a { color: inherit; text-decoration: none }
+.wrap { max-width: var(--shell); margin: 0 auto; padding: 0 var(--pad) }
+
+/* The section eyebrow: a 34px accent hairline, a gap, then tracked micro caps */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: var(--s3);
+  font-size: var(--t-micro); letter-spacing: var(--ls-eyebrow);
+  color: var(--accent-ink); margin-bottom: 22px;
+}
+.eyebrow::before {
+  content: ""; width: 34px; height: 1px; background: var(--accent);
+}
+
+/* The grain overlay: the one move that stops a flat ground reading as a
+ * default background. pointer-events:none or it eats every click. */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: var(--z-grain);
+  pointer-events: none; opacity: .05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}

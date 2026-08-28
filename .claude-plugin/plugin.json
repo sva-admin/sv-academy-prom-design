@@ -1,0 +1,9 @@
+{
+  "name": "prom-design",
+  "version": "1.0.0",
+  "description": "Prom Design (a pun on Thai พร้อม, 'ready'): the ready-to-use house design style a working studio runs in Claude Code. Tinted grounds, editorial typography, proof over promise, and a hard anti-slop audit loop. All examples use fictional brands.",
+  "author": { "name": "SV Academy", "url": "https://github.com/sva-admin" },
+  "license": "MIT",
+  "keywords": ["claude-code", "design", "skill", "ui", "landing-page", "anti-slop", "agent-skills"],
+  "homepage": "https://loop.sv-academy.org"
+}
