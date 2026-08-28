@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="demo/banner.png" alt="Prom Design. Ready-to-use design taste for AI coding agents." width="920">
+<img src="demo/banner.png" alt="Prom (phrom) Design. Ready-to-use design taste for AI coding agents." width="920">
 
 **Your AI ships pages that look expensive. Starting today.**
 
