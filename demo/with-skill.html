@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><title>AURA Heights</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AURA Heights</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Italianno&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--ivory:#F7F2E9;--ink:#40301D;--gold:#C9A26B;--scrim:rgba(31,22,12,.55)}
@@ -29,6 +29,18 @@ padding:17px 34px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;w
 .honesty{position:absolute;right:18px;top:18px;font-size:9px;letter-spacing:.18em;
 text-transform:uppercase;color:rgba(247,242,233,.85);background:rgba(26,18,9,.45);
 padding:5px 10px;backdrop-filter:blur(2px)}
+
+@media (max-width:768px){
+ .content{padding:26px 20px 24px}
+ h1{font-size:clamp(30px,9.4vw,76px)}
+ h1 .script{font-size:clamp(38px,12vw,96px)}
+ .sub{font-size:13.5px;max-width:none}
+ .bottom{flex-direction:column;align-items:stretch;gap:16px}
+ .proof{flex-wrap:wrap;row-gap:12px}
+ .p{padding-right:16px;margin-right:16px}
+ .cta{text-align:center}
+ .honesty{right:10px;top:10px}
+}
 </style></head><body>
 <div class="hero">
   <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=80&auto=format&fit=crop" alt="">

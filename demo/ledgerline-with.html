@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Ledgerline</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ledgerline</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--ground:#F6F3EC;--panel:#FFFDF8;--ink:#26221B;--muted:#7C7466;--line:#E5DFD2;--accent:#315C45;--accent-soft:#EAF0EC}
@@ -24,6 +24,18 @@ td.r,th.r{text-align:right}
 .chip{font-size:10.5px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
 .chip.paid{color:var(--accent);border-color:var(--accent)}
 .chip.due{color:#8A5A24;border-color:#C8A16A}
+
+@media (max-width:768px){
+ .app{grid-template-columns:1fr;height:auto;min-height:100vh}
+ .side{border-right:none;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;gap:6px;overflow-x:auto}
+ .logo{margin:0 14px 0 0;font-size:19px;white-space:nowrap}
+ .nav{display:flex;gap:2px}
+ .nav a{white-space:nowrap;padding:7px 10px;font-size:12.5px}
+ .main{padding:16px 14px}
+ .stats{flex-direction:column}
+ .tablewrap{overflow-x:auto;border:1px solid var(--line)}
+ table{min-width:560px}
+}
 </style></head><body>
 <div class="app">
 <div class="side"><p class="logo">Ledgerline</p>
@@ -35,13 +47,13 @@ td.r,th.r{text-align:right}
 <div class="s"><b>86,400</b><span>outstanding</span> <span class="up">3 due this week</span></div>
 <div class="s"><b>11 days</b><span>median time to paid</span></div>
 </div>
-<table>
+<div class="tablewrap"><table>
 <tr><th>No.</th><th>Client</th><th>Issued</th><th class="r">Amount</th><th class="r">Status</th></tr>
 <tr><td>0114</td><td>Harborline Films</td><td>Mar 04</td><td class="r">48,000.00</td><td class="r"><span class="chip paid">Paid Mar 09</span></td></tr>
 <tr><td>0113</td><td>Northlight Studio</td><td>Mar 02</td><td class="r">36,000.00</td><td class="r"><span class="chip paid">Paid Mar 12</span></td></tr>
 <tr><td>0112</td><td>Ember Café</td><td>Feb 27</td><td class="r">22,400.00</td><td class="r"><span class="chip due">Due Mar 27</span></td></tr>
 <tr><td>0111</td><td>The Assembly</td><td>Feb 24</td><td class="r">64,000.00</td><td class="r"><span class="chip due">Due Mar 24</span></td></tr>
 <tr><td>0110</td><td>Quay and Sons</td><td>Feb 20</td><td class="r">18,500.00</td><td class="r"><span class="chip paid">Paid Feb 28</span></td></tr>
-</table>
+</table></div>
 </div></div>
 </body></html>

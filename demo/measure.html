@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><title>measure</title></head><body>
+<div id="out">measuring...</div>
+<script>
+const pages = ['with-skill','without-skill','ember-with','ember-without',
+ 'ledgerline-with','ledgerline-without','northlight-with','northlight-without',
+ 'assembly-mobile-with','assembly-mobile-without'];
+const results = {};
+let done = 0;
+for (const p of pages) {
+  const f = document.createElement('iframe');
+  f.src = p + '.html'; f.width = 390; f.height = 780; f.style.cssText='position:absolute;left:-9999px';
+  f.onload = () => {
+    setTimeout(() => {
+      try {
+        const d = f.contentDocument;
+        const sw = d.scrollingElement.scrollWidth;
+        const wide = [...d.querySelectorAll('*')].filter(e=>e.scrollWidth>400)
+          .map(e=>e.tagName+'.'+(e.className||'')+ ':'+e.scrollWidth).slice(0,2);
+        results[p] = {scrollWidth: sw, overflowing: wide};
+      } catch(e){ results[p] = {error: String(e)} }
+      if (++done === pages.length) document.getElementById('out').textContent = JSON.stringify(results);
+    }, 900);
+  };
+  document.body.appendChild(f);
+}
+</script></body></html>

@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Northlight</title>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Northlight</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Archivo:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#121110;color:#F2EEE6;font-family:Archivo,sans-serif}
@@ -14,6 +14,16 @@
 h1{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:66px;line-height:1.05;margin:0;max-width:13ch;text-wrap:balance}
 h1 i{font-style:italic}
 .meta{text-align:right;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,238,230,.7);line-height:2}
+
+@media (max-width:768px){
+ .top{padding:18px 20px;flex-wrap:wrap;gap:10px}
+ .nav{gap:16px;flex-wrap:wrap}
+ .nav a{font-size:10px;letter-spacing:.16em}
+ .foot{left:20px;right:20px;bottom:22px;flex-direction:column;align-items:flex-start;gap:14px}
+ h1{font-size:clamp(28px,8.6vw,66px)}
+ .meta{text-align:left}
+ .honesty{right:10px;top:auto;bottom:10px}
+}
 </style></head><body>
 <div class="hero">
 <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="">
