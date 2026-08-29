@@ -53,6 +53,19 @@ h2 .script{font-family:Italianno,cursive;font-size:1.28em;line-height:0;color:va
 .hint .arrow{animation:nudge 2s var(--ease) infinite}
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 
+/* wide viewports: the rail unrolls into ledger rows, never a card grid */
+@media (min-width:769px){
+ .railwrap::before,.railwrap::after{display:none}
+ .rail{display:block;overflow:visible;padding-top:10px;padding-bottom:0;border-top:1px solid var(--line)}
+ .card{display:grid;grid-template-columns:150px 1fr 170px;column-gap:38px;row-gap:7px;background:none;border:none;border-radius:0;border-bottom:1px solid var(--line-soft);padding:26px 0 24px;min-height:0}
+ .card .cat{grid-column:1;grid-row:1;margin:0;padding-top:8px}
+ .card h3{grid-column:2;grid-row:1;margin:0}
+ .card p{grid-column:2;grid-row:2;margin:0;max-width:54ch}
+ .card .meta{grid-column:3;grid-row:1 / 3;border:none;padding:0;margin:0;display:flex;flex-direction:column-reverse;justify-content:flex-end;align-items:flex-end;gap:5px;text-align:right}
+ .card .meta b{font-size:30px;line-height:1}
+ .hint{display:none!important}
+}
+
 /* reservation band */
 #reserve{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);text-align:center;background:radial-gradient(120% 130% at 50% 0%,rgba(196,71,46,.10),rgba(196,71,46,0) 60%)}
 #reserve .eyebrow2{display:inline-flex}
@@ -75,7 +88,9 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 44px}
 }
 
 @media (max-width:768px){
- .content{padding:24px 20px 22px}
+ .hero{height:600px}
+ .card:nth-child(2){border-color:rgba(217,122,84,.38);background:linear-gradient(160deg,rgba(196,71,46,.14),rgba(196,71,46,.03) 60%)}
+ .content{padding:52px 20px 22px}
  h1{font-size:clamp(28px,8.8vw,72px)}
  h1 .script{font-size:clamp(36px,11vw,92px)}
  .sub{font-size:13.5px;max-width:none}

@@ -22,6 +22,7 @@ body{
   padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px);
   -webkit-font-smoothing:antialiased;
 }
+.shell{max-width:520px; margin:0 auto}
 .head{padding:18px 18px 10px; display:flex; justify-content:space-between; align-items:baseline}
 .wm{font-family:"Newsreader",Georgia,serif; font-size:20px; font-weight:500}
 .mark{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
@@ -114,9 +115,13 @@ body{
 /* tab bar */
 .tab{
   position:fixed; inset:auto 0 0 0; z-index:10;
+  max-width:520px; margin:0 auto;
   height:calc(var(--tabbar-h) + env(safe-area-inset-bottom));
   padding-bottom:env(safe-area-inset-bottom);
   display:flex; background:var(--panel); border-top:1px solid var(--line);
+}
+@media (min-width:521px){
+  .tab{border-left:1px solid var(--line); border-right:1px solid var(--line)}
 }
 .tab a{
   flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -132,6 +137,7 @@ body{
 </style>
 </head>
 <body>
+<div class="shell">
 
 <header class="head">
   <span class="wm">The Assembly</span>
@@ -215,6 +221,8 @@ body{
 </div>
 
 <p class="fiction">The Assembly is a fictional brand demonstrating the prom-design skill.</p>
+
+</div>
 
 <nav class="tab" aria-label="Main">
   <a href="tonight.html"><span>◐</span>Tonight</a>

@@ -24,6 +24,7 @@ body{
   padding-bottom:calc(var(--tabbar-h) + var(--commitbar-h) + env(safe-area-inset-bottom) + 12px);
 }
 a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.shell{max-width:520px; margin:0 auto}
 
 /* header image */
 .hero{position:relative; height:248px; background:var(--ink)}
@@ -99,6 +100,7 @@ h2{
 .commit{
   position:fixed; left:0; right:0;
   bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  max-width:520px; margin:0 auto;
   z-index:30; background:var(--panel); border-top:1px solid var(--line);
   padding:10px 18px 12px;
 }
@@ -118,6 +120,7 @@ h2{
 .reserve .n{font-variant-numeric:tabular-nums; letter-spacing:.04em; font-size:13px}
 .tab{
   position:fixed; bottom:0; left:0; right:0; z-index:31;
+  max-width:520px; margin:0 auto;
   background:var(--panel); border-top:1px solid var(--line);
   display:flex; padding-bottom:env(safe-area-inset-bottom);
 }
@@ -129,12 +132,13 @@ h2{
 .tab a.on{color:var(--accent)}
 .tab a span{display:block; font-size:16px; margin-bottom:2px}
 
-@media (min-width:700px){
-  .hero{height:320px}
+@media (min-width:521px){
+  .tab,.commit{border-left:1px solid var(--line); border-right:1px solid var(--line)}
 }
 </style>
 </head>
 <body>
+<div class="shell">
 
 <header class="hero">
   <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80&auto=format&fit=crop" alt="A dim dining room set with warm lamplight, the kind of room the long table sits in">
@@ -168,6 +172,8 @@ h2{
   <p>Supper leaves the kitchen at 19:00 and the last plate lands before 22:30. Nobody is moved along to make room for a second sitting, because there is no second sitting.</p>
   <p class="quiet">Twelve places is the table's whole capacity, not a marketing cap. Three remain for this date.</p>
 </section>
+
+</div>
 
 <div class="commit">
   <p class="demo">A demonstration screen: pressing Reserve books nothing.</p>

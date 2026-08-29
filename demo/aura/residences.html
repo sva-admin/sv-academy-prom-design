@@ -76,22 +76,48 @@ h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,60px);
   text-transform:uppercase;color:var(--soft)}
 @media (min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
 
-/* ---------- the grid ---------- */
+/* ---------- the ledger ---------- */
 .residences{padding-block:0 clamp(56px,6.5vw,92px)}
-.grid{display:grid;grid-template-columns:1fr;gap:clamp(20px,2.6vw,30px)}
-@media (min-width:720px){.grid{grid-template-columns:1fr 1fr}}
-.card{display:flex;flex-direction:column;background:var(--cream);
-  border:1px solid var(--line);border-radius:14px;overflow:hidden;
-  box-shadow:0 1px 0 var(--line-soft);
-  transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
-.card:hover{box-shadow:0 16px 44px rgba(28,16,6,.14);transform:translateY(-2px)}
-.card.filmed{border-color:var(--gold-soft)}
-@media (min-width:720px){.card{border-radius:18px}}
-.media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink)}
-.media img{width:100%;height:100%;object-fit:cover;
+.residences .eyebrow{margin-bottom:16px}
+.ledger{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:112px minmax(0,1fr);column-gap:18px;
+  padding:20px 0;border-bottom:1px solid var(--line-soft)}
+.thumb{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--ink)}
+.thumb img{width:100%;height:100%;object-fit:cover;
   filter:sepia(.12) saturate(1.04) brightness(.97);
-  transform:scale(1.04);transition:transform 1.3s var(--ease)}
-.card:hover .media img{transform:scale(1)}
+  transform:scale(1.05);transition:transform 1.3s var(--ease)}
+.row:hover .thumb img,.feature:hover .thumb img{transform:scale(1)}
+.imgnote{display:block;margin-top:7px;font-size:7.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--soft);line-height:1.8}
+.body{display:flex;flex-direction:column;gap:5px;min-width:0}
+.cardname{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.05}
+.facts{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  line-height:2;color:var(--soft);font-variant-numeric:tabular-nums}
+.note{font-size:13px;line-height:1.7;color:var(--soft);max-width:52ch}
+.go{margin-top:auto;padding-top:10px;display:inline-flex;align-items:center;
+  gap:8px;min-height:24px;font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold)}
+.go::after{content:"\203A";font-size:14px;transition:transform .5s var(--ease)}
+.row:hover .go::after,.feature:hover .go::after{transform:translateX(3px)}
+@media (min-width:760px){
+  .row{grid-template-columns:168px minmax(0,1fr);column-gap:30px;
+    padding:24px 0;align-items:center}
+  .thumb{aspect-ratio:16/10}
+  .cardname{font-size:30px}
+  .go{margin-top:0;padding-top:8px}
+}
+/* feature panel: the filmed corner stack */
+.feature{position:relative;display:block;margin:28px 0;background:var(--cream);
+  border:1px solid var(--gold-soft);padding:clamp(18px,3.4vw,34px)}
+.feature::after{content:"";position:absolute;inset:8px;
+  border:1px solid var(--line);pointer-events:none}
+.feature .fin{position:relative;display:grid;grid-template-columns:1fr;
+  gap:18px;z-index:1}
+.fmedia{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink)}
+.fmedia img{width:100%;height:100%;object-fit:cover;
+  filter:sepia(.12) saturate(1.04) brightness(.97);
+  transform:scale(1.05);transition:transform 1.3s var(--ease)}
+.feature:hover .fmedia img{transform:scale(1)}
 .chip{position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:.18em;
   text-transform:uppercase;color:rgba(247,242,233,.9);
   background:rgba(31,22,12,.5);backdrop-filter:blur(2px);
@@ -99,17 +125,13 @@ h1{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,60px);
 .chip.gold{top:auto;right:auto;bottom:12px;left:12px;
   color:var(--gold-soft);border:1px solid var(--gold-soft);
   background:rgba(31,22,12,.55)}
-.cardbody{display:flex;flex-direction:column;gap:8px;flex:1;
-  padding:20px 20px 18px}
-.cardname{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.1}
-.facts{font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  line-height:2.1;color:var(--soft);font-variant-numeric:tabular-nums}
-.note{font-size:13px;line-height:1.7;color:var(--soft)}
-.go{margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;
-  gap:8px;min-height:24px;font-size:10px;font-weight:600;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--gold)}
-.go::after{content:"\203A";font-size:14px;transition:transform .5s var(--ease)}
-.card:hover .go::after{transform:translateX(3px)}
+.fnum{font-family:var(--serif);font-weight:300;
+  font-size:clamp(58px,9vw,104px);line-height:.85;color:var(--gold)}
+.fbody{display:flex;flex-direction:column;gap:8px}
+@media (min-width:760px){
+  .feature .fin{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+    gap:clamp(24px,4vw,44px);align-items:start}
+}
 
 /* ---------- viewing band ---------- */
 .band{background:var(--ink);color:var(--ivory);
@@ -162,10 +184,10 @@ footer a{color:var(--gold);box-shadow:inset 0 -1px 0 var(--gold-soft)}
     <h1>Choose your <span class="script">view</span> before you choose your home</h1>
     <p class="lede">Six stacks of eight floors: <b>48 residences</b> on the headland,
     <b>38 metres</b> above the bay. The bay lies east. Stacks 03 to 05 face the
-    ridge, and their cards say so, because a ridge view sold as a bay view is a
+    ridge, and their listings say so, because a ridge view sold as a bay view is a
     promise nobody can keep.</p>
     <p class="method">Every residence was filmed in 4K before visiting. The time on
-    each card is the minute the camera rolled.</p>
+    each listing is the minute the camera rolled.</p>
     <div class="stats">
       <div class="stat"><b>48</b><span>residences, all filmed</span></div>
       <div class="stat"><b>217.40 sqm</b><span>largest plan, measured</span></div>
@@ -177,82 +199,96 @@ footer a{color:var(--gold);box-shadow:inset 0 -1px 0 var(--gold-soft)}
 
 <section class="residences">
   <div class="wrap">
-    <div class="grid">
+    <p class="eyebrow">The ledger · In stack order</p>
+    <div class="ledger">
 
-      <a class="card" href="visit.html">
-        <div class="media">
-          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop"
-               width="1600" height="1200" alt="Demonstration image: tall pines standing in for the Stack 03 ridge view">
-          <span class="chip">Demonstration imagery</span>
+      <a class="row" href="visit.html">
+        <div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1200" alt="Demonstration image: tall pines standing in for the Stack 03 ridge view">
+          </div>
+          <span class="imgnote">Demonstration imagery</span>
         </div>
-        <div class="cardbody">
+        <div class="body">
           <div class="cardname">Stack 03</div>
           <p class="facts">92.40 sqm · 2 bedrooms · Floor 3 · Ridge view · Filmed 06:52</p>
           <span class="go">Book a viewing</span>
         </div>
       </a>
 
-      <a class="card" href="visit.html">
-        <div class="media">
-          <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80&auto=format&fit=crop"
-               width="1600" height="1200" loading="lazy" alt="Demonstration image: open field at golden hour standing in for the Stack 04 ridge view">
-          <span class="chip">Demonstration imagery</span>
+      <a class="row" href="visit.html">
+        <div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1200" loading="lazy" alt="Demonstration image: open field at golden hour standing in for the Stack 04 ridge view">
+          </div>
+          <span class="imgnote">Demonstration imagery</span>
         </div>
-        <div class="cardbody">
+        <div class="body">
           <div class="cardname">Stack 04</div>
           <p class="facts">117.25 sqm · 2 bedrooms · Floor 5 · Ridge view · Filmed 07:04</p>
           <span class="go">Book a viewing</span>
         </div>
       </a>
 
-      <a class="card" href="visit.html">
-        <div class="media">
-          <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600&q=80&auto=format&fit=crop"
-               width="1600" height="1200" loading="lazy" alt="Demonstration image: waterfall cliffs standing in for the Stack 05 ridge view">
-          <span class="chip">Demonstration imagery</span>
+      <a class="row" href="visit.html">
+        <div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1200" loading="lazy" alt="Demonstration image: waterfall cliffs standing in for the Stack 05 ridge view">
+          </div>
+          <span class="imgnote">Demonstration imagery</span>
         </div>
-        <div class="cardbody">
+        <div class="body">
           <div class="cardname">Stack 05</div>
           <p class="facts">104.85 sqm · 2 bedrooms · Floor 2 · Ridge view · Filmed 06:37</p>
           <span class="go">Book a viewing</span>
         </div>
       </a>
 
-      <a class="card" href="visit.html">
-        <div class="media">
-          <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=80&auto=format&fit=crop"
-               width="1600" height="1200" loading="lazy" alt="Demonstration image: golden cove and headland standing in for the Stack 06 bay view">
-          <span class="chip">Demonstration imagery</span>
+      <a class="row" href="visit.html">
+        <div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1200" loading="lazy" alt="Demonstration image: golden cove and headland standing in for the Stack 06 bay view">
+          </div>
+          <span class="imgnote">Demonstration imagery</span>
         </div>
-        <div class="cardbody">
+        <div class="body">
           <div class="cardname">Stack 06</div>
           <p class="facts">131.70 sqm · 3 bedrooms · Floor 7 · Bay view, east · Filmed 06:18</p>
           <span class="go">Book a viewing</span>
         </div>
       </a>
 
-      <a class="card filmed" href="residence-07.html">
-        <div class="media">
-          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop"
-               width="1600" height="1200" loading="lazy" alt="Demonstration image: misty forest in golden light standing in for the Residence 07 ridge and pine view">
-          <span class="chip">Demonstration imagery</span>
-          <span class="chip gold">Filmed walkthrough</span>
-        </div>
-        <div class="cardbody">
-          <div class="cardname">Stack 07</div>
-          <p class="facts">148.60 sqm · 3 bedrooms · Floor 6 · Corner stack, ridge and pine · Filmed 06:10, golden hour</p>
-          <p class="note">A corner stack, so we call it what it is: ridge and pine, never bay. The full walkthrough is on file.</p>
-          <span class="go">Watch the walkthrough</span>
+      <a class="feature" href="residence-07.html">
+        <div class="fin">
+          <div class="fmedia">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1200" loading="lazy" alt="Demonstration image: misty forest in golden light standing in for the Residence 07 ridge and pine view">
+            <span class="chip">Demonstration imagery</span>
+            <span class="chip gold">Filmed walkthrough</span>
+          </div>
+          <div class="fbody">
+            <div class="fnum">07</div>
+            <div class="cardname">Stack 07</div>
+            <p class="facts">148.60 sqm · 3 bedrooms · Floor 6 · Corner stack, ridge and pine · Filmed 06:10, golden hour</p>
+            <p class="note">A corner stack, so we call it what it is: ridge and pine, never bay. The full walkthrough is on file.</p>
+            <span class="go">Watch the walkthrough</span>
+          </div>
         </div>
       </a>
 
-      <a class="card" href="visit.html">
-        <div class="media">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop"
-               width="1600" height="1200" loading="lazy" alt="Demonstration image: beach at golden hour standing in for the Stack 08 bay view">
-          <span class="chip">Demonstration imagery</span>
+      <a class="row" href="visit.html">
+        <div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1200" loading="lazy" alt="Demonstration image: beach at golden hour standing in for the Stack 08 bay view">
+          </div>
+          <span class="imgnote">Demonstration imagery</span>
         </div>
-        <div class="cardbody">
+        <div class="body">
           <div class="cardname">Stack 08</div>
           <p class="facts">217.40 sqm · 4 bedrooms · Floor 8 · Bay view, east · Filmed 06:22</p>
           <p class="note">The largest plan in the building, 217.40 sqm, measured rather than rounded.</p>

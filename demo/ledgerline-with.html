@@ -38,7 +38,7 @@ td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:ta
 td.r,th.r{text-align:right}
 .chip{font-size:10.5px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
 .chip.paid{color:var(--accent);border-color:var(--accent)}
-.chip.due{color:#9A6A1F;background:#F6EFE2;border-color:#E7DCC4}
+.chip.due{color:var(--ground);background:var(--ink);border-color:var(--ink)}
 tr.empty td{padding:0;border-bottom:none;color:var(--muted)}
 tr.empty .er{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;min-height:44px;padding:4px 12px}
 tr.empty .er span{font-size:12.5px}
@@ -46,7 +46,7 @@ tr.empty .er a{display:inline-flex;align-items:center;min-height:44px;padding:0 
 .swipehint{display:none}
 
 @media (max-width:768px){
- .app{grid-template-columns:1fr;height:auto;min-height:100vh}
+ .app{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto;min-height:100vh}
  .side{border-right:none;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;gap:6px;overflow-x:auto}
  .logo{margin:0 14px 0 0;font-size:19px;white-space:nowrap}
  .nav{display:flex;gap:2px}

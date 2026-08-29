@@ -31,13 +31,19 @@ text-transform:uppercase;color:rgba(247,242,233,.85);background:rgba(26,18,9,.45
 padding:5px 10px;backdrop-filter:blur(2px)}
 
 @media (max-width:768px){
- .content{padding:26px 20px 24px}
+ .hero .grade{background:
+  linear-gradient(180deg,rgba(26,18,9,.82) 0%,rgba(26,18,9,.52) 26%,rgba(26,18,9,.2) 52%,rgba(26,18,9,.72) 100%)}
+ .content{padding:52px 20px 24px}
+ .eyebrow{letter-spacing:.34em}
  h1{font-size:clamp(30px,9.4vw,76px)}
  h1 .script{font-size:clamp(38px,12vw,96px)}
  .sub{font-size:13.5px;max-width:none}
- .bottom{flex-direction:column;align-items:stretch;gap:16px}
- .proof{flex-wrap:wrap;row-gap:12px}
- .p{padding-right:16px;margin-right:16px}
+ .bottom{flex-direction:column;align-items:stretch;gap:18px}
+ .proof{display:block;padding-top:0;border-top:none}
+ .p{display:flex;align-items:baseline;justify-content:space-between;
+  padding:11px 0;margin:0;border-right:none;border-top:1px solid rgba(247,242,233,.22)}
+ .p b{font-size:24px}
+ .p span{margin-top:0;text-align:right;color:rgba(247,242,233,.8)}
  .cta{text-align:center}
  .honesty{right:10px;top:10px}
 }

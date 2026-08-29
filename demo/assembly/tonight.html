@@ -11,7 +11,7 @@
 <style>
 :root{
   --ground:#F1F1EB; --panel:#FAFAF5; --ink:#22261F; --muted:#79806F;
-  --line:#DEE0D4; --accent:#6E3B2A;
+  --line:#DEE0D4; --accent:#6E3B2A; --desk:#E8E9E0;
   --tabbar-h:64px;
   --serif:"Newsreader",Georgia,serif;
   --sans:Archivo,system-ui,sans-serif;
@@ -21,8 +21,11 @@ html,body{max-width:100%}
 body{
   margin:0; background:var(--ground); color:var(--ink);
   font-family:var(--sans); font-size:14px; line-height:1.5;
-  padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 28px);
   -webkit-font-smoothing:antialiased;
+}
+.app{
+  min-height:100dvh; background:var(--ground);
+  padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 28px);
 }
 img{max-width:100%; display:block}
 a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
@@ -41,7 +44,7 @@ a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
 .honesty{
   position:absolute; right:10px; top:10px;
   font-size:9px; letter-spacing:.18em; text-transform:uppercase;
-  color:rgba(241,241,235,.9); background:rgba(23,16,9,.55); padding:5px 10px;
+  color:rgba(241,241,235,.9); background:rgba(34,38,31,.6); padding:5px 10px;
 }
 .body{padding:14px 16px 16px}
 .row1{display:flex; justify-content:space-between; align-items:center; gap:10px}
@@ -62,22 +65,26 @@ a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
   font-size:11.5px; color:var(--muted);
 }
 
-.empty{
-  margin:22px 18px 0; padding:26px 18px 22px; text-align:center;
-  border:1px dashed var(--line); background:transparent;
+.kick{
+  display:flex; align-items:center; gap:10px; margin:24px 18px 8px;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
 }
-.empty .e1{font-family:var(--serif); font-size:19px; font-weight:500; margin:0 0 3px}
-.empty .e2{font-size:12px; color:var(--muted); margin:0 0 16px}
+.kick::before{content:""; width:26px; height:1px; background:var(--accent); flex:none}
+.empty{margin:0 18px 0; padding:0}
+.empty .e1{font-family:var(--serif); font-size:19px; font-weight:500; margin:0}
+.empty .e1 i{font-style:italic; font-weight:400; color:var(--muted)}
 .go{
-  display:flex; align-items:center; justify-content:center;
-  min-height:48px; margin:0 auto; max-width:280px;
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:48px; margin:14px 0 0; padding:0 16px;
   background:var(--ink); color:var(--ground); text-decoration:none;
   font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:500;
 }
-.evidence{font-size:11px; color:var(--muted); margin:10px 0 0; font-variant-numeric:tabular-nums}
+.go .arr{font-size:15px; letter-spacing:0}
+.evidence{font-size:11px; color:var(--muted); margin:9px 0 0; font-variant-numeric:tabular-nums}
 
 .tab{
-  position:fixed; left:0; right:0; bottom:0; z-index:10;
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%); z-index:10;
+  width:100%; max-width:420px;
   display:flex; background:var(--panel); border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom);
 }
@@ -88,9 +95,23 @@ a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
 }
 .tab a span{font-size:16px}
 .tab a[aria-current="page"]{color:var(--accent); font-weight:600}
+@media (min-width:480px){
+  body{background:var(--desk)}
+  .app{
+    max-width:420px; margin:0 auto;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+    box-shadow:0 0 40px rgba(34,38,31,.08);
+  }
+  .tab{
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+}
 </style>
 </head>
 <body>
+<div class="app">
 
 <header class="head">
   <span class="wm">The Assembly</span>
@@ -117,12 +138,14 @@ a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
   </div>
 </article>
 
+<div class="kick">The rest of Mar</div>
 <section class="empty">
-  <p class="e1">Nothing else tonight.</p>
-  <p class="e2">Thursday opens the cellar.</p>
-  <a class="go" href="events.html">See the 12 open dates</a>
+  <p class="e1">Nothing else tonight. <i>Thursday opens the cellar.</i></p>
+  <a class="go" href="events.html"><span>See the 12 open dates</span><span class="arr">&#8594;</span></a>
   <p class="evidence">84 places left across Mar, counted as this page is built.</p>
 </section>
+
+</div>
 
 <nav class="tab" aria-label="The Assembly">
   <a href="tonight.html" aria-current="page"><span>◐</span>Tonight</a>
