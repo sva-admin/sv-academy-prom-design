@@ -1,0 +1,139 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fern and Fog</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,340;1,9..144,340&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ground:#EDF1EC;   /* cool green-grey, the shop window on a wet morning */
+ --panel:#F7FAF6;    /* raised surface */
+ --ink:#24312A;      /* moss ink */
+ --muted:#6C7A70;    /* secondary text */
+ --line:#DCE4DC;     /* hairlines on the ground */
+ --accent:#A65A33;   /* fired clay, the pots on the bench */
+ --accent-ink:#8A4826; /* clay dark enough to read as small text on the ground */
+ --accent-fog:#CE8A5E; /* clay lifted enough to read on the graded photo */
+ --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Archivo,system-ui,sans-serif;background:var(--ground);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+/* ---- hero ---- */
+.hero{position:relative;height:640px;height:min(86svh,640px);min-height:480px;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) brightness(.94)}
+.grade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,32,28,.30) 0%,rgba(20,30,27,.42) 45%,rgba(16,25,22,.78) 100%)}
+.honesty{position:absolute;right:18px;top:18px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,250,246,.88);background:rgba(16,25,22,.5);padding:5px 10px}
+.content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:54px 60px 42px;color:#F7FAF6}
+.eyebrow{font-size:11px;letter-spacing:.44em;text-transform:uppercase;color:var(--accent-fog);margin:0}
+h1{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:clamp(38px,10vw,66px);line-height:1.06;margin:18px 0 0;max-width:15ch;text-wrap:balance}
+h1 em{font-style:italic;font-weight:340;color:var(--accent-fog)}
+.sub{margin:18px 0 0;font-size:15px;line-height:1.7;max-width:44ch;color:rgba(247,250,246,.86)}
+.proof{display:flex;border-top:1px solid rgba(247,250,246,.28);padding-top:18px;margin-top:30px;flex-wrap:wrap;row-gap:12px}
+.p{padding-right:26px;margin-right:26px;border-right:1px solid rgba(247,250,246,.28)}
+.p:last-child{border:none;margin:0;padding-right:0}
+.p b{display:block;font-family:Fraunces,Georgia,serif;font-weight:340;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.p span{display:block;margin-top:4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,250,246,.66)}
+
+/* ---- subscription band ---- */
+.band{padding:clamp(48px,8vw,80px) 0}
+.wrap{max-width:960px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.eyebrow2{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 18px}
+.eyebrow2::before{content:"";width:34px;height:1px;background:var(--accent);opacity:.8}
+.jar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,5vw,44px);display:flex;gap:clamp(24px,5vw,56px);align-items:flex-start}
+.jar-copy{flex:1 1 auto;min-width:0}
+h2{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:clamp(27px,6.4vw,40px);line-height:1.12;margin:0 0 12px;max-width:20ch;text-wrap:balance}
+.lede{font-size:14.5px;line-height:1.75;color:var(--ink);max-width:52ch;margin:0}
+.lede .q{color:var(--muted)}
+.jar-buy{flex:0 0 auto;border-left:1px solid var(--line);padding-left:clamp(24px,4vw,44px);text-align:left}
+.price{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:44px;line-height:1;margin:0;font-variant-numeric:tabular-nums}
+.per{display:block;margin-top:6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.cta{display:inline-block;margin-top:20px;border:1px solid var(--accent);color:var(--accent-ink);text-decoration:none;padding:13px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;border-radius:2px;transition:background .25s var(--ease),color .25s var(--ease)}
+.cta:hover{background:var(--accent);color:var(--panel)}
+.fine{font-size:11px;line-height:1.7;color:var(--muted);max-width:52ch;margin:16px 0 0}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:32px 0 44px}
+.fmark{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:21px;margin:0 0 8px}
+.fmicro{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.fnote{font-size:11px;line-height:1.7;color:var(--muted);max-width:54ch;margin:0}
+.fnote a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px}
+
+/* reveal: visible by default, hidden only once JS is alive */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:768px){
+ .content{padding:24px 20px 24px}
+ .sub{font-size:13.5px;max-width:none}
+ .honesty{right:10px;top:10px}
+ .p{padding-right:16px;margin-right:16px}
+ .p b{font-size:20px}
+ .jar{flex-direction:column;gap:22px}
+ .jar-buy{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:20px;width:100%}
+ .price{font-size:38px}
+}
+</style></head><body>
+
+<div class="hero">
+<img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="Fog moving through a hillside forest above the town">
+<div class="grade"></div><span class="honesty">Demonstration imagery</span>
+<div class="content">
+<p class="eyebrow">Fern and Fog · In the hills</p>
+<h1>Cut in the <em>rain</em>, sold before the fog lifts.</h1>
+<p class="sub">The cutting rows are forty steps behind the shop. Whatever the
+weather allows goes into the window at eight, and by evening it is gone.</p>
+<div class="proof">
+<div class="p"><b>05:40</b><span>cut this morning</span></div>
+<div class="p"><b>4 km</b><span>delivery inside</span></div>
+<div class="p"><b>08:00 to 19:00</b><span>open, closed Mon</span></div>
+</div>
+</div>
+</div>
+
+<section class="band">
+<div class="wrap rv">
+<p class="eyebrow2">The weekly jar</p>
+<div class="jar">
+<div class="jar-copy">
+<h2>Whatever the rain gave, in one jar.</h2>
+<p class="lede">A jar of that morning's cut, left on your step every Thursday,
+anywhere inside the 4 km. Next week the jar comes back rinsed and refilled.
+<span class="q">Skipping a week costs nothing: say so by ten the night
+before.</span></p>
+</div>
+<div class="jar-buy">
+<p class="price">340</p>
+<span class="per">a month · jar and delivery in</span>
+<a class="cta" href="#ask">Ask for this week's jar</a>
+<p class="fine">This page is a demonstration, so the button stays put. Built
+for a real shop it opens a plain email. A person reads it and replies, usually
+before the kettle is cold.</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer id="ask">
+<div class="wrap">
+<p class="fmark">Fern and Fog</p>
+<p class="fmicro">In the hills · deliveries inside 4 km · closed Mon</p>
+<p class="fnote">A demonstration page in the prom-design house style. Fern and
+Fog, its hill, and every number here are fictional.
+<a href="https://github.com/sva-admin/sv-academy-prom-design">Source on GitHub</a>.</p>
+</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+/* a dead script must never leave the page blank: hidden-state only exists once
+   this line has run, and a timeout force-shows everything */
+(function(){
+ var els=[].slice.call(document.querySelectorAll('.rv'));
+ if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},
+   {rootMargin:'0px 0px -10% 0px'});
+  els.forEach(function(el){io.observe(el)});
+ }
+ setTimeout(function(){els.forEach(function(el){el.classList.add('in')})},2500);
+})();
+</script>
+</body></html>

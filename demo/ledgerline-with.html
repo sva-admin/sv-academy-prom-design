@@ -1,11 +1,11 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ledgerline</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ground:#F6F3EC;--panel:#FFFDF8;--ink:#26221B;--muted:#7C7466;--line:#E5DFD2;--accent:#315C45;--accent-soft:#EAF0EC}
+:root{--ground:#F2F4F6;--panel:#FBFCFD;--ink:#1E2630;--muted:#5C6875;--line:#DCE2E8;--accent:#1E6B52;--accent-soft:#E6F0EB}
 *{box-sizing:border-box}body{margin:0;font-family:Archivo,sans-serif;background:var(--ground);color:var(--ink);font-size:14px}
 .app{display:grid;grid-template-columns:216px 1fr;height:740px}
 .side{background:var(--panel);border-right:1px solid var(--line);padding:22px 18px}
-.logo{font-family:"Cormorant Garamond",serif;font-size:22px;margin:0 0 26px}
+.logo{font-family:"Spectral",serif;font-weight:500;font-size:22px;margin:0 0 26px}
 .nav a{display:block;padding:9px 12px;color:var(--muted);text-decoration:none;font-size:13.5px;border-radius:3px}
 .nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:500}
 .nav a.peek{color:var(--ink)}
@@ -38,7 +38,7 @@ td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:ta
 td.r,th.r{text-align:right}
 .chip{font-size:10.5px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
 .chip.paid{color:var(--accent);border-color:var(--accent)}
-.chip.due{color:#8A5A24;border-color:#C8A16A}
+.chip.due{color:#9A6A1F;background:#F6EFE2;border-color:#E7DCC4}
 tr.empty td{padding:0;border-bottom:none;color:var(--muted)}
 tr.empty .er{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;min-height:44px;padding:4px 12px}
 tr.empty .er span{font-size:12.5px}
@@ -59,10 +59,10 @@ tr.empty .er a{display:inline-flex;align-items:center;min-height:44px;padding:0 
  .swipehint{display:block;margin:0 0 6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
  .tablewrap{overflow-x:auto;border:1px solid var(--line);
   background:
-   linear-gradient(90deg,#FFFDF8 30%,rgba(255,253,248,0)),
-   linear-gradient(270deg,#FFFDF8 30%,rgba(255,253,248,0)) 100% 0,
-   linear-gradient(90deg,rgba(38,34,27,.12),rgba(38,34,27,0)),
-   linear-gradient(270deg,rgba(38,34,27,.12),rgba(38,34,27,0)) 100% 0;
+   linear-gradient(90deg,#FBFCFD 30%,rgba(251,252,253,0)),
+   linear-gradient(270deg,#FBFCFD 30%,rgba(251,252,253,0)) 100% 0,
+   linear-gradient(90deg,rgba(30,38,48,.12),rgba(30,38,48,0)),
+   linear-gradient(270deg,rgba(30,38,48,.12),rgba(30,38,48,0)) 100% 0;
   background-repeat:no-repeat;
   background-size:40px 100%,40px 100%,14px 100%,14px 100%;
   background-attachment:local,local,scroll,scroll;

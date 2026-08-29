@@ -41,11 +41,22 @@ short message, plain words, no design jargon:
    sentence.
 3. **Anything that must stay?** Brand colors, a logo, existing copy.
 
-Then present **the Prom take** in two or three sentences before building:
-which register, which ground tint, what the hero will be, and what the proof
-strip will say. End with "want me to build that, or adjust something first?"
-One round of questions, maximum. If the user says "just build it", build it.
-The intake exists to make newcomers feel steered, never interrogated.
+Then do thirty seconds of thinking about the subject's WORLD before answering
+(what materials, weather, rooms, and objects live in this business), and
+present **two or three named directions**, each in one line: a name, the
+ground tint and accent as real hex values, the face pairing, and why it fits
+this subject. Recommend one and say why in one sentence. Example shape:
+
+> 1. **Rain jar** (recommended): cool green-grey ground `#EDF1EC`, moss ink,
+>    fired-clay accent `#A65A33`, Fraunces + Archivo. Fits a flower shop in a
+>    rainy hill town: the palette is the shop's own window on a wet morning.
+> 2. **Night market**: charcoal ground, paper-lantern amber accent,
+>    Newsreader + Archivo. Moodier, better if evenings are the business.
+
+End with "pick one, mix them, or say just build it." One round of questions,
+maximum. The intake exists to make newcomers feel steered, never
+interrogated, and the options exist so they choose by recognition instead of
+having to describe taste they do not have words for.
 
 ## Mobile is the default, not the afterthought
 
@@ -113,6 +124,34 @@ instrument.
 
 Write the register down before touching a file. It decides the type stack, the
 density, and what counts as a defect later.
+
+## Second decision: the brand's own tokens
+
+The register decides the architecture. The SUBJECT decides the palette and
+the faces, and this is where most one-style skills go wrong: they ship one
+palette and every client comes out beige. The law is the STRUCTURE of the
+tokens, never one fixed set of values:
+
+- **A tinted ground, any temperature.** Never pure `#FFFFFF` or `#000000`.
+  The tint comes from the subject's material world: a florist in the rain is
+  cool green-grey, a fintech ledger is cool paper-blue, a supper club is
+  linen and smoke, a beachfront tower is warm ivory. Derive it, do not
+  default to it.
+- **Ink, not black.** A dark that carries the ground's temperature.
+- **One accent, from an object the business actually owns.** Ember red from
+  the oven, clay from the pots, ledger green from the money, gold from the
+  brass. Name the object when you present the direction.
+- **Faces carry the voice, so vary them.** A short vetted menu, all on Google
+  Fonts, each with a voice: Cormorant Garamond (candlelit, classical),
+  Fraunces (warm, contemporary, slightly soft), Newsreader (editorial, dry),
+  Spectral (precise, technical warmth), Libre Caslon Text (bookish). Pair
+  with one working sans: Archivo, Public Sans, or IBM Plex Sans. For Thai,
+  Trirong (serif) and Sarabun (sans) carry both scripts honestly.
+- **Banned regardless of brief:** the AI-slop pairings (Playfair Display over
+  Montserrat, Inter for everything), purple-to-blue gradients, and reusing a
+  previous client's palette because it worked there. Every demo brand in this
+  repo runs a different direction derived this way; that variation is the
+  proof the method works.
 
 ## The five laws
 

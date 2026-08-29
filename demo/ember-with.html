@@ -1,52 +1,52 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ember Café</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Italianno&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,560&family=Italianno&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ground:#211912;--ivory:#F5EFE4;--gold:#C9903F;--line:rgba(245,239,228,.22);--line-soft:rgba(245,239,228,.14);--ease:cubic-bezier(.23,1,.32,1)}
+:root{--ground:#1B1714;--ivory:#F5EFE4;--ember:#C4472E;--ember-soft:#D97A54;--line:rgba(245,239,228,.22);--line-soft:rgba(245,239,228,.14);--ease:cubic-bezier(.23,1,.32,1)}
 *{box-sizing:border-box}body{margin:0;font-family:Archivo,sans-serif;background:var(--ground);color:var(--ivory);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
 .hero{position:relative;height:740px;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.2) saturate(1.05) brightness(.8)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.25) saturate(1.05) brightness(.8)}
 .grade{position:absolute;inset:0;background:linear-gradient(82deg,rgba(23,16,9,.88) 0%,rgba(23,16,9,.6) 40%,rgba(23,16,9,.15) 70%)}
 .honesty{position:absolute;right:18px;top:18px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,239,228,.85);background:rgba(23,16,9,.5);padding:5px 10px}
 .content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:54px 60px 44px}
-.eyebrow{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin:0}
-h1{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:72px;line-height:1.04;margin:24px 0 0;max-width:14ch;text-wrap:balance}
-h1 .script{font-family:Italianno,cursive;font-size:92px;line-height:0;color:var(--gold);vertical-align:-6px}
+.eyebrow{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--ember);margin:0}
+h1{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:72px;line-height:1.04;margin:24px 0 0;max-width:14ch;text-wrap:balance}
+h1 .script{font-family:Italianno,cursive;font-size:92px;line-height:0;color:var(--ember-soft);vertical-align:-6px}
 .sub{margin:22px 0 0;font-size:15px;line-height:1.7;max-width:42ch;color:rgba(245,239,228,.85)}
 .bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:28px}
 .proof{display:flex;border-top:1px solid var(--line);padding-top:18px}
 .p{padding-right:28px;margin-right:28px;border-right:1px solid var(--line)}
 .p:last-child{border:none;margin:0;padding-right:0}
-.p b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;font-variant-numeric:tabular-nums}
+.p b{display:block;font-family:Fraunces,Georgia,serif;font-weight:560;font-size:28px;font-variant-numeric:tabular-nums}
 .p span{display:block;margin-top:3px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,228,.6)}
-.cta{flex:none;background:var(--ivory);color:#211912;text-decoration:none;padding:16px 32px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.cta{flex:none;background:var(--ivory);color:#1B1714;text-decoration:none;padding:16px 32px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
 
 /* ---- below the hero ---- */
 .band{padding:clamp(52px,9vw,88px) 0}
 .wrap{max-width:1100px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
-.eyebrow2{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin:0 0 20px}
-.eyebrow2::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
-h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin:0 0 16px;max-width:22ch;text-wrap:balance}
-h2 .script{font-family:Italianno,cursive;font-size:1.28em;line-height:0;color:var(--gold);vertical-align:-2px}
+.eyebrow2{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--ember);margin:0 0 20px}
+.eyebrow2::before{content:"";width:34px;height:1px;background:var(--ember);opacity:.7}
+h2{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin:0 0 16px;max-width:22ch;text-wrap:balance}
+h2 .script{font-family:Italianno,cursive;font-size:1.28em;line-height:0;color:var(--ember-soft);vertical-align:-2px}
 .lede{font-size:15px;line-height:1.75;color:rgba(245,239,228,.82);max-width:58ch;margin:0}
 .room-facts{margin-top:26px}
 
 /* menu rail */
 .railwrap{position:relative;margin-top:6px}
 .railwrap::before,.railwrap::after{content:"";position:absolute;top:0;bottom:22px;width:38px;z-index:2;pointer-events:none;opacity:0;transition:opacity .5s var(--ease)}
-.railwrap::before{left:0;background:linear-gradient(90deg,#211912,rgba(33,25,18,0))}
-.railwrap::after{right:0;background:linear-gradient(270deg,#211912,rgba(33,25,18,0))}
+.railwrap::before{left:0;background:linear-gradient(90deg,#1B1714,rgba(27,23,20,0))}
+.railwrap::after{right:0;background:linear-gradient(270deg,#1B1714,rgba(27,23,20,0))}
 .railwrap.can-scroll::after{opacity:1}
 .railwrap.can-scroll.at-end::after{opacity:0}
 .railwrap.can-scroll.scrolled::before{opacity:1}
 .rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;max-width:1100px;margin:0 auto;padding:4px clamp(20px,5vw,56px) 22px;scroll-padding-inline:clamp(20px,5vw,56px);scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .rail::-webkit-scrollbar{display:none}
 .card{scroll-snap-align:start;flex:0 0 min(78vw,320px);background:rgba(245,239,228,.05);border:1px solid var(--line-soft);border-radius:18px;padding:24px 22px 18px;display:flex;flex-direction:column;min-height:236px}
-.card .cat{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
-.card h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:27px;line-height:1.05;margin:0 0 10px}
+.card .cat{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--ember);margin:0 0 12px}
+.card h3{font-family:Fraunces,Georgia,serif;font-weight:560;font-size:27px;line-height:1.05;margin:0 0 10px}
 .card p{font-size:13.5px;line-height:1.65;color:rgba(245,239,228,.78);margin:0 0 18px}
 .card .meta{margin-top:auto;border-top:1px solid var(--line-soft);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px;letter-spacing:.08em;color:rgba(245,239,228,.72);font-variant-numeric:tabular-nums}
-.card .meta b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:19px;color:var(--ivory)}
+.card .meta b{font-family:Fraunces,Georgia,serif;font-weight:560;font-size:19px;color:var(--ivory)}
 .hint{display:none;align-items:center;gap:10px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(245,239,228,.6);margin:10px 0 0}
 .railwrap.can-scroll + .wrap .hint{display:inline-flex}
 .hint svg{display:block}
@@ -54,7 +54,7 @@ h2 .script{font-family:Italianno,cursive;font-size:1.28em;line-height:0;color:va
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 
 /* reservation band */
-#reserve{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);text-align:center;background:radial-gradient(120% 130% at 50% 0%,rgba(201,144,63,.08),rgba(201,144,63,0) 60%)}
+#reserve{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);text-align:center;background:radial-gradient(120% 130% at 50% 0%,rgba(196,71,46,.10),rgba(196,71,46,0) 60%)}
 #reserve .eyebrow2{display:inline-flex}
 #reserve h2,#reserve .lede{margin-left:auto;margin-right:auto}
 #reserve .cta{display:inline-block;margin-top:26px}
@@ -62,7 +62,7 @@ h2 .script{font-family:Italianno,cursive;font-size:1.28em;line-height:0;color:va
 
 /* footer */
 footer{border-top:1px solid var(--line-soft);padding:34px 0 44px}
-.fmark{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;margin:0 0 8px}
+.fmark{font-family:Fraunces,Georgia,serif;font-weight:560;font-size:22px;margin:0 0 8px}
 .fmicro{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,239,228,.55);margin:0 0 16px}
 .fnote{font-size:11px;line-height:1.7;color:rgba(245,239,228,.5);max-width:52ch;margin:0}
 
@@ -149,7 +149,7 @@ free they are yours.</p>
 </article>
 </div>
 </div>
-<div class="wrap"><p class="hint" aria-hidden="true"><svg class="arrow" width="26" height="8" viewBox="0 0 26 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4h24M21 1l4 3l-4 3" stroke="#C9903F" stroke-width="1"/></svg>Swipe or drag · three cards</p></div>
+<div class="wrap"><p class="hint" aria-hidden="true"><svg class="arrow" width="26" height="8" viewBox="0 0 26 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4h24M21 1l4 3l-4 3" stroke="#C4472E" stroke-width="1"/></svg>Swipe or drag · three cards</p></div>
 </section>
 
 <section class="band" id="reserve">

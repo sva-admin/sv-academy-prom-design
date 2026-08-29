@@ -244,3 +244,20 @@ anyone noticing.
 Also set `font-variant-numeric: tabular-nums` on body. Prices, counts, times,
 and floor numbers all align, and misaligned digits are one of those defects
 people feel without being able to name.
+
+---
+
+## Six shipped directions, as derivation examples
+
+Same laws, six subjects, six palettes. Use these as worked examples of
+deriving tokens from a subject's world, never as a menu to copy from:
+
+| Brand | Subject world | Ground | Ink | Accent, from what object |
+|---|---|---|---|---|
+| AURA Heights | warm coast, golden hour | `#F7F2E9` | `#40301D` | `#9C6B2F` brass railings |
+| Ember Cafe | one room, one fire | `#1B1714` | ivory text | `#C4472E` the ember itself |
+| Ledgerline | money that must add up | `#F2F4F6` | `#1E2630` | `#1E6B52` ledger green |
+| Northlight | last hour of light | `#0E1113` | cool paper text | `#9FB6BF` ice on the lens |
+| The Assembly | linen, smoke, a long table | `#F1F1EB` | `#22261F` | `#6E3B2A` oxblood chairs |
+| Fern and Fog | a rainy hill town florist | `#EDF1EC` | `#24312A` | `#A65A33` fired-clay pots |
+
