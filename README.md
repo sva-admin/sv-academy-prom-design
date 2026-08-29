@@ -81,7 +81,9 @@ page built by the skill and holding at any width:
 ## What it does to real work
 
 Every "without" below is a look you have shipped or seen shipped. Every
-"with" is the same fictional brand through the skill. Nothing here is a
+"with" is the SAME site transformed: same sections, same facts, same
+purpose, redesigned by the skill. That is the honest test, and it is also
+exactly what the skill does to your existing pages. Nothing here is a
 mockup of a real client; all brands are invented so the rules can be shown at
 full specificity.
 

@@ -1,139 +1,91 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fern and Fog</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,340;1,9..144,340&display=swap" rel="stylesheet">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fern and Fog</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,560;1,9..144,340&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
- --ground:#EDF1EC;   /* cool green-grey, the shop window on a wet morning */
- --panel:#F7FAF6;    /* raised surface */
- --ink:#24312A;      /* moss ink */
- --muted:#6C7A70;    /* secondary text */
- --line:#DCE4DC;     /* hairlines on the ground */
- --accent:#A65A33;   /* fired clay, the pots on the bench */
- --accent-ink:#8A4826; /* clay dark enough to read as small text on the ground */
- --accent-fog:#CE8A5E; /* clay lifted enough to read on the graded photo */
- --ease:cubic-bezier(.23,1,.32,1);
-}
+:root{--ground:#EDF1EC;--panel:#F7FAF6;--ink:#24312A;--muted:#5D6B61;--line:#DCE4DC;--accent:#A65A33}
 *{box-sizing:border-box}
-body{margin:0;font-family:Archivo,system-ui,sans-serif;background:var(--ground);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
-
-/* ---- hero ---- */
-.hero{position:relative;height:640px;height:min(86svh,640px);min-height:480px;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82) brightness(.94)}
-.grade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,32,28,.30) 0%,rgba(20,30,27,.42) 45%,rgba(16,25,22,.78) 100%)}
-.honesty{position:absolute;right:18px;top:18px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,250,246,.88);background:rgba(16,25,22,.5);padding:5px 10px}
-.content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:54px 60px 42px;color:#F7FAF6}
-.eyebrow{font-size:11px;letter-spacing:.44em;text-transform:uppercase;color:var(--accent-fog);margin:0}
-h1{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:clamp(38px,10vw,66px);line-height:1.06;margin:18px 0 0;max-width:15ch;text-wrap:balance}
-h1 em{font-style:italic;font-weight:340;color:var(--accent-fog)}
-.sub{margin:18px 0 0;font-size:15px;line-height:1.7;max-width:44ch;color:rgba(247,250,246,.86)}
-.proof{display:flex;border-top:1px solid rgba(247,250,246,.28);padding-top:18px;margin-top:30px;flex-wrap:wrap;row-gap:12px}
-.p{padding-right:26px;margin-right:26px;border-right:1px solid rgba(247,250,246,.28)}
-.p:last-child{border:none;margin:0;padding-right:0}
-.p b{display:block;font-family:Fraunces,Georgia,serif;font-weight:340;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
-.p span{display:block;margin-top:4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,250,246,.66)}
-
-/* ---- subscription band ---- */
-.band{padding:clamp(48px,8vw,80px) 0}
-.wrap{max-width:960px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
-.eyebrow2{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 18px}
-.eyebrow2::before{content:"";width:34px;height:1px;background:var(--accent);opacity:.8}
-.jar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,5vw,44px);display:flex;gap:clamp(24px,5vw,56px);align-items:flex-start}
-.jar-copy{flex:1 1 auto;min-width:0}
-h2{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:clamp(27px,6.4vw,40px);line-height:1.12;margin:0 0 12px;max-width:20ch;text-wrap:balance}
-.lede{font-size:14.5px;line-height:1.75;color:var(--ink);max-width:52ch;margin:0}
-.lede .q{color:var(--muted)}
-.jar-buy{flex:0 0 auto;border-left:1px solid var(--line);padding-left:clamp(24px,4vw,44px);text-align:left}
-.price{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:44px;line-height:1;margin:0;font-variant-numeric:tabular-nums}
-.per{display:block;margin-top:6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.cta{display:inline-block;margin-top:20px;border:1px solid var(--accent);color:var(--accent-ink);text-decoration:none;padding:13px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;border-radius:2px;transition:background .25s var(--ease),color .25s var(--ease)}
-.cta:hover{background:var(--accent);color:var(--panel)}
-.fine{font-size:11px;line-height:1.7;color:var(--muted);max-width:52ch;margin:16px 0 0}
-
-/* ---- footer ---- */
-footer{border-top:1px solid var(--line);padding:32px 0 44px}
-.fmark{font-family:Fraunces,Georgia,serif;font-weight:340;font-size:21px;margin:0 0 8px}
-.fmicro{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
-.fnote{font-size:11px;line-height:1.7;color:var(--muted);max-width:54ch;margin:0}
-.fnote a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:2px}
-
-/* reveal: visible by default, hidden only once JS is alive */
-.js .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.js .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
-
-@media (max-width:768px){
- .content{padding:24px 20px 24px}
- .sub{font-size:13.5px;max-width:none}
- .honesty{right:10px;top:10px}
- .p{padding-right:16px;margin-right:16px}
- .p b{font-size:20px}
- .jar{flex-direction:column;gap:22px}
- .jar-buy{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:20px;width:100%}
- .price{font-size:38px}
-}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Archivo,sans-serif;line-height:1.6}
+.hero{position:relative;min-height:560px;display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.9)}
+.grade{position:absolute;inset:0;background:linear-gradient(8deg,rgba(21,30,24,.78) 0%,rgba(21,30,24,.25) 55%,rgba(21,30,24,.05) 80%)}
+.honesty{position:absolute;right:14px;top:14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,241,236,.85);background:rgba(21,30,24,.45);padding:5px 10px}
+.hcontent{position:relative;padding:0 clamp(18px,5vw,54px) 44px;color:#EDF1EC;max-width:720px}
+.eyebrow{font-size:11px;letter-spacing:.45em;text-transform:uppercase;color:#D8BFA6;margin:0 0 16px}
+h1{font-family:Fraunces,serif;font-weight:340;font-size:clamp(32px,6.4vw,58px);line-height:1.06;margin:0;text-wrap:balance}
+h1 i{font-style:italic;color:#D8A27A}
+.sub{margin:16px 0 0;font-size:14.5px;max-width:44ch;color:rgba(237,241,236,.88)}
+.cta{display:inline-block;margin-top:24px;background:#EDF1EC;color:var(--ink);text-decoration:none;padding:15px 30px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;min-height:44px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 clamp(18px,4vw,32px)}
+h2{font-family:Fraunces,serif;font-weight:560;font-size:24px;margin:52px 0 6px}
+.note{font-size:13px;color:var(--muted);margin:0 0 18px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:720px){.services{grid-template-columns:1fr}}
+.svc{background:var(--panel);border:1px solid var(--line);padding:18px}
+.svc h3{font-family:Fraunces,serif;font-weight:560;font-size:18px;margin:0 0 6px}
+.svc p{margin:0;font-size:13.5px;color:var(--muted)}
+.svc .fact{display:block;margin-top:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.band{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);margin-top:52px;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.band h2{margin:0;font-size:22px}
+.band p{margin:6px 0 0;font-size:13.5px;color:var(--muted);max-width:46ch}
+.band .price{font-family:Fraunces,serif;font-weight:560;font-size:30px;white-space:nowrap}
+.band .price span{display:block;font-family:Archivo;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.quote{margin:52px 0 0;border-top:1px solid var(--line);padding-top:26px}
+.quote blockquote{font-family:Fraunces,serif;font-style:italic;font-weight:340;font-size:21px;margin:0;max-width:34ch}
+.quote figcaption{margin-top:10px;font-size:12px;color:var(--muted)}
+.hours{margin:44px 0 0;display:flex;gap:0;border-top:1px solid var(--line);padding-top:18px;flex-wrap:wrap}
+.h{padding:0 26px 0 0;margin-right:26px;border-right:1px solid var(--line)}
+.h:last-child{border-right:none}
+.h b{display:block;font-family:Fraunces,serif;font-weight:560;font-size:20px}
+.h span{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+footer{margin-top:56px;padding:22px 0 46px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+footer a{color:var(--accent)}
 </style></head><body>
 
 <div class="hero">
-<img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="Fog moving through a hillside forest above the town">
+<img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="">
 <div class="grade"></div><span class="honesty">Demonstration imagery</span>
-<div class="content">
+<div class="hcontent">
 <p class="eyebrow">Fern and Fog · In the hills</p>
-<h1>Cut in the <em>rain</em>, sold before the fog lifts.</h1>
-<p class="sub">The cutting rows are forty steps behind the shop. Whatever the
-weather allows goes into the window at eight, and by evening it is gone.</p>
-<div class="proof">
-<div class="p"><b>05:40</b><span>cut this morning</span></div>
-<div class="p"><b>4 km</b><span>delivery inside</span></div>
-<div class="p"><b>08:00 to 19:00</b><span>open, closed Mon</span></div>
-</div>
+<h1>Cut in the <i>rain</i>, sold before the fog lifts.</h1>
+<p class="sub">A family flower shop. The cutting rows are forty steps behind the
+counter, whatever the weather allows goes into the window at eight, and by
+evening it is gone.</p>
+<a class="cta" href="#jar">Order this week's flowers</a>
 </div>
 </div>
 
-<section class="band">
-<div class="wrap rv">
-<p class="eyebrow2">The weekly jar</p>
-<div class="jar">
-<div class="jar-copy">
-<h2>Whatever the rain gave, in one jar.</h2>
-<p class="lede">A jar of that morning's cut, left on your step every Thursday,
-anywhere inside the 4 km. Next week the jar comes back rinsed and refilled.
-<span class="q">Skipping a week costs nothing: say so by ten the night
-before.</span></p>
-</div>
-<div class="jar-buy">
-<p class="price">340</p>
-<span class="per">a month · jar and delivery in</span>
-<a class="cta" href="#ask">Ask for this week's jar</a>
-<p class="fine">This page is a demonstration, so the button stays put. Built
-for a real shop it opens a plain email. A person reads it and replies, usually
-before the kettle is cold.</p>
-</div>
-</div>
-</div>
-</section>
-
-<footer id="ask">
 <div class="wrap">
-<p class="fmark">Fern and Fog</p>
-<p class="fmicro">In the hills · deliveries inside 4 km · closed Mon</p>
-<p class="fnote">A demonstration page in the prom-design house style. Fern and
-Fog, its hill, and every number here are fictional.
-<a href="https://github.com/sva-admin/sv-academy-prom-design">Source on GitHub</a>.</p>
+<h2>What we do</h2>
+<p class="note">The same three things, every week, in order of how often we are asked.</p>
+<div class="services">
+<div class="svc"><h3>Fresh bouquets</h3><p>Cut at 05:40 this morning. What the rain
+allows decides the bunch, which is why no two weeks match.</p><span class="fact">In the window by 08:00</span></div>
+<div class="svc"><h3>Weddings</h3><p>Three a month, no more, so each one gets the
+whole cutting row. Spoken for about two months ahead.</p><span class="fact">Next open date on request</span></div>
+<div class="svc"><h3>Same day delivery</h3><p>Inside 4 km of the shop, on the bicycle,
+between the morning cut and the afternoon rain.</p><span class="fact">Order before 13:00</span></div>
 </div>
-</footer>
 
-<script>
-document.documentElement.classList.add('js');
-/* a dead script must never leave the page blank: hidden-state only exists once
-   this line has run, and a timeout force-shows everything */
-(function(){
- var els=[].slice.call(document.querySelectorAll('.rv'));
- if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){
-   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},
-   {rootMargin:'0px 0px -10% 0px'});
-  els.forEach(function(el){io.observe(el)});
- }
- setTimeout(function(){els.forEach(function(el){el.classList.add('in')})},2500);
-})();
-</script>
+<div class="band" id="jar">
+<div><h2>The weekly jar</h2>
+<p>One jar of whatever the hills gave us that week, at your door every
+Thursday. Cancel whenever; the flowers will not take it personally.</p></div>
+<div class="price">340<span>a month, four jars</span></div>
+</div>
+
+<figure class="quote">
+<blockquote>The jar on the counter is how I know it is Thursday.</blockquote>
+<figcaption>A subscriber since the first winter, quoted with permission.</figcaption>
+</figure>
+
+<div class="hours">
+<div class="h"><b>05:40</b><span>cut this morning</span></div>
+<div class="h"><b>08:00 to 19:00</b><span>open, closed Mon</span></div>
+<div class="h"><b>4 km</b><span>delivery inside</span></div>
+</div>
+
+<footer>Fern and Fog is a fictional brand demonstrating the
+<a href="https://github.com/sva-admin/sv-academy-prom-design">prom-design skill</a>.
+Same sections, same facts, same shop as the page beside it; only the taste changed.</footer>
+</div>
 </body></html>
