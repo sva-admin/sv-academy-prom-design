@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a viewing · AURA Heights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Italianno&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F7F2E9; --cream:#FDFAF3; --ink:#40301D; --soft:#7A6448;
+  --gold:#9C6B2F; --gold-soft:#B98A4A; --gold-deep:#82571F;
+  --line:rgba(64,48,29,.16); --line-soft:rgba(64,48,29,.08);
+  --scrim:rgba(31,22,12,.55);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:Archivo,system-ui,sans-serif;
+  --script:Italianno,cursive;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold-soft);color:var(--cream)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+/* ---------- navigation, identical shell on every AURA page ---------- */
+header.site{border-bottom:1px solid var(--line);background:var(--ivory)}
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding-top:18px}
+.mark{font-size:12px;letter-spacing:.34em;text-indent:.34em;font-weight:600;
+  color:var(--ink);display:inline-flex;align-items:center;min-height:44px}
+.mark .by{font-size:8px;letter-spacing:.3em;color:var(--soft);margin-left:10px}
+nav.links{display:flex;flex-wrap:wrap;column-gap:26px;padding:2px 0 8px}
+nav.links a{display:inline-flex;align-items:center;min-height:44px;
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);
+  transition:color .5s var(--ease)}
+nav.links a:hover{color:var(--ink)}
+nav.links a[aria-current="page"]{color:var(--ink);
+  box-shadow:inset 0 -1px 0 var(--gold-soft)}
+
+/* ---------- section furniture ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(31px,4.4vw,56px);
+  line-height:1.08;max-width:18ch;text-wrap:balance}
+h1 .script{font-family:var(--script);font-weight:400;font-size:1.35em;
+  line-height:0;color:var(--gold);padding:0 3px}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.6vw,42px);
+  line-height:1.12;max-width:22ch}
+.lede{margin-top:18px;font-size:clamp(15px,1.4vw,17px);line-height:1.8;
+  max-width:58ch;color:var(--soft)}
+
+/* ---------- header block ---------- */
+.intro{padding-block:clamp(40px,6vw,72px)}
+.proof{display:flex;flex-wrap:wrap;row-gap:14px;border-top:1px solid var(--line);
+  margin-top:clamp(26px,3.5vw,40px);padding-top:20px}
+.proof .p{padding-right:24px;margin-right:24px;border-right:1px solid var(--line-soft)}
+.proof .p:last-child{border-right:none;margin-right:0;padding-right:0}
+.proof b{display:block;font-family:var(--serif);font-weight:500;
+  font-size:clamp(24px,2.6vw,32px);line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.proof span{display:block;margin-top:2px;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--soft)}
+
+/* ---------- two column body ---------- */
+.cols{display:grid;gap:clamp(28px,4vw,56px);
+  padding-bottom:clamp(56px,6.5vw,92px)}
+@media(min-width:960px){.cols{grid-template-columns:1fr 1fr;align-items:start}}
+
+/* ---------- hours card with photograph ---------- */
+.hours{position:relative;border-radius:14px;overflow:hidden;
+  min-height:240px;display:flex;align-items:flex-end}
+@media(min-width:960px){.hours{border-radius:18px;min-height:300px}}
+.hours img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hours .grade{position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(26,18,9,.74) 0%,rgba(26,18,9,.28) 46%,rgba(26,18,9,.06) 72%)}
+.hours .txt{position:relative;padding:22px;color:var(--ivory)}
+.hours .k{font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(247,242,233,.75)}
+.hours .t{font-family:var(--serif);font-weight:500;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.2;margin-top:6px;
+  font-variant-numeric:tabular-nums}
+.hours .s{margin-top:4px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(247,242,233,.8)}
+.chiprow{position:absolute;top:12px;left:12px;right:12px;display:flex;
+  justify-content:space-between;gap:8px}
+.honesty{font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(247,242,233,.9);background:rgba(26,18,9,.45);
+  padding:5px 10px;border-radius:999px;backdrop-filter:blur(2px)}
+.honesty.gold{border:1px solid var(--gold-soft);color:var(--gold-soft)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;gap:22px;margin-top:clamp(28px,4vw,44px)}
+@media(min-width:640px){.steps{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.steps{grid-template-columns:1fr}}
+@media(min-width:1180px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{border-top:1px solid var(--line);padding-top:16px}
+.step .n{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.6vw,34px);
+  color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+.step .h{margin-top:10px;font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--ink);font-weight:600}
+.step p{margin-top:8px;color:var(--soft);line-height:1.7}
+
+/* ---------- the form, instrument register ---------- */
+.card{background:var(--cream);border:1px solid var(--line);border-radius:14px;
+  padding:clamp(22px,3vw,36px);box-shadow:0 1px 0 var(--line-soft)}
+@media(min-width:960px){.card{border-radius:18px}}
+.card .k{font-size:10px;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);display:inline-flex;align-items:center;gap:12px}
+.card .k::before{content:"";width:34px;height:1px;background:var(--gold)}
+.card h2{font-size:clamp(24px,2.8vw,32px);margin-top:14px}
+.group{border:0;margin-top:26px}
+.lbl{display:block;font-size:10px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--ink);font-weight:600}
+.why{margin-top:5px;font-size:12px;line-height:1.6;color:var(--soft)}
+.field{margin-top:12px;width:100%;min-height:48px;padding:12px 16px;
+  font-family:var(--sans);font-size:15px;color:var(--ink);
+  background:var(--ivory);border:1px solid var(--line);border-radius:12px;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.field::placeholder{color:var(--soft);opacity:.65}
+.field:focus{outline:none;border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(156,107,47,.22)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap}
+.chip{display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:0 20px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);color:var(--ink);background:transparent;
+  font-size:11px;letter-spacing:.24em;font-variant-numeric:tabular-nums;
+  transition:background .25s var(--ease),color .25s var(--ease),
+    border-color .25s var(--ease)}
+.chip:hover{border-color:var(--gold-soft)}
+.vh:checked+.chip{background:var(--ink);border-color:var(--ink);
+  color:var(--ivory)}
+.vh:focus-visible+.chip{box-shadow:0 0 0 2px var(--gold-soft)}
+.bring{margin-top:26px;padding-top:18px;border-top:1px solid var(--line-soft);
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.commit{margin-top:18px}
+.pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;
+  padding:13px 12px 13px 26px;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;font-family:var(--sans);cursor:pointer;
+  min-height:48px;border:1px solid var(--gold);background:var(--gold);
+  color:var(--cream);transition:background .5s var(--ease),
+    border-color .5s var(--ease)}
+.pill .dot{width:30px;height:30px;border-radius:50%;flex:none;
+  background:rgba(253,250,243,.2);display:grid;place-items:center;
+  font-size:13px;transition:transform .5s var(--ease)}
+.pill:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+.pill:hover .dot{transform:translateX(3px)}
+.pill:focus-visible{outline:none;box-shadow:0 0 0 2px var(--gold-soft)}
+.demo-note{margin-top:14px;font-size:12px;line-height:1.6;color:var(--soft)}
+
+/* ---------- footer ---------- */
+footer.site{border-top:1px solid var(--line);
+  padding-block:clamp(28px,4vw,44px)}
+footer.site p{font-size:11px;letter-spacing:.14em;color:var(--soft);
+  line-height:2}
+footer.site a{color:var(--gold);box-shadow:inset 0 -1px 0 var(--gold-soft)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="mark" href="index.html">AURA HEIGHTS<span class="by">ON THE BAY</span></a>
+    </div>
+    <nav class="links" aria-label="Site">
+      <a href="index.html">AURA Heights</a>
+      <a href="residences.html">Residences</a>
+      <a href="residence-07.html">Residence 07</a>
+      <a href="headland.html">The Headland</a>
+      <a href="visit.html" aria-current="page">Book a viewing</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="wrap">
+      <p class="eyebrow">Book a viewing · Sat and Sun</p>
+      <h1>The viewing begins before you <span class="script">arrive</span></h1>
+      <p class="lede">Every residence was filmed in 4K before visiting, so the
+      first view you see in person is one you have already checked on screen.
+      Ask for a slot below; the gallery on the headland does the rest.</p>
+      <div class="proof">
+        <div class="p"><b>48</b><span>residences, all filmed</span></div>
+        <div class="p"><b>90 sec</b><span>walk to the pier, timed</span></div>
+        <div class="p"><b>6 min</b><span>from Harbor Station</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cols">
+
+      <div>
+        <div class="hours">
+          <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=80&auto=format&fit=crop"
+               width="1600" height="1067"
+               alt="Golden evening light over a cove and headland, standing in for the view from the sales gallery">
+          <div class="grade"></div>
+          <div class="chiprow">
+            <span class="honesty gold">Photograph</span>
+            <span class="honesty">Demonstration imagery</span>
+          </div>
+          <div class="txt">
+            <p class="k">Viewing hours</p>
+            <p class="t">Sat and Sun · 09:20 to 17:40</p>
+            <p class="s">The sales gallery · 38 m above the bay</p>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="n">01</div>
+            <div class="h">Held</div>
+            <p>Your slot is held the moment you ask for it. One call the day
+            before confirms it. That is the only call you get.</p>
+          </div>
+          <div class="step">
+            <div class="n">02</div>
+            <div class="h">Prepared</div>
+            <p>Your plan set is printed and labelled, and the 4K films are cued
+            in the gallery. All 48 residences were filmed before visiting, so
+            the view on screen is the view on file.</p>
+          </div>
+          <div class="step">
+            <div class="n">03</div>
+            <div class="h">Walked</div>
+            <p>After the gallery, the headland itself: the bay to the east, and
+            the pier a timed 90 seconds on foot.</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="card" onsubmit="return false" aria-label="Request a viewing slot">
+        <p class="k">The request</p>
+        <h2>Three answers, one slot</h2>
+
+        <div class="group" role="group">
+          <label class="lbl" for="f-name">Name</label>
+          <p class="why">Printed on your plan folder before you arrive.</p>
+          <input class="field" id="f-name" name="name" type="text"
+                 autocomplete="name" placeholder="As it should read on the folder">
+        </div>
+
+        <div class="group" role="group">
+          <label class="lbl" for="f-phone">Phone</label>
+          <p class="why">One confirmation call the day before. Nothing after it.</p>
+          <input class="field" id="f-phone" name="phone" type="tel"
+                 autocomplete="tel" inputmode="tel" placeholder="Reachable the day before">
+        </div>
+
+        <fieldset class="group">
+          <legend class="lbl">Day</legend>
+          <p class="why">Viewings run Saturday and Sunday, 09:20 to 17:40.</p>
+          <div class="chips">
+            <input class="vh" type="radio" name="day" id="d-sat" value="Saturday" checked>
+            <label class="chip" for="d-sat">Saturday</label>
+            <input class="vh" type="radio" name="day" id="d-sun" value="Sunday">
+            <label class="chip" for="d-sun">Sunday</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="lbl">Preferred slot</legend>
+          <p class="why">Five slots a day, so the gallery is never crowded.
+          Tap one; we hold it.</p>
+          <div class="chips">
+            <input class="vh" type="radio" name="slot" id="s-0920" value="09:20">
+            <label class="chip" for="s-0920">09:20</label>
+            <input class="vh" type="radio" name="slot" id="s-1100" value="11:00">
+            <label class="chip" for="s-1100">11:00</label>
+            <input class="vh" type="radio" name="slot" id="s-1330" value="13:30" checked>
+            <label class="chip" for="s-1330">13:30</label>
+            <input class="vh" type="radio" name="slot" id="s-1510" value="15:10">
+            <label class="chip" for="s-1510">15:10</label>
+            <input class="vh" type="radio" name="slot" id="s-1640" value="16:40">
+            <label class="chip" for="s-1640">16:40</label>
+          </div>
+        </fieldset>
+
+        <p class="bring">Bring nothing; plans are printed.</p>
+
+        <div class="commit">
+          <button class="pill" type="button">Request the slot
+            <span class="dot" aria-hidden="true">&rarr;</span></button>
+          <p class="demo-note">This is a demonstration page: the button sends
+          nothing. On the live site it would hold your slot and place the one
+          confirmation call.</p>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>AURA Heights is a fictional brand demonstrating the prom-design skill.<br>
+    <a href="https://github.com/sva-admin/sv-academy-prom-design">github.com/sva-admin/sv-academy-prom-design</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

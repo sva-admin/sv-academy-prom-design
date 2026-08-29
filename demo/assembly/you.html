@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Assembly · You</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Italianno&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F6F3EC; --panel:#FFFDF8; --ink:#26221B; --accent:#6E3B2A;
+  --line:#E5DFD2; --muted:#7C7362; --cream:#F6F3EC;
+  --tabbar-h:56px; --r-control:6px; --r-media:10px;
+}
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:Archivo,system-ui,sans-serif; font-size:14px; line-height:1.5;
+  padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px);
+  -webkit-font-smoothing:antialiased;
+}
+.head{padding:18px 18px 10px; display:flex; justify-content:space-between; align-items:baseline}
+.wm{font-family:"Cormorant Garamond",Georgia,serif; font-size:20px; font-weight:600}
+.mark{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+
+/* membership card */
+.member{
+  margin:0 18px 14px; background:var(--ink); color:var(--cream);
+  border-radius:var(--r-media); overflow:hidden;
+  box-shadow:0 10px 28px rgba(38,34,27,.22);
+}
+.member .band{position:relative; height:96px}
+.member .band img{display:block; width:100%; height:96px; object-fit:cover; filter:saturate(.85) brightness(.86)}
+.honesty{
+  position:absolute; left:10px; top:10px; font-size:9px; letter-spacing:.18em;
+  text-transform:uppercase; color:rgba(246,243,236,.85);
+  background:rgba(23,16,9,.5); padding:5px 10px;
+}
+.member .body{padding:16px 18px 18px}
+.member .eyebrow{font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(246,243,236,.6); margin:0 0 6px}
+.member .name{font-family:"Cormorant Garamond",Georgia,serif; font-size:26px; font-weight:500; margin:0}
+.member .motto{font-family:Italianno,cursive; font-size:29px; line-height:1; color:rgba(246,243,236,.9); margin:4px 0 12px}
+.member .since{font-size:11.5px; color:rgba(246,243,236,.72); margin:0 0 14px; font-variant-numeric:tabular-nums}
+.stats{display:flex; border-top:1px solid rgba(246,243,236,.18); padding-top:12px; gap:12px}
+.stat{flex:1}
+.stat:first-child{flex:1.6}
+.stat b{display:block; font-family:"Cormorant Garamond",Georgia,serif; font-size:22px; font-weight:600; font-variant-numeric:tabular-nums}
+.stat span{font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(246,243,236,.6); white-space:nowrap}
+.counted{margin:10px 18px 22px; font-size:11px; color:var(--muted)}
+
+/* sections */
+.sec{margin:0 18px 8px; display:flex; justify-content:space-between; align-items:baseline}
+.sec h2{font-family:"Cormorant Garamond",Georgia,serif; font-size:19px; font-weight:600; margin:0}
+.sec .note{font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums}
+
+/* seat cards */
+.seat{background:var(--panel); border:1px solid var(--line); border-radius:var(--r-media); margin:0 18px 10px; padding:14px 16px}
+.row1{display:flex; justify-content:space-between; align-items:baseline}
+.chip{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:3px; padding:2px 7px}
+.price{font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+.t{font-family:"Cormorant Garamond",Georgia,serif; font-size:19px; font-weight:500; margin:8px 0 4px}
+.meta{font-size:11.5px; color:var(--muted); margin:0; font-variant-numeric:tabular-nums}
+.sub{font-size:11px; color:var(--muted); margin:4px 0 0; font-variant-numeric:tabular-nums}
+.act{margin-top:12px}
+.rel{
+  display:inline-block; min-height:44px; padding:11px 18px; background:none;
+  border:1px solid var(--line); border-radius:var(--r-control); color:var(--accent);
+  font-family:Archivo,system-ui,sans-serif; font-size:12px; letter-spacing:.06em;
+  text-transform:uppercase; cursor:pointer; touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.rel:active{transform:scale(.97)}
+.confirm{margin-top:12px; border-top:1px solid var(--line); padding-top:12px}
+.confirm p{margin:0 0 10px; font-size:12.5px}
+.confrow{display:flex; gap:8px}
+.keep,.dorel{
+  flex:1; min-height:44px; border-radius:var(--r-control); font-size:12px;
+  letter-spacing:.06em; text-transform:uppercase; cursor:pointer;
+  font-family:Archivo,system-ui,sans-serif; touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.keep{background:none; border:1px solid var(--line); color:var(--ink)}
+.dorel{background:var(--accent); border:1px solid var(--accent); color:var(--panel)}
+.keep:active,.dorel:active{transform:scale(.97)}
+.released p{margin:12px 0 0; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); padding-top:12px}
+.released a{color:var(--accent)}
+[hidden]{display:none !important}
+.seat.gone .act{display:none}
+.seat.gone .chip{color:var(--muted); border-color:var(--line)}
+
+/* preferences */
+.prefwrap{margin:0 18px}
+.prefnote{font-size:11px; color:var(--muted); margin:2px 0 10px}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.pref{
+  min-height:44px; padding:11px 16px; border-radius:22px; border:1px solid var(--line);
+  background:var(--panel); color:var(--ink); font-family:Archivo,system-ui,sans-serif;
+  font-size:12.5px; cursor:pointer; touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.pref[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--panel)}
+.pref:active{transform:scale(.97)}
+.prefdemo{font-size:11px; color:var(--muted); margin:10px 0 0}
+
+/* footer note */
+.fiction{
+  margin:26px 18px 0; text-align:center; font-size:10.5px; color:var(--muted);
+  letter-spacing:.04em;
+}
+
+/* tab bar */
+.tab{
+  position:fixed; inset:auto 0 0 0; z-index:10;
+  height:calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding-bottom:env(safe-area-inset-bottom);
+  display:flex; background:var(--panel); border-top:1px solid var(--line);
+}
+.tab a{
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:2px; min-height:48px; text-decoration:none; color:var(--muted);
+  font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+}
+.tab a span{font-size:16px; line-height:1}
+.tab a[aria-current="page"]{color:var(--accent); font-weight:600}
+@media (prefers-reduced-motion:reduce){
+  .rel:active,.keep:active,.dorel:active,.pref:active{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <span class="wm">The Assembly</span>
+  <span class="mark">You</span>
+</header>
+
+<section class="member" aria-label="Membership card">
+  <div class="band">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80&auto=format&fit=crop" alt="The dining room at the long table, lamps low" width="1600" height="96">
+    <span class="honesty">Demonstration imagery</span>
+  </div>
+  <div class="body">
+    <p class="eyebrow">Member · No. 0117</p>
+    <p class="name">A. Member</p>
+    <p class="motto">One table. Every door.</p>
+    <p class="since">Member since 14 Oct 2024 · every venue 6 to 8 min from Harbor Station</p>
+    <div class="stats">
+      <div class="stat"><b>7</b><span>Seats this season</span></div>
+      <div class="stat"><b id="heldCount">2</b><span>Held ahead</span></div>
+      <div class="stat"><b>12</b><span>Dates open</span></div>
+    </div>
+  </div>
+</section>
+<p class="counted">These numbers are counted from your bookings as the screen is built, not written by hand.</p>
+
+<div class="sec">
+  <h2>Your seats</h2>
+  <span class="note">Both in Mar</span>
+</div>
+
+<article class="seat">
+  <div class="row1"><span class="chip">Seat held</span><span class="price">2,400</span></div>
+  <p class="t">Supper at the long table</p>
+  <p class="meta">Sat Mar 14 · 19:00 to 22:30 · Dining room · 6 min from Harbor Station</p>
+  <p class="sub">1 of the 12 places · booked Feb 27, 21:14 · held under A. Member</p>
+  <div class="act"><button type="button" class="rel" onclick="askRelease(this)">Release seat</button></div>
+  <div class="confirm" hidden>
+    <p>Release this seat? It returns to the open count within a minute, and your 2,400 comes back within two days.</p>
+    <div class="confrow">
+      <button type="button" class="keep" onclick="keepSeat(this)">Keep seat</button>
+      <button type="button" class="dorel" onclick="doRelease(this)">Release</button>
+    </div>
+  </div>
+  <div class="released" hidden>
+    <p>Seat released. It is back in the open count. <a href="events.html">Find another date</a></p>
+  </div>
+</article>
+
+<article class="seat">
+  <div class="row1"><span class="chip">Seat held</span><span class="price">1,800</span></div>
+  <p class="t">Natural wine, six bottles, one table</p>
+  <p class="meta">Wed Mar 18 · 18:30 to 21:00 · The cellar · 6 min from Harbor Station</p>
+  <p class="sub">1 of the 16 places · booked Mar 02, 12:40 · held under A. Member</p>
+  <div class="act"><button type="button" class="rel" onclick="askRelease(this)">Release seat</button></div>
+  <div class="confirm" hidden>
+    <p>Release this seat? It returns to the open count within a minute, and your 1,800 comes back within two days.</p>
+    <div class="confrow">
+      <button type="button" class="keep" onclick="keepSeat(this)">Keep seat</button>
+      <button type="button" class="dorel" onclick="doRelease(this)">Release</button>
+    </div>
+  </div>
+  <div class="released" hidden>
+    <p>Seat released. It is back in the open count. <a href="events.html">Find another date</a></p>
+  </div>
+</article>
+
+<div class="sec" style="margin-top:22px">
+  <h2>Preferences</h2>
+</div>
+<div class="prefwrap">
+  <p class="prefnote">Tap to toggle. Each kitchen reads these 72 hours before a table you hold.</p>
+  <div class="chips" role="group" aria-label="Dietary preferences">
+    <button type="button" class="pref" aria-pressed="true" onclick="togglePref(this)">No shellfish</button>
+    <button type="button" class="pref" aria-pressed="true" onclick="togglePref(this)">No nuts</button>
+    <button type="button" class="pref" aria-pressed="false" onclick="togglePref(this)">Vegetarian</button>
+    <button type="button" class="pref" aria-pressed="false" onclick="togglePref(this)">Pescatarian</button>
+    <button type="button" class="pref" aria-pressed="false" onclick="togglePref(this)">No dairy</button>
+    <button type="button" class="pref" aria-pressed="false" onclick="togglePref(this)">Low alcohol</button>
+  </div>
+  <p class="prefdemo">In the live app a change reaches the kitchen at once. This demo keeps it on this screen only.</p>
+</div>
+
+<p class="fiction">The Assembly is a fictional brand demonstrating the prom-design skill.</p>
+
+<nav class="tab" aria-label="Main">
+  <a href="tonight.html"><span>◐</span>Tonight</a>
+  <a href="events.html"><span>▤</span>Events</a>
+  <a href="you.html" aria-current="page"><span>◉</span>You</a>
+</nav>
+
+<script>
+function askRelease(btn){
+  var seat = btn.closest('.seat');
+  seat.querySelector('.act').hidden = true;
+  seat.querySelector('.confirm').hidden = false;
+}
+function keepSeat(btn){
+  var seat = btn.closest('.seat');
+  seat.querySelector('.confirm').hidden = true;
+  seat.querySelector('.act').hidden = false;
+}
+function doRelease(btn){
+  var seat = btn.closest('.seat');
+  seat.querySelector('.confirm').hidden = true;
+  seat.querySelector('.released').hidden = false;
+  seat.classList.add('gone');
+  seat.querySelector('.chip').textContent = 'Released';
+  var held = document.getElementById('heldCount');
+  var n = parseInt(held.textContent, 10);
+  if (n > 0) held.textContent = String(n - 1);
+}
+function togglePref(btn){
+  btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+}
+</script>
+</body>
+</html>

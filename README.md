@@ -1,13 +1,16 @@
 <div align="center">
 
-<img src="demo/banner.png" alt="Prom (phrom) Design. Ready-to-use design taste for AI coding agents." width="920">
+<a href="https://loop.sv-academy.org"><img src="demo/sv-academy-logo.svg" alt="SV Academy" width="72"></a>
+
+<img src="demo/banner.png" alt="Prom Design. Ready-to-use design taste for AI coding agents." width="920">
 
 **Your AI ships pages that look expensive. Starting today.**
 
-*Prom is a pun: พร้อม (prom) is Thai for ready. This is the actual house-style
-skill a working studio runs to ship client websites with Claude, installable
-by anyone in one command. You do not need to know design. The taste is in the
-file.*
+*พร้อม, prom, is Thai for ready. Ready as in: the taste is already in the
+file. This is the house-style skill a working studio runs on real client
+sites, installable by anyone in one command. It asks what you are making,
+offers you the Prom take, and builds mobile-first. You never need to know
+design; you only need to recognize which version you like.*
 
 </div>
 
@@ -66,6 +69,14 @@ every rule you applied.
 
 The diff is the sales pitch. If you do not like what you see, uninstall it,
 nothing else changed.
+
+## Walk through a whole product, not a screenshot
+
+The strongest proof is clickable. Two complete fictional experiences, every
+page built by the skill and holding at any width:
+
+- **[AURA Heights, the full 5-page site](https://sva-admin.github.io/sv-academy-prom-design/demo/aura/index.html)**: home, residences, a filmed residence, the headland, booking. Cinematic register.
+- **[The Assembly, the full 5-screen app](https://sva-admin.github.io/sv-academy-prom-design/demo/assembly/events.html)**: events, detail, tonight, membership, join. Instrument register with a bottom tab bar.
 
 ## What it does to real work
 

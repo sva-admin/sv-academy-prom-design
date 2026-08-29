@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AURA Heights</title>
+<meta name="description" content="Forty-eight residences on the headland above the bay. Every residence filmed in 4K before you visit.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Italianno&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F7F2E9; --cream:#FDFAF6; --ink:#40301D; --soft:#7A6448;
+  --gold:#9C6B2F; --gold-deep:#7E5423; --gold-soft:#C89B5C;
+  --line:rgba(64,48,29,.16); --line-soft:rgba(64,48,29,.09);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --script:'Italianno',cursive;
+  --sans:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold-soft);color:#FDFAF6}
+img,video{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+section{overflow:hidden}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+/* grain: stops flat ivory reading as a default background */
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- nav ---------- */
+.nav{position:absolute;top:0;left:0;right:0;z-index:10;
+  padding:18px clamp(20px,4vw,56px) 0;display:flex;flex-direction:column;
+  align-items:center;gap:2px;color:rgba(247,242,233,.94)}
+.nav .mark{font-size:13px;letter-spacing:.34em;text-indent:.34em;
+  text-transform:uppercase;padding:12px 8px;min-height:44px;
+  display:inline-flex;align-items:center}
+.nav .links{display:flex;flex-wrap:wrap;justify-content:center;column-gap:4px}
+.nav .links a{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  padding:12px 10px;min-height:44px;display:inline-flex;align-items:center;
+  color:rgba(247,242,233,.82);transition:color .5s var(--ease)}
+.nav .links a:hover{color:#fffdf8}
+@media(min-width:860px){
+  .nav{flex-direction:row;justify-content:space-between;align-items:center;padding-top:22px}
+  .nav .links{column-gap:10px}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  color:#F7F2E9}
+@supports(height:100dvh){.hero{min-height:100dvh}}
+.hero .bg{position:absolute;inset:0;overflow:hidden}
+.hero .bg img{width:100%;height:100%;object-fit:cover;
+  animation:settle 3s var(--ease) both}
+@keyframes settle{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero .bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(28,16,6,.58) 0%,rgba(28,16,6,.26) 16%,rgba(28,16,6,.05) 36%,rgba(28,16,6,.14) 62%,rgba(28,16,6,.62) 100%)}
+.hero .inner{position:relative;z-index:2;width:100%;
+  padding:0 clamp(20px,4vw,56px) clamp(40px,7vh,84px)}
+.hero .eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;
+  color:rgba(247,242,233,.85);margin-bottom:18px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(33px,5vw,72px);
+  line-height:1.06;letter-spacing:.02em;max-width:21ch}
+.script{font-family:var(--script);font-weight:400;font-size:1.5em;
+  line-height:.6;color:var(--gold-soft)}
+.hero .lede{margin-top:20px;max-width:52ch;font-size:clamp(15px,1.4vw,18px);
+  line-height:1.7;color:rgba(247,242,233,.88)}
+.honesty{position:absolute;right:18px;bottom:18px;z-index:3;font-size:9px;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(247,242,233,.85);
+  background:rgba(26,18,9,.45);padding:5px 10px;backdrop-filter:blur(2px);
+  border-radius:999px}
+
+/* ---------- proof strip ---------- */
+.proof{border-bottom:1px solid var(--line-soft);background:var(--cream)}
+.proof .row{display:grid;grid-template-columns:repeat(3,1fr);
+  padding:clamp(28px,4vw,44px) 0}
+.stat{padding:4px clamp(10px,2vw,28px)}
+.stat+.stat{border-left:1px solid var(--line-soft)}
+.stat .n{font-family:var(--serif);font-weight:500;
+  font-size:clamp(27px,7vw,52px);line-height:1.05;
+  font-variant-numeric:tabular-nums;color:var(--ink)}
+.stat .l{margin-top:8px;font-size:8.5px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--soft);line-height:1.9}
+
+/* ---------- shared section furniture ---------- */
+.band{padding-block:clamp(56px,6.5vw,92px)}
+.eyebrow2{display:inline-flex;align-items:center;gap:12px;font-size:10px;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px}
+.eyebrow2::before{content:"";width:34px;height:1px;background:var(--gold)}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,60px);
+  line-height:1.08;letter-spacing:.02em;max-width:22ch}
+h2 .script{font-size:1.28em;color:var(--gold)}
+.lede{max-width:58ch;color:var(--soft);margin-top:16px}
+
+/* ---------- the argument ---------- */
+.blocks{display:grid;gap:34px;margin-top:clamp(34px,4vw,56px)}
+@media(min-width:860px){.blocks{grid-template-columns:repeat(3,1fr);gap:44px}}
+.block .tag{font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;font-variant-numeric:tabular-nums}
+.block h3{font-family:var(--serif);font-weight:500;font-size:clamp(21px,2vw,30px);
+  line-height:1.2;margin-bottom:10px}
+.block p{color:var(--soft);font-size:15px}
+.block{border-top:1px solid var(--line);padding-top:18px}
+
+/* ---------- residence rail ---------- */
+.railband{background:var(--cream);border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft)}
+.railhint{display:flex;align-items:center;gap:10px;font-size:8.5px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--soft);
+  margin:clamp(26px,3vw,40px) 0 16px}
+.railhint .nudge{display:inline-block;color:var(--gold);
+  animation:nudge 1.7s var(--ease) 6}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+.railwrap{position:relative}
+.railwrap::before,.railwrap::after{content:"";position:absolute;top:0;bottom:0;
+  width:40px;z-index:4;pointer-events:none;transition:opacity .5s var(--ease)}
+.railwrap::before{left:0;background:linear-gradient(90deg,var(--cream),rgba(253,250,246,0))}
+.railwrap::after{right:0;background:linear-gradient(270deg,var(--cream),rgba(253,250,246,0))}
+.railwrap[data-start="1"]::before{opacity:0}
+.railwrap[data-end="1"]::after{opacity:0}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 0 26px;scrollbar-width:none;touch-action:pan-x pan-y}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:none;width:min(76vw,320px);scroll-snap-align:start;
+  background:#FFFDF8;border:1px solid var(--line-soft);border-radius:18px;
+  overflow:hidden;box-shadow:0 1px 0 var(--line-soft);
+  transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
+.card:hover{box-shadow:0 16px 48px rgba(28,16,6,.14);transform:translateY(-2px)}
+@media(max-width:700px){.card{border-radius:14px}}
+.card .ph{position:relative;aspect-ratio:4/3;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);
+  transition:transform 1.3s var(--ease)}
+.card:hover .ph img{transform:scale(1)}
+.chip{position:absolute;top:10px;right:10px;font-size:8px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(247,242,233,.85);
+  background:rgba(26,18,9,.45);padding:4px 9px;border-radius:999px;
+  backdrop-filter:blur(2px)}
+.card .body{padding:16px 18px 18px}
+.card .floor{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);font-variant-numeric:tabular-nums}
+.card .name{font-family:var(--serif);font-weight:500;font-size:22px;
+  line-height:1.2;margin-top:6px}
+.card .fact{margin-top:8px;font-size:11px;letter-spacing:.06em;
+  color:var(--soft);font-variant-numeric:tabular-nums;line-height:1.8}
+
+/* ---------- pill, the only button ---------- */
+.pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;
+  padding:13px 10px 13px 26px;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;border:1px solid rgba(247,242,233,.55);
+  color:#F7F2E9;transition:all .5s var(--ease);cursor:pointer;min-height:46px}
+.pill .dot{width:30px;height:30px;border-radius:50%;
+  background:rgba(247,242,233,.18);display:grid;place-items:center;
+  font-size:13px;transition:transform .5s var(--ease)}
+.pill:hover{background:rgba(247,242,233,.12)}
+.pill:hover .dot{transform:translateX(3px)}
+.pill.gold{background:var(--gold);border-color:var(--gold);color:#FDFAF6}
+.pill.gold:hover{background:var(--gold-deep)}
+
+/* ---------- cta band ---------- */
+.cta{background:var(--ink);color:#F7F2E9;text-align:left}
+.cta .eyebrow2{color:var(--gold-soft)}
+.cta .eyebrow2::before{background:var(--gold-soft)}
+.cta h2 .script{color:var(--gold-soft)}
+.cta .lede{color:rgba(247,242,233,.78)}
+.cta .pill{margin-top:30px}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:rgba(247,242,233,.6);
+  border-top:1px solid rgba(247,242,233,.12);
+  padding:26px clamp(20px,4vw,56px) 34px;text-align:center;
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;line-height:2.4}
+footer a{color:var(--gold-soft);border-bottom:1px solid rgba(200,155,92,.4);
+  padding:10px 2px}
+footer a:hover{color:#F7F2E9}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(28px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .hero .bg img{animation:none}
+  .railhint .nudge{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bg">
+    <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=80&auto=format&fit=crop"
+         alt="The golden cove and headland at dusk, seen from above the bay" width="1600" height="1067">
+  </div>
+  <nav class="nav" aria-label="Main">
+    <a class="mark" href="index.html">AURA Heights</a>
+    <div class="links">
+      <a href="residences.html">Residences</a>
+      <a href="residence-07.html">Residence 07</a>
+      <a href="headland.html">The Headland</a>
+      <a href="visit.html">Book a viewing</a>
+    </div>
+  </nav>
+  <div class="inner">
+    <div class="eyebrow">38 metres above the bay</div>
+    <h1>Where the bay learns<br>your <span class="script">name</span></h1>
+    <p class="lede">Forty-eight residences on the headland above the bay.
+      Ninety seconds walk to the pier, and we timed it. Every residence
+      filmed in 4K before you visit, so you choose your view from the film,
+      not from a brochure.</p>
+  </div>
+  <span class="honesty">Demonstration imagery</span>
+</header>
+
+<section class="proof">
+  <div class="wrap">
+    <div class="row rv">
+      <div class="stat">
+        <div class="n">48</div>
+        <div class="l">Residences, filmed in 4K</div>
+      </div>
+      <div class="stat">
+        <div class="n">217.40</div>
+        <div class="l">Sqm largest plan, measured</div>
+      </div>
+      <div class="stat">
+        <div class="n">90</div>
+        <div class="l">Seconds walk to the pier, timed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow2">Filmed. Measured. Timed.</div>
+      <h2>The project, in plain <span class="script">numbers</span></h2>
+      <p class="lede">A view you can verify beats an adjective every time.
+        So we put the evidence next to every claim, and where we have none,
+        we say nothing.</p>
+    </div>
+    <div class="blocks">
+      <div class="block rv">
+        <div class="tag">48 of 48 on file</div>
+        <h3>Filmed before you visit</h3>
+        <p>Every one of the 48 residences was filmed in 4K before a single
+          visit is booked. Your view is on file, not an artist's impression.</p>
+      </div>
+      <div class="block rv">
+        <div class="tag">217.40 sqm, measured</div>
+        <h3>Measured, not rounded</h3>
+        <p>The largest plan is printed to the second decimal because that is
+          what the tape said. Six minutes from Harbor Station, and we rode it.</p>
+      </div>
+      <div class="block rv">
+        <div class="tag">The bay lies east</div>
+        <h3>Direction, told straight</h3>
+        <p>Stacks 03 to 05 face the ridge, and a corner stack is never
+          described as a bay view. Each plan sheet says which way it looks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band railband">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow2">The residences</div>
+      <h2>Choose your <span class="script">view</span> before you choose your home</h2>
+    </div>
+    <div class="railhint rv">Swipe, drag, or scroll <span class="nudge">&rarr;</span></div>
+    <div class="railwrap rv" id="railwrap">
+      <div class="rail" id="rail">
+        <a class="card" href="residences.html">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop"
+                 alt="Golden light through mist over the pine ridge" width="1600" height="1067">
+            <span class="chip">Demonstration imagery</span>
+          </div>
+          <div class="body">
+            <div class="floor">Corner stack &middot; Ridge and pine</div>
+            <div class="name">Residence 07</div>
+            <div class="fact">148.60 sqm &middot; 3 bedrooms &middot; filmed 06:10, golden hour</div>
+          </div>
+        </a>
+        <a class="card" href="residences.html">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop"
+                 alt="The beach at golden hour, looking east over the water" width="1600" height="1067">
+            <span class="chip">Demonstration imagery</span>
+          </div>
+          <div class="body">
+            <div class="floor">East stacks &middot; Bay view</div>
+            <div class="name">Morning on the water</div>
+            <div class="fact">The bay lies east &middot; every plan filmed in 4K</div>
+          </div>
+        </a>
+        <a class="card" href="residences.html">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop"
+                 alt="Tall pines on the ridge behind the headland" width="1600" height="1067">
+            <span class="chip">Demonstration imagery</span>
+          </div>
+          <div class="body">
+            <div class="floor">Stacks 03 to 05 &middot; Ridge view</div>
+            <div class="name">The quiet side</div>
+            <div class="fact">Faces the ridge &middot; said so on every plan sheet</div>
+          </div>
+        </a>
+        <a class="card" href="residences.html">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80&auto=format&fit=crop"
+                 alt="An open field in golden hour light" width="1600" height="1067">
+            <span class="chip">Demonstration imagery</span>
+          </div>
+          <div class="body">
+            <div class="floor">217.40 sqm &middot; Measured</div>
+            <div class="name">The largest plan</div>
+            <div class="fact">Printed to the second decimal &middot; tape on file</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band cta">
+  <div class="wrap rv">
+    <div class="eyebrow2">Viewings Sat and Sun &middot; 09:20 to 17:40</div>
+    <h2>Begin with a <span class="script">conversation</span></h2>
+    <p class="lede">Six minutes from Harbor Station, ninety seconds from the
+      pier. Come on a Saturday or a Sunday, between 09:20 and 17:40, and see
+      your view on film before you climb a single stair.</p>
+    <a class="pill gold" href="visit.html">Book a viewing <span class="dot">&rarr;</span></a>
+  </div>
+</section>
+
+<footer>
+  AURA Heights is a fictional brand demonstrating the prom-design skill.<br>
+  <a href="https://github.com/sva-admin/sv-academy-prom-design">sva-admin/sv-academy-prom-design</a>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  function showAll(){els.forEach(function(e){e.classList.add('on')})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target)}
+      });
+    },{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e)});
+    /* failsafe: a dead observer must never leave the page blank */
+    setTimeout(showAll,2400);
+  }else{showAll()}
+
+  /* the edge fade only shows while content is genuinely off-screen */
+  var rail=document.getElementById('rail'),wrap=document.getElementById('railwrap');
+  function fades(){
+    if(!rail||!wrap)return;
+    var over=rail.scrollWidth-rail.clientWidth>4;
+    wrap.setAttribute('data-start',(!over||rail.scrollLeft<=4)?'1':'0');
+    wrap.setAttribute('data-end',(!over||rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-4)?'1':'0');
+  }
+  if(rail){rail.addEventListener('scroll',fades,{passive:true});
+    window.addEventListener('resize',fades);fades()}
+})();
+</script>
+</body>
+</html>

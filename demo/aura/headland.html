@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Headland · AURA Heights</title>
+<meta name="description" content="The place AURA Heights stands on: 38 metres above the bay, 90 seconds from the pier, 6 minutes from Harbor Station.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23F7F2E9'/%3E%3Ccircle cx='8' cy='8' r='5' fill='%239C6B2F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Italianno&display=swap">
+<style>
+:root{
+  --ivory:#F7F2E9; --cream:#FDFAF3; --ink:#40301D; --soft:#6E5A41;
+  --gold:#9C6B2F; --gold-soft:#B9905B;
+  --line:rgba(64,48,29,.16); --line-soft:rgba(64,48,29,.09);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Archivo',system-ui,sans-serif;
+  --script:'Italianno',cursive;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --gutter:clamp(20px,4vw,56px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;font-variant-numeric:tabular-nums}
+::selection{background:var(--gold-soft);color:#FDFAF3}
+img,video{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+section{overflow:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gutter)}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+
+/* nav */
+header{background:var(--ivory);border-bottom:1px solid var(--line-soft)}
+.nav{max-width:1080px;margin:0 auto;padding:10px var(--gutter) 6px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:0 4px}
+.mark{font-size:12px;letter-spacing:.34em;text-indent:.34em;font-weight:600;
+  display:inline-flex;align-items:center;min-height:44px;flex-basis:100%;
+  color:var(--ink)}
+.mark span{color:var(--gold)}
+.nav a.link{font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  display:inline-flex;align-items:center;min-height:44px;padding:0 9px;
+  color:var(--soft);transition:color .25s var(--ease)}
+.nav a.link:hover{color:var(--ink)}
+.nav a.link[aria-current="page"]{color:var(--gold);
+  box-shadow:inset 0 -1px 0 var(--gold-soft)}
+
+/* hero */
+.hero{position:relative;min-height:520px;height:82svh;display:flex;
+  align-items:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 40%}
+.hero .grade{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(38,26,12,.78) 0%,rgba(38,26,12,.3) 50%,rgba(38,26,12,.1) 100%)}
+.hero .content{position:relative;z-index:2;width:100%;max-width:1080px;
+  margin:0 auto;padding:0 var(--gutter) clamp(40px,7vh,72px);color:#F7F2E9}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);flex:none}
+.hero .eyebrow{color:var(--gold-soft)}
+.hero .eyebrow::before{background:var(--gold-soft)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,5vw,72px);
+  line-height:1.06;letter-spacing:.02em;max-width:16ch}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,58px);
+  line-height:1.08;letter-spacing:.02em;max-width:22ch;margin-bottom:18px}
+.script{font-family:var(--script);font-weight:400;font-size:1.28em;
+  line-height:0;letter-spacing:0;color:var(--gold)}
+.hero .script{color:var(--gold-soft)}
+.lede{font-family:var(--serif);font-size:clamp(17px,1.5vw,21px);line-height:1.55;
+  max-width:58ch;color:var(--soft)}
+.hero .lede{color:rgba(247,242,233,.88);margin-top:16px}
+
+/* honesty chip */
+.honesty{position:absolute;right:18px;top:18px;z-index:3;font-size:9px;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(247,242,233,.85);
+  background:rgba(26,18,9,.45);padding:5px 10px;backdrop-filter:blur(2px);
+  border-radius:999px}
+
+/* bands */
+.band{padding-block:clamp(56px,6.5vw,92px)}
+.band.cream{background:var(--cream);border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft)}
+.prose{max-width:58ch;color:var(--soft)}
+.prose p+p{margin-top:1em}
+.prose strong{color:var(--ink);font-weight:600}
+
+/* stat row */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:28px 18px;
+  margin-top:clamp(32px,4vw,48px);padding-top:clamp(24px,3vw,36px);
+  border-top:1px solid var(--line)}
+.stat .n{font-family:var(--serif);font-weight:500;
+  font-size:clamp(34px,3.4vw,52px);line-height:1;color:var(--ink)}
+.stat .l{font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--soft);margin-top:10px;line-height:1.7}
+
+/* figure with caption */
+.figure{position:relative;border-radius:18px;overflow:hidden;
+  margin-top:clamp(32px,4vw,48px)}
+.figure img{width:100%;height:clamp(260px,44vw,460px);object-fit:cover}
+.figure .grade{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(38,26,12,.6) 0%,rgba(38,26,12,0) 52%)}
+.figure figcaption{position:absolute;left:18px;bottom:16px;right:18px;
+  color:#F7F2E9}
+.figcap-top{font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(247,242,233,.8)}
+.figcap-name{font-family:var(--serif);font-size:clamp(19px,2vw,24px);
+  line-height:1.2;margin-top:4px}
+
+/* full bleed break */
+.bleed{position:relative;height:clamp(380px,68vh,640px)}
+.bleed img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bleed .grade{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(38,26,12,.62) 0%,rgba(38,26,12,0) 48%)}
+.bleed figcaption{position:absolute;left:0;right:0;bottom:0;
+  max-width:1080px;margin:0 auto;padding:0 var(--gutter) 28px;color:#F7F2E9}
+
+/* orientation list */
+.compass{margin-top:clamp(28px,3.5vw,40px);border-top:1px solid var(--line)}
+.compass li{list-style:none;display:grid;grid-template-columns:96px 1fr;
+  gap:16px;padding:16px 0;border-bottom:1px solid var(--line-soft);
+  align-items:baseline}
+.compass .k{font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold)}
+.compass .v{font-family:var(--serif);font-size:17px;line-height:1.5;
+  color:var(--ink)}
+.compass .v em{font-style:italic;color:var(--soft)}
+
+/* residence 07 card */
+.card07{display:block;margin-top:clamp(28px,3.5vw,40px);border:1px solid var(--line);
+  border-radius:18px;background:var(--cream);padding:22px 22px 20px;
+  transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
+.card07:hover{box-shadow:0 16px 44px rgba(28,16,6,.12);transform:translateY(-2px)}
+.card07 .k{font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold)}
+.card07 .t{font-family:var(--serif);font-size:clamp(21px,2.2vw,26px);
+  line-height:1.2;margin-top:8px;color:var(--ink)}
+.card07 .m{font-size:11px;letter-spacing:.08em;color:var(--soft);margin-top:10px}
+.card07 .go{display:inline-flex;align-items:center;gap:8px;min-height:44px;
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);
+  margin-top:4px}
+
+/* pill */
+.pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;
+  padding:13px 10px 13px 26px;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;border:1px solid var(--gold);background:var(--gold);
+  color:#FDFAF3;transition:all .5s var(--ease);cursor:pointer;min-height:46px}
+.pill .dot{width:30px;height:30px;border-radius:50%;flex:none;
+  background:rgba(253,250,243,.18);display:grid;place-items:center;
+  font-size:13px;transition:transform .5s var(--ease)}
+.pill:hover{background:#7F5624;border-color:#7F5624}
+.pill:hover .dot{transform:translateX(3px)}
+
+/* closing */
+.closing{text-align:left}
+.hours{display:flex;flex-wrap:wrap;gap:10px 26px;margin:26px 0 30px;
+  padding-top:22px;border-top:1px solid var(--line);max-width:58ch}
+.hours .h .n{font-family:var(--serif);font-size:clamp(21px,2vw,26px);
+  color:var(--ink);line-height:1.2}
+.hours .h .l{font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--soft);margin-top:6px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 0 46px}
+footer .wrap{display:flex;flex-direction:column;gap:14px}
+.fnav{display:flex;flex-wrap:wrap;gap:2px 4px}
+.fnav a{font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--soft);display:inline-flex;align-items:center;min-height:44px;
+  padding:0 9px 0 0;margin-right:9px}
+.fnav a:hover{color:var(--ink)}
+.fine{font-size:11px;letter-spacing:.04em;color:var(--soft);max-width:58ch}
+.fine a{color:var(--gold);box-shadow:inset 0 -1px 0 var(--gold-soft)}
+
+/* reveal, JS-gated so no-JS never hides content */
+.js .rv{opacity:0;transform:translateY(28px)}
+.js .rv.on{opacity:1;transform:none;
+  transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+}
+@media (min-width:760px){
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .figure{border-radius:22px}
+  .mark{flex-basis:auto;margin-right:auto}
+}
+@media (max-width:759px){
+  .figure{border-radius:14px}
+  .honesty{right:10px;top:10px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="AURA Heights">
+    <a class="mark" href="index.html">AURA <span>HEIGHTS</span></a>
+    <a class="link" href="residences.html">Residences</a>
+    <a class="link" href="residence-07.html">Residence 07</a>
+    <a class="link" href="headland.html" aria-current="page">The Headland</a>
+    <a class="link" href="visit.html">Book a viewing</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=80&auto=format&fit=crop"
+       alt="A golden cove and headland at dusk, demonstration imagery standing in for the AURA Heights headland" width="1600" height="1067">
+  <div class="grade"></div>
+  <span class="honesty">Demonstration imagery</span>
+  <div class="content">
+    <div class="eyebrow">EAST OVER THE BAY</div>
+    <h1>The headland keeps its own <span class="script">hours</span></h1>
+    <p class="lede">Forty-eight residences stand thirty-eight metres above the
+    water. The bay lies east, so the day arrives over the water and leaves over
+    the ridge, and the building sits between the two like a sundial.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">QUIET LANDMARK</div>
+      <h2>One headland, held above the <span class="script">water</span></h2>
+      <div class="prose">
+        <p>This is not a tower on a beach road. The headland rises thirty-eight
+        metres before the building begins, which is high enough that the bay
+        reads as a surface rather than a wall, and low enough that you can still
+        hear it with a window open.</p>
+        <p>Forty-eight residences share the ground. The largest plan runs to
+        <strong>217.40 sqm</strong>, and that figure is measured, not rounded:
+        where a number appears on these pages, someone stood in the room with
+        the instrument that produced it.</p>
+      </div>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><div class="n">38m</div><div class="l">Above the bay</div></div>
+      <div class="stat"><div class="n">48</div><div class="l">Residences on the headland</div></div>
+      <div class="stat"><div class="n">217.40</div><div class="l">Sqm, largest plan, measured</div></div>
+      <div class="stat"><div class="n">4K</div><div class="l">Every residence filmed before visiting</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band cream">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">NINETY SECONDS, TIMED</div>
+      <h2>The pier is a <span class="script">walk</span>, not a drive</h2>
+      <div class="prose">
+        <p>Ninety seconds by the water. We did not estimate that: we walked it,
+        lobby door to first plank, with a stopwatch running, and
+        <strong>90 seconds</strong> is what the watch said. No shortcut, no
+        brisk pace, ordinary shoes.</p>
+        <p>It matters because a pier you can reach in ninety seconds is part of
+        the residence, and a pier you reach by car is a destination. The
+        morning boats, the evening rail, the walk back up with wet hair: all of
+        it happens inside a minute and a half.</p>
+      </div>
+    </div>
+    <figure class="figure rv">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop"
+           alt="A shoreline at golden hour, demonstration imagery standing in for the walk from the lobby to the pier" width="1600" height="1067" loading="lazy">
+      <div class="grade"></div>
+      <span class="honesty">Demonstration imagery</span>
+      <figcaption>
+        <div class="figcap-top">LOBBY DOOR TO FIRST PLANK · 90 SECONDS, TIMED</div>
+        <div class="figcap-name">The walk down to the pier</div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<figure class="bleed">
+  <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80&auto=format&fit=crop"
+       alt="An open field in low golden light, demonstration imagery standing in for first light over the headland" width="1600" height="1067" loading="lazy">
+  <div class="grade"></div>
+  <span class="honesty">Demonstration imagery</span>
+  <figcaption>
+    <div class="figcap-top">FILMED 06:10 · THE BAY LIES EAST</div>
+    <div class="figcap-name">First light comes off the water</div>
+  </figcaption>
+</figure>
+
+<section class="band">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">SIX MINUTES FROM HARBOR STATION</div>
+      <h2>The city stays exactly six minutes <span class="script">away</span></h2>
+      <div class="prose">
+        <p>Harbor Station is <strong>6 min</strong> from the door. Near enough
+        that the city is an errand; far enough that the errand ends. The
+        headland does not pretend to be remote, and it does not pretend to be
+        central. It is six minutes from the platform, and that is the whole
+        claim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band cream">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">WHAT FACES WHERE</div>
+      <h2>The compass, in plain <span class="script">words</span></h2>
+      <div class="prose">
+        <p>Every view on this site is named for what it is, because a view is
+        the one thing a floor plan cannot show and a sentence can misrepresent.
+        So here is the ground truth we write every page against:</p>
+      </div>
+      <ul class="compass">
+        <li><span class="k">East</span><span class="v">The bay. Morning light, open water.</span></li>
+        <li><span class="k">Stacks 03 to 05</span><span class="v">The ridge. <em>These stacks face inland, and we say so.</em></span></li>
+        <li><span class="k">Corner stacks</span><span class="v">Ridge and pine. <em>We never describe a corner stack as a bay view.</em></span></li>
+      </ul>
+      <div class="prose" style="margin-top:22px">
+        <p>And because a sentence is still only a sentence: every residence is
+        filmed in <strong>4K</strong> from its own windows before you visit.
+        The view you see on film is the view you stand in.</p>
+      </div>
+      <a class="card07" href="residence-07.html">
+        <div class="k">SEE IT DONE HONESTLY</div>
+        <div class="t">Residence 07, corner stack, ridge and pine view</div>
+        <div class="m">148.60 sqm · 3 bedrooms · filmed 06:10 golden hour</div>
+        <div class="go">View Residence 07 <span aria-hidden="true">&rarr;</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="band closing">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow">SATURDAY AND SUNDAY</div>
+      <h2>Begin with a <span class="script">conversation</span></h2>
+      <div class="prose">
+        <p>Viewings run Saturday and Sunday, <strong>09:20 to 17:40</strong>.
+        Because every residence is filmed in 4K before you visit, the first
+        decision can happen at home, and the visit can be spent standing in the
+        two or three that earned it.</p>
+      </div>
+      <div class="hours">
+        <div class="h"><div class="n">Sat and Sun</div><div class="l">Viewing days</div></div>
+        <div class="h"><div class="n">09:20 to 17:40</div><div class="l">Viewing hours</div></div>
+        <div class="h"><div class="n">6 min</div><div class="l">From Harbor Station</div></div>
+      </div>
+      <a class="pill" href="visit.html">Book a viewing <span class="dot" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav class="fnav" aria-label="Footer">
+      <a href="index.html">AURA Heights</a>
+      <a href="residences.html">Residences</a>
+      <a href="residence-07.html">Residence 07</a>
+      <a href="headland.html">The Headland</a>
+      <a href="visit.html">Book a viewing</a>
+    </nav>
+    <p class="fine">AURA Heights is a fictional brand demonstrating the
+    prom-design skill. Photography on this page is demonstration imagery, not
+    the site. Source and skill:
+    <a href="https://github.com/sva-admin/sv-academy-prom-design">sva-admin/sv-academy-prom-design</a></p>
+  </div>
+</footer>
+
+<script>
+/* reveal is JS-gated: if this script never runs, everything is visible */
+document.documentElement.classList.add('js');
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target)}
+    })
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+  /* failsafe: nothing may stay hidden if the observer misbehaves */
+  setTimeout(function(){els.forEach(function(e){e.classList.add('on')})},2500);
+})();
+</script>
+</body>
+</html>

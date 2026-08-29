@@ -28,6 +28,52 @@ review) and `design-dna` (screenshot to tokens). Everything here works without
 them. The Blender 360 tour mentioned in places is a separate toolchain and is
 not part of this skill.
 
+## Start every job with the sixty-second intake
+
+Do not build first and ask forgiveness later. When this skill is invoked, and
+the user has not already answered these, ask BEFORE writing any code, in one
+short message, plain words, no design jargon:
+
+1. **What is this page for, and who lands on it?** (one line is enough)
+2. **Should it sell or should it work?** Offer the registers as a plain choice:
+   "a page that makes people want it (cinematic) or a page that gets things
+   done (instrument)?" If they hesitate, recommend one and say why in one
+   sentence.
+3. **Anything that must stay?** Brand colors, a logo, existing copy.
+
+Then present **the Prom take** in two or three sentences before building:
+which register, which ground tint, what the hero will be, and what the proof
+strip will say. End with "want me to build that, or adjust something first?"
+One round of questions, maximum. If the user says "just build it", build it.
+The intake exists to make newcomers feel steered, never interrogated.
+
+## Mobile is the default, not the afterthought
+
+Assume most viewers are on phones. These defaults apply to EVERY build unless
+the user says otherwise, and they come from the webapp playbook
+(`references/webapp.md`), which is not just for web apps:
+
+- **Scroll budget.** A page should land its argument within about 3.5 phone
+  screens (the density budget). When content wants to sprawl, compact it:
+  facets, tabs, or a horizontal shadow gallery instead of another stacked
+  section.
+- **Side-scroll galleries carry an affordance.** Any horizontal scroller shows
+  a peeking next card, a subtle edge fade, and on first view a brief swipe
+  cue. Never a naked overflow that looks like the content just got cut.
+- **Real tap targets.** Buttons and cards at thumb size (44px minimum), the
+  primary action reachable in the bottom half of the screen, and a bottom tab
+  bar the moment a product has three or more destinations.
+- **Coach marks, once.** If a surface has a gesture the user cannot guess
+  (swipe, long-press, drag), a one-time overlay teaches it, then never
+  appears again.
+- **The viewport meta is not optional**, and every page must measure
+  `scrollWidth == viewport width` at 390px. Internal scrollers scroll
+  themselves, the page never scrolls sideways.
+
+The cinematic register on a phone is a smaller cinema: fewer sections, larger
+type, the same argument. The instrument register on a phone should feel like
+a native app, not a shrunk website.
+
 ## Why this skill exists at all
 
 Most design skills, `impeccable` and `high-end-visual-design` included, are

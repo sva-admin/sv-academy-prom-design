@@ -1,0 +1,10 @@
+<svg width="180" height="180" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="24" fill="#14141d"/>
+  <rect x="1.5" y="1.5" width="97" height="97" rx="22.5" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+  <path d="M18 21 L28 28 L18 35" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="32" y="25.5" width="11" height="4.5" rx="1.5" fill="#22c55e" opacity="0.55"/>
+  <text x="50" y="64" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="800" font-size="38" letter-spacing="-1" fill="#ffffff">SV</text>
+  <circle cx="21" cy="81" r="4.5" fill="#ff5f57"/>
+  <circle cx="34" cy="81" r="4.5" fill="#febc2e"/>
+  <circle cx="47" cy="81" r="4.5" fill="#28c840"/>
+</svg>

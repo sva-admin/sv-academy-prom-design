@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Residence 07 · AURA Heights</title>
+<meta name="description" content="Residence 07 at AURA Heights: corner stack, ridge and pine view, 148.60 sqm measured, floor 11 of 14. Filmed in 4K at 06:10 before anyone visits.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23F7F2E9'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%239C6B2F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Italianno&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className += ' js'</script>
+<style>
+:root{
+  --ground:#F7F2E9;
+  --panel:#FDFAF3;
+  --ink:#40301D;
+  --soft:#7A6448;
+  --gold:#9C6B2F;
+  --gold-soft:#B98A4E;
+  --paper-on-dark:#F2E9DB;
+  --line:rgba(64,48,29,.16);
+  --line-soft:rgba(64,48,29,.09);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --script:'Italianno',cursive;
+  --sans:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --gutter:clamp(20px,4vw,56px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;font-variant-numeric:tabular-nums}
+::selection{background:var(--gold-soft);color:var(--ground)}
+img,video{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:none;box-shadow:0 0 0 2px var(--gold-soft);border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--gutter)}
+.band{padding-block:clamp(56px,6.5vw,92px)}
+
+/* grain, so flat ivory never reads as a default background */
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(247,242,233,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+.nav .bar{display:flex;align-items:center;justify-content:space-between;
+  padding:14px var(--gutter) 10px}
+.wordmark{font-size:12px;letter-spacing:.34em;text-indent:.34em;
+  text-transform:uppercase;font-weight:600;color:var(--ink);
+  display:inline-flex;align-items:center;min-height:32px}
+.wordmark .by{font-family:var(--script);font-size:19px;letter-spacing:0;
+  text-indent:0;text-transform:none;font-weight:400;color:var(--gold);
+  margin-left:10px}
+.navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;
+  padding:0 calc(var(--gutter) - 12px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent 100%);
+          mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent 100%)}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{flex:0 0 auto;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--soft);padding:14px 12px;
+  min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;
+  transition:color .5s var(--ease)}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a[aria-current="page"]{color:var(--gold);
+  box-shadow:inset 0 -1px 0 var(--gold-soft)}
+@media (min-width:768px){
+  .nav .inner{display:flex;align-items:center;justify-content:space-between}
+  .nav .bar{padding-bottom:14px}
+  .navlinks{overflow:visible;-webkit-mask-image:none;mask-image:none;padding:0}
+}
+
+/* ---------- type ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);flex:0 0 auto}
+h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:.02em;
+  line-height:1.12;max-width:22ch}
+h1{font-size:clamp(38px,5vw,64px)}
+h2{font-size:clamp(32px,4.4vw,56px)}
+.script{font-family:var(--script);font-weight:400;font-size:1.28em;
+  letter-spacing:0;color:var(--gold);line-height:.9}
+.lede{font-size:clamp(17px,1.5vw,21px);line-height:1.6;max-width:58ch;
+  color:var(--soft);font-family:var(--serif);margin-top:18px}
+.micro{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)}
+
+/* ---------- pills ---------- */
+.pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;
+  padding:13px 10px 13px 26px;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;border:1px solid var(--line);color:var(--ink);
+  background:transparent;transition:all .5s var(--ease);cursor:pointer;
+  min-height:46px}
+.pill .dot{width:30px;height:30px;border-radius:50%;flex:0 0 auto;
+  background:rgba(64,48,29,.08);display:grid;place-items:center;
+  transition:transform .5s var(--ease)}
+.pill .dot svg{display:block}
+.pill:hover .dot{transform:translateX(3px)}
+.pill.gold{background:var(--gold);border-color:var(--gold);color:var(--ground)}
+.pill.gold .dot{background:rgba(247,242,233,.18)}
+.pill.gold:hover{background:#875C28}
+.pill:not(.gold):hover{background:rgba(64,48,29,.05)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:clamp(540px,88svh,760px);color:var(--paper-on-dark)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 38%}
+.hero .grade{position:absolute;inset:0;
+  background:linear-gradient(8deg,rgba(31,21,10,.86) 0%,rgba(31,21,10,.45) 42%,rgba(31,21,10,.08) 75%)}
+.chip{position:absolute;z-index:3;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(245,239,228,.85);
+  background:rgba(31,21,10,.5);padding:5px 10px;border-radius:999px;
+  backdrop-filter:blur(4px)}
+.chip.honesty{right:14px;top:14px}
+.chip.fact{left:14px;top:14px}
+.hero .content{position:relative;z-index:2;height:100%;display:flex;
+  flex-direction:column;justify-content:flex-end;
+  padding:0 var(--gutter) clamp(40px,6vw,64px);max-width:1160px;margin:0 auto}
+.hero .eyebrow{color:var(--gold-soft)}
+.hero .eyebrow::before{background:var(--gold-soft)}
+.hero .lede{color:rgba(242,233,219,.88)}
+.hero .caption{margin-top:26px;padding-top:16px;
+  border-top:1px solid rgba(242,233,219,.25)}
+.caption .floor{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(242,233,219,.7)}
+.caption .name{font-family:var(--serif);font-size:20px;margin-top:2px}
+
+/* ---------- spec table ---------- */
+.spec{display:grid;grid-template-columns:1fr;margin-top:34px;
+  border-top:1px solid var(--line)}
+.spec .row{display:flex;align-items:baseline;justify-content:space-between;
+  gap:16px;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.spec .k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--soft);flex:0 0 auto}
+.spec .v{font-family:var(--serif);font-size:20px;text-align:right}
+.spec .v small{font-family:var(--sans);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-left:10px}
+@media (min-width:768px){
+  .spec{grid-template-columns:1fr 1fr;column-gap:clamp(32px,5vw,72px)}
+  .spec .row:nth-child(2){border-top:0}
+}
+
+/* ---------- measured list ---------- */
+.measured{list-style:none;margin-top:38px;border-top:1px solid var(--line)}
+.measured li{display:grid;grid-template-columns:clamp(104px,30vw,180px) 1fr;
+  gap:8px clamp(18px,4vw,44px);padding:24px 0;
+  border-bottom:1px solid var(--line-soft);align-items:start}
+.measured .fig{font-family:var(--serif);font-size:clamp(34px,3.4vw,52px);
+  line-height:1;font-weight:500}
+.measured .fig small{display:block;font-family:var(--sans);font-size:9.5px;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+  margin-top:8px;line-height:1.7}
+.measured p{max-width:52ch}
+
+/* ---------- honest band ---------- */
+.dark{background:var(--ink);color:var(--paper-on-dark)}
+.dark .eyebrow{color:var(--gold-soft)}
+.dark .eyebrow::before{background:var(--gold-soft)}
+.dark p{color:rgba(242,233,219,.82);max-width:58ch}
+.dark .frame{border:1px solid rgba(185,138,78,.4);border-radius:18px;
+  padding:clamp(26px,4.5vw,48px)}
+.dark .sign{margin-top:22px;font-size:9.5px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold-soft)}
+
+/* ---------- rail ---------- */
+.railhead{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:16px;flex-wrap:wrap}
+.cue{display:inline-flex;align-items:center;gap:10px;font-size:9.5px;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.cue svg{display:block;animation:nudge 2.2s var(--ease) infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){.cue svg{animation:none}}
+.railwrap{position:relative;margin-top:30px}
+.railwrap::after{content:"";position:absolute;top:0;bottom:0;right:0;width:56px;
+  pointer-events:none;
+  background:linear-gradient(270deg,var(--ground) 0%,rgba(247,242,233,0) 100%)}
+.rail{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;
+  scroll-snap-type:x mandatory;padding-right:72px;
+  -webkit-overflow-scrolling:touch;touch-action:pan-y pan-x}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(78%,420px);scroll-snap-align:start}
+.card .ph{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;
+  box-shadow:0 1px 0 var(--line-soft)}
+.card .ph img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.04);transition:transform 1.3s var(--ease)}
+.card:hover .ph img{transform:scale(1)}
+.card .chip{position:absolute;right:10px;top:10px}
+.card .caption{margin-top:14px}
+.card .caption .floor{color:var(--soft)}
+.card .caption .name{color:var(--ink);font-size:20px}
+@media (min-width:768px){.card .ph{border-radius:18px}}
+
+/* ---------- cta ---------- */
+.cta .pills{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.cta .facts{margin-top:30px;font-size:10px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--soft);line-height:2.2}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:36px 0 52px}
+footer .fine{font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--soft);line-height:2.3}
+footer a{color:var(--gold);box-shadow:inset 0 -1px 0 var(--gold-soft)}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(46px);
+  transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.js .rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap inner" style="padding:0">
+    <div class="bar">
+      <a class="wordmark" href="index.html">AURA Heights<span class="by">by the bay</span></a>
+    </div>
+    <nav class="navlinks" aria-label="Site">
+      <a href="residences.html">Residences</a>
+      <a href="residence-07.html" aria-current="page">Residence 07</a>
+      <a href="headland.html">The Headland</a>
+      <a href="visit.html">Book a viewing</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop"
+       width="1600" height="1067"
+       alt="Mist over a pine ridge in low golden morning light, standing in for the view from Residence 07">
+  <div class="grade"></div>
+  <span class="chip fact">Filmed 06:10 · 4K</span>
+  <span class="chip honesty">Demonstration imagery</span>
+  <div class="content">
+    <p class="eyebrow rv">Residence 07 · Corner stack · Floor 11 of 14</p>
+    <h1 class="rv">The corner that chose the <span class="script">ridge</span></h1>
+    <p class="lede rv">148.60 square metres, measured. Three bedrooms on the
+    corner of the headland, facing the ridge and the pines, filmed in 4K at
+    06:10 so you can watch the exact view before you travel.</p>
+    <div class="caption rv">
+      <div class="floor">Ridge and pine aspect · 38 m above the bay</div>
+      <div class="name">The morning from floor 11</div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow rv">Measured. Then listed.</p>
+    <h2 class="rv">The plan, in plain <span class="script">numbers</span></h2>
+    <p class="lede rv">Nothing on this table is an estimate. Where our source
+    documents disagree, we print the more conservative figure.</p>
+    <div class="spec rv">
+      <div class="row"><span class="k">Plan area</span><span class="v">148.60 sqm<small>measured</small></span></div>
+      <div class="row"><span class="k">Bedrooms</span><span class="v">3</span></div>
+      <div class="row"><span class="k">Stack</span><span class="v">Corner</span></div>
+      <div class="row"><span class="k">View</span><span class="v">Ridge and pine</span></div>
+      <div class="row"><span class="k">Floor</span><span class="v">11 of 14</span></div>
+      <div class="row"><span class="k">Film</span><span class="v">4K<small>06:10 · golden hour</small></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Proof over promise</p>
+    <h2 class="rv">What was measured, and how</h2>
+    <p class="lede rv">A claim without its evidence is an adjective. These are
+    the figures behind this page, and where each one came from.</p>
+    <ul class="measured">
+      <li class="rv">
+        <div class="fig">148.60<small>sqm · plan area</small></div>
+        <p>The measured figure, not the marketing figure. The largest plan at
+        AURA Heights measures 217.40 sqm on the same basis, so the two numbers
+        can be compared honestly.</p>
+      </li>
+      <li class="rv">
+        <div class="fig">90<small>seconds · to the pier</small></div>
+        <p>Walked and timed at a normal pace, not read off a map. Ninety
+        seconds is the whole distance between the water and the door.</p>
+      </li>
+      <li class="rv">
+        <div class="fig">38<small>metres · above the bay</small></div>
+        <p>The height of the headland under the building. The bay lies east,
+        below the pines, which is what puts floor 11 above the morning mist.</p>
+      </li>
+      <li class="rv">
+        <div class="fig">6<small>minutes · from Harbor Station</small></div>
+        <p>Station to headland, then the last ninety seconds from the pier on
+        foot. Two numbers, stated separately, because they were counted
+        separately.</p>
+      </li>
+      <li class="rv">
+        <div class="fig">06:10<small>the hour it was filmed</small></div>
+        <p>Every one of the 48 residences is filmed in 4K before anyone
+        visits. Residence 07 was filmed at 06:10, golden hour, so the light in
+        the film is light the residence actually gets.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="band dark">
+  <div class="wrap">
+    <div class="frame rv">
+      <p class="eyebrow">The honest note</p>
+      <h2>Not a bay view, and never sold as one</h2>
+      <p style="margin-top:18px">The bay lies east. Stacks 03 to 05 face the
+      ridge, and a corner stack is never described as a bay view here,
+      whatever the light is doing to the water on the day you visit.
+      Residence 07 looks to the ridge and the pines. You will pass the bay on
+      the walk up from the pier, ninety seconds of it, and then the windows
+      change the subject.</p>
+      <p style="margin-top:14px">We would rather tell you this before you
+      travel than after.</p>
+      <p class="sign">Stated on every corner stack listing</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="railhead">
+      <div>
+        <p class="eyebrow rv">Filmed 06:10 · Golden hour</p>
+        <h2 class="rv">Three frames from the corner</h2>
+        <p class="lede rv">Demonstration imagery stands in for the residence
+        film, and every frame is labelled as such.</p>
+      </div>
+      <span class="cue" aria-hidden="true">Swipe or drag
+        <svg width="26" height="10" viewBox="0 0 26 10" fill="none">
+          <path d="M0 5h23M19 1l4 4-4 4" stroke="#9C6B2F" stroke-width="1.2"/>
+        </svg>
+      </span>
+    </div>
+    <div class="railwrap">
+      <div class="rail" id="rail" aria-label="Three frames from the corner, horizontally scrollable">
+        <figure class="card rv">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1067" loading="lazy"
+                 alt="Tall pines rising in parallel lines, standing in for the pine line off the north windows">
+            <span class="chip honesty">Demonstration imagery</span>
+          </div>
+          <figcaption class="caption">
+            <div class="floor">Ridge aspect · North windows</div>
+            <div class="name">The pine line</div>
+          </figcaption>
+        </figure>
+        <figure class="card rv">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1067" loading="lazy"
+                 alt="Still water and a cabin at dusk, standing in for last light on the ridge from floor 11">
+            <span class="chip honesty">Demonstration imagery</span>
+          </div>
+          <figcaption class="caption">
+            <div class="floor">Floor 11 · Last light</div>
+            <div class="name">The ridge at dusk</div>
+          </figcaption>
+        </figure>
+        <figure class="card rv">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600&q=80&auto=format&fit=crop"
+                 width="1600" height="1067" loading="lazy"
+                 alt="Waterfall running off layered cliffs, standing in for the headland below the residence">
+            <span class="chip honesty">Demonstration imagery</span>
+          </div>
+          <figcaption class="caption">
+            <div class="floor">The headland below · 38 m</div>
+            <div class="name">Water off the cliffs</div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band cta" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Saturday and Sunday · 09:20 to 17:40</p>
+    <h2 class="rv">The film first, then the <span class="script">door</span></h2>
+    <p class="lede rv">Watch Residence 07 filmed at 06:10 before you come, then
+    stand in it. Viewings run Saturday and Sunday, 09:20 to 17:40. Six minutes
+    from Harbor Station, then ninety seconds on foot from the pier.</p>
+    <div class="pills rv">
+      <a class="pill gold" href="visit.html">Book a viewing
+        <span class="dot"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M0 5h9M6 1l4 4-4 4" stroke="#F7F2E9" stroke-width="1.2"/></svg></span>
+      </a>
+      <a class="pill" href="residences.html">All 48 residences
+        <span class="dot"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M0 5h9M6 1l4 4-4 4" stroke="#40301D" stroke-width="1.2"/></svg></span>
+      </a>
+    </div>
+    <p class="facts rv">48 residences · 38 m above the bay · every residence filmed in 4K</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fine">AURA Heights is a fictional brand demonstrating the
+    prom-design skill. ·
+    <a href="https://github.com/sva-admin/sv-academy-prom-design">sva-admin/sv-academy-prom-design</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{
+    var els = [].slice.call(document.querySelectorAll('.rv'));
+    var show = function(el){ el.classList.add('on'); };
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ show(e.target); io.unobserve(e.target); }
+        });
+      },{rootMargin:'0px 0px -8% 0px'});
+      els.forEach(function(el){ io.observe(el); });
+    } else {
+      els.forEach(show);
+    }
+    /* failsafe: the page must never stay blank if the observer dies */
+    setTimeout(function(){ els.forEach(show); }, 2500);
+
+    /* one-time swipe nudge when the rail first appears */
+    var rail = document.getElementById('rail');
+    if(rail && 'IntersectionObserver' in window &&
+       !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var nudged = false;
+      var rio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && !nudged){
+            nudged = true; rio.unobserve(rail);
+            setTimeout(function(){
+              rail.scrollTo({left:28,behavior:'smooth'});
+              setTimeout(function(){ rail.scrollTo({left:0,behavior:'smooth'}); },520);
+            },600);
+          }
+        });
+      },{threshold:.5});
+      rio.observe(rail);
+    }
+  }catch(err){
+    [].slice.call(document.querySelectorAll('.rv')).forEach(function(el){
+      el.classList.add('on');
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Assembly · Tonight</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F6F3EC; --panel:#FFFDF8; --ink:#26221B; --muted:#8A8172;
+  --line:#E5DFD2; --accent:#6E3B2A;
+  --tabbar-h:64px;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:Archivo,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{max-width:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:14px; line-height:1.5;
+  padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 28px);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a,button{touch-action:manipulation; -webkit-tap-highlight-color:transparent}
+
+.head{padding:18px 18px 10px; display:flex; justify-content:space-between; align-items:baseline}
+.wm{font-family:var(--serif); font-size:20px; font-weight:500}
+.month{font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+
+.screen-title{margin:6px 18px 4px; font-family:var(--serif); font-size:30px; font-weight:500; line-height:1.1}
+.subline{margin:0 18px 14px; font-size:12px; color:var(--muted)}
+.subline b{color:var(--accent); font-weight:500; font-variant-numeric:tabular-nums}
+
+.card{background:var(--panel); border:1px solid var(--line); margin:0 18px 12px}
+.media{position:relative}
+.media img{width:100%; height:172px; object-fit:cover}
+.honesty{
+  position:absolute; right:10px; top:10px;
+  font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(245,239,228,.9); background:rgba(23,16,9,.55); padding:5px 10px;
+}
+.body{padding:14px 16px 16px}
+.row1{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.chip{
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--accent); border:1px solid var(--accent); padding:3px 8px;
+}
+.dot{width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion: reduce){.dot{animation:none}}
+.price{font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+.t{font-family:var(--serif); font-size:21px; font-weight:500; margin:9px 0 4px; line-height:1.2}
+.meta{font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums; margin:0}
+.desc{font-size:13px; margin:9px 0 0}
+.note{
+  margin:11px 0 0; padding-top:10px; border-top:1px solid var(--line);
+  font-size:11.5px; color:var(--muted);
+}
+
+.empty{
+  margin:22px 18px 0; padding:26px 18px 22px; text-align:center;
+  border:1px dashed var(--line); background:transparent;
+}
+.empty .e1{font-family:var(--serif); font-size:19px; font-weight:500; margin:0 0 3px}
+.empty .e2{font-size:12px; color:var(--muted); margin:0 0 16px}
+.go{
+  display:flex; align-items:center; justify-content:center;
+  min-height:48px; margin:0 auto; max-width:280px;
+  background:var(--ink); color:var(--ground); text-decoration:none;
+  font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:500;
+}
+.evidence{font-size:11px; color:var(--muted); margin:10px 0 0; font-variant-numeric:tabular-nums}
+
+.tab{
+  position:fixed; left:0; right:0; bottom:0; z-index:10;
+  display:flex; background:var(--panel); border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tab a{
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:2px; min-height:var(--tabbar-h); text-decoration:none; color:var(--muted);
+  font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+}
+.tab a span{font-size:16px}
+.tab a[aria-current="page"]{color:var(--accent); font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <span class="wm">The Assembly</span>
+  <span class="month">Mar · Members</span>
+</header>
+
+<h1 class="screen-title">Tonight</h1>
+<p class="subline"><b>One door open, 17:00 to 20:00.</b> The rest of the week lives under Events.</p>
+
+<article class="card">
+  <div class="media">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80&auto=format&fit=crop" alt="The cellar: a long table under low lamps, chairs pulled close">
+    <span class="honesty">Demonstration imagery</span>
+  </div>
+  <div class="body">
+    <div class="row1">
+      <span class="chip"><span class="dot"></span>Tonight · drop-in</span>
+      <span class="price">Free for members</span>
+    </div>
+    <p class="t">Natural wine, prep evening</p>
+    <p class="meta">17:00 to 20:00 · The cellar · 6 min from Harbor Station</p>
+    <p class="desc">Six bottles up from the racks. Corks pulled at five, the last pour by eight.</p>
+    <p class="note">No booking tonight. Your name at the door is enough.</p>
+  </div>
+</article>
+
+<section class="empty">
+  <p class="e1">Nothing else tonight.</p>
+  <p class="e2">Thursday opens the cellar.</p>
+  <a class="go" href="events.html">See the 12 open dates</a>
+  <p class="evidence">84 places left across Mar, counted as this page is built.</p>
+</section>
+
+<nav class="tab" aria-label="The Assembly">
+  <a href="tonight.html" aria-current="page"><span>◐</span>Tonight</a>
+  <a href="events.html"><span>▤</span>Events</a>
+  <a href="you.html"><span>◉</span>You</a>
+</nav>
+
+</body>
+</html>

@@ -1,8 +1,9 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ember Café</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ember Café</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Italianno&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ground:#211912;--ivory:#F5EFE4;--gold:#C9903F;--line:rgba(245,239,228,.22)}
-*{box-sizing:border-box}body{margin:0;font-family:Archivo,sans-serif;background:var(--ground);color:var(--ivory)}
+:root{--ground:#211912;--ivory:#F5EFE4;--gold:#C9903F;--line:rgba(245,239,228,.22);--line-soft:rgba(245,239,228,.14);--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box}body{margin:0;font-family:Archivo,sans-serif;background:var(--ground);color:var(--ivory);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
 .hero{position:relative;height:740px;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.2) saturate(1.05) brightness(.8)}
 .grade{position:absolute;inset:0;background:linear-gradient(82deg,rgba(23,16,9,.88) 0%,rgba(23,16,9,.6) 40%,rgba(23,16,9,.15) 70%)}
@@ -16,9 +17,62 @@ h1 .script{font-family:Italianno,cursive;font-size:92px;line-height:0;color:var(
 .proof{display:flex;border-top:1px solid var(--line);padding-top:18px}
 .p{padding-right:28px;margin-right:28px;border-right:1px solid var(--line)}
 .p:last-child{border:none;margin:0;padding-right:0}
-.p b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px}
+.p b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;font-variant-numeric:tabular-nums}
 .p span{display:block;margin-top:3px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,228,.6)}
 .cta{flex:none;background:var(--ivory);color:#211912;text-decoration:none;padding:16px 32px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+
+/* ---- below the hero ---- */
+.band{padding:clamp(52px,9vw,88px) 0}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.eyebrow2{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin:0 0 20px}
+.eyebrow2::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
+h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin:0 0 16px;max-width:22ch;text-wrap:balance}
+h2 .script{font-family:Italianno,cursive;font-size:1.28em;line-height:0;color:var(--gold);vertical-align:-2px}
+.lede{font-size:15px;line-height:1.75;color:rgba(245,239,228,.82);max-width:58ch;margin:0}
+.room-facts{margin-top:26px}
+
+/* menu rail */
+.railwrap{position:relative;margin-top:6px}
+.railwrap::before,.railwrap::after{content:"";position:absolute;top:0;bottom:22px;width:38px;z-index:2;pointer-events:none;opacity:0;transition:opacity .5s var(--ease)}
+.railwrap::before{left:0;background:linear-gradient(90deg,#211912,rgba(33,25,18,0))}
+.railwrap::after{right:0;background:linear-gradient(270deg,#211912,rgba(33,25,18,0))}
+.railwrap.can-scroll::after{opacity:1}
+.railwrap.can-scroll.at-end::after{opacity:0}
+.railwrap.can-scroll.scrolled::before{opacity:1}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;max-width:1100px;margin:0 auto;padding:4px clamp(20px,5vw,56px) 22px;scroll-padding-inline:clamp(20px,5vw,56px);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+.card{scroll-snap-align:start;flex:0 0 min(78vw,320px);background:rgba(245,239,228,.05);border:1px solid var(--line-soft);border-radius:18px;padding:24px 22px 18px;display:flex;flex-direction:column;min-height:236px}
+.card .cat{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+.card h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:27px;line-height:1.05;margin:0 0 10px}
+.card p{font-size:13.5px;line-height:1.65;color:rgba(245,239,228,.78);margin:0 0 18px}
+.card .meta{margin-top:auto;border-top:1px solid var(--line-soft);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px;letter-spacing:.08em;color:rgba(245,239,228,.72);font-variant-numeric:tabular-nums}
+.card .meta b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:19px;color:var(--ivory)}
+.hint{display:none;align-items:center;gap:10px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(245,239,228,.6);margin:10px 0 0}
+.railwrap.can-scroll + .wrap .hint{display:inline-flex}
+.hint svg{display:block}
+.hint .arrow{animation:nudge 2s var(--ease) infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+/* reservation band */
+#reserve{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);text-align:center;background:radial-gradient(120% 130% at 50% 0%,rgba(201,144,63,.08),rgba(201,144,63,0) 60%)}
+#reserve .eyebrow2{display:inline-flex}
+#reserve h2,#reserve .lede{margin-left:auto;margin-right:auto}
+#reserve .cta{display:inline-block;margin-top:26px}
+.fine{font-size:11px;line-height:1.7;color:rgba(245,239,228,.55);max-width:46ch;margin:16px auto 0}
+
+/* footer */
+footer{border-top:1px solid var(--line-soft);padding:34px 0 44px}
+.fmark{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;margin:0 0 8px}
+.fmicro{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,239,228,.55);margin:0 0 16px}
+.fnote{font-size:11px;line-height:1.7;color:rgba(245,239,228,.5);max-width:52ch;margin:0}
+
+/* reveal, visible by default, hidden only once JS is alive */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+ .js .rv{opacity:1;transform:none;transition:none}
+ .hint .arrow{animation:none}
+}
 
 @media (max-width:768px){
  .content{padding:24px 20px 22px}
@@ -30,10 +84,11 @@ h1 .script{font-family:Italianno,cursive;font-size:92px;line-height:0;color:var(
  .p{padding-right:16px;margin-right:16px}
  .cta{text-align:center}
  .honesty{right:10px;top:10px}
+ .card{border-radius:14px}
 }
 </style></head><body>
 <div class="hero">
-<img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80&auto=format&fit=crop" alt="">
+<img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80&auto=format&fit=crop" alt="The dining room at night, candlelit tables under low pendant lamps">
 <div class="grade"></div><span class="honesty">Demonstration imagery</span>
 <div class="content">
 <div><p class="eyebrow">Ember Café · Est. in a print shop</p>
@@ -46,6 +101,108 @@ print shop, eight chairs, one seating a night.</p></div>
 <div class="p"><b>12</b><span>dates open this season</span></div>
 <div class="p"><b>18:40</b><span>doors, sharp</span></div>
 </div>
-<a class="cta" href="#">Ask for a chair</a>
+<a class="cta" href="#reserve">Ask for a chair</a>
 </div></div></div>
+
+<section class="band">
+<div class="wrap rv">
+<p class="eyebrow2">The room</p>
+<h2>Up one flight, past the <span class="script">presses</span>.</h2>
+<p class="lede">The print shop runs downstairs until 18:00. Then the stairwell light
+comes on, the kettles go over the fire, and each of the eight chairs gets a name
+card. No tables: one oak counter, and the cook on the other side of it.</p>
+<div class="proof room-facts">
+<div class="p"><b>1</b><span>flight above the print shop</span></div>
+<div class="p"><b>3.60 m</b><span>oak counter, measured</span></div>
+<div class="p"><b>7</b><span>copper kettles</span></div>
+</div>
+</div>
+</section>
+
+<section class="band" style="padding-top:0">
+<div class="wrap rv">
+<p class="eyebrow2">The menu</p>
+<h2>What the fire <span class="script">makes</span>.</h2>
+</div>
+<div class="railwrap rv">
+<div class="rail">
+<article class="card">
+<p class="cat">Every open date</p>
+<h3>The set</h3>
+<p>Five plates from the fire, decided at the morning market and announced at the
+counter, nowhere else.</p>
+<div class="meta"><span>One seating · 19:00</span><b>1,650</b></div>
+</article>
+<article class="card">
+<p class="cat">Chairs 7 and 8</p>
+<h3>The counter</h3>
+<p>Two chairs are never booked. Come up the stairs at 18:40, ask, and if they are
+free they are yours.</p>
+<div class="meta"><span>Walk up · 18:40</span><b>1,650</b></div>
+</article>
+<article class="card">
+<p class="cat">Bread day</p>
+<h3>Sunday</h3>
+<p>The oven runs from 06:00. Loaves at 08:00 until they run out, and a lunch at
+12:30 that ends when it ends.</p>
+<div class="meta"><span>Loaves 95 · lunch 12:30</span><b>680</b></div>
+</article>
+</div>
+</div>
+<div class="wrap"><p class="hint" aria-hidden="true"><svg class="arrow" width="26" height="8" viewBox="0 0 26 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 4h24M21 1l4 3l-4 3" stroke="#C9903F" stroke-width="1"/></svg>Swipe or drag · three cards</p></div>
+</section>
+
+<section class="band" id="reserve">
+<div class="wrap rv">
+<p class="eyebrow2">A chair</p>
+<h2>Ask, and a person <span class="script">answers</span>.</h2>
+<p class="lede">Doors at 18:40, one seating, plates from 19:00, the room dark by
+22:30. Twelve dates are open this season, and when a chair is taken the count at
+the top of this page drops.</p>
+<a class="cta" href="#reserve">Ask for a chair</a>
+<p class="fine">This page is a demonstration, so the button stays put. Built for a
+real room it opens a plain email: no form, no deposit. A person reads it and
+replies, usually the same evening.</p>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+<p class="fmark">Ember Café</p>
+<p class="fmicro">Above the print shop · 7 min from Harbor Station · doors 18:40</p>
+<p class="fnote">A demonstration page in the prom-design house style. Ember Café,
+its room, and every number here are fictional.</p>
+</div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+/* reveal: a dead script must never leave the page blank, so hidden-state only
+   exists once this line has already run, and a timeout force-shows everything */
+(function(){
+ var els=[].slice.call(document.querySelectorAll('.rv'));
+ if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},
+   {rootMargin:'0px 0px -10% 0px'});
+  els.forEach(function(el){io.observe(el)});
+ }
+ setTimeout(function(){els.forEach(function(el){el.classList.add('in')})},2500);
+})();
+/* rail: fade and hint mount only while content is genuinely off-screen,
+   otherwise a rail of three visible cards gets dressed up as a scroller */
+(function(){
+ var rw=document.querySelector('.railwrap');if(!rw)return;
+ var rail=rw.querySelector('.rail');
+ function sync(){
+  var can=rail.scrollWidth-rail.clientWidth>4;
+  rw.classList.toggle('can-scroll',can);
+  rw.classList.toggle('scrolled',rail.scrollLeft>4);
+  rw.classList.toggle('at-end',rail.scrollLeft>=rail.scrollWidth-rail.clientWidth-4);
+ }
+ rail.addEventListener('scroll',sync,{passive:true});
+ window.addEventListener('resize',sync);
+ sync();
+})();
+</script>
 </body></html>

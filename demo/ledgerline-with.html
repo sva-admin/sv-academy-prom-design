@@ -8,6 +8,12 @@
 .logo{font-family:"Cormorant Garamond",serif;font-size:22px;margin:0 0 26px}
 .nav a{display:block;padding:9px 12px;color:var(--muted);text-decoration:none;font-size:13.5px;border-radius:3px}
 .nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:500}
+.nav a.peek{color:var(--ink)}
+.nav .n{display:inline-block;min-width:18px;text-align:center;margin-left:5px;padding:1px 5px;font-size:10.5px;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-variant-numeric:tabular-nums}
+.tease{margin-top:22px;padding:13px 12px 6px;border:1px solid var(--line);background:var(--ground);border-radius:3px}
+.tease .tz-eye{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.tease p{margin:0;font-size:12px;line-height:1.5;color:var(--ink)}
+.tease a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;color:var(--accent);text-decoration:none;font-size:12px;font-weight:500}
 .main{padding:26px 34px;overflow:hidden}
 .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
 h1{font-size:19px;margin:0;font-weight:500}
@@ -16,7 +22,16 @@ h1{font-size:19px;margin:0;font-weight:500}
 .s{background:var(--panel);padding:14px 18px;flex:1}
 .s b{display:block;font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
 .s span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.s .up{color:var(--accent);font-size:11px}
+.s .up{color:var(--accent);font-size:11px;letter-spacing:0;text-transform:none}
+.aging{background:var(--panel);border:1px solid var(--line);padding:12px 16px;margin-bottom:16px}
+.ag-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.ag-title{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ag-note{font-size:11px;color:var(--muted)}
+.ag-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:end}
+.ag i{display:block;height:2px;background:var(--line);margin-bottom:7px}
+.ag.now i{height:28px;background:var(--accent)}
+.ag b{display:block;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.ag span{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 table{width:100%;border-collapse:collapse}
 th{text-align:left;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--line)}
 td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
@@ -24,29 +39,60 @@ td.r,th.r{text-align:right}
 .chip{font-size:10.5px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
 .chip.paid{color:var(--accent);border-color:var(--accent)}
 .chip.due{color:#8A5A24;border-color:#C8A16A}
+tr.empty td{padding:0;border-bottom:none;color:var(--muted)}
+tr.empty .er{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;min-height:44px;padding:4px 12px}
+tr.empty .er span{font-size:12.5px}
+tr.empty .er a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:var(--accent);text-decoration:none;font-size:12.5px;font-weight:500;font-variant-numeric:tabular-nums}
+.swipehint{display:none}
 
 @media (max-width:768px){
  .app{grid-template-columns:1fr;height:auto;min-height:100vh}
  .side{border-right:none;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;gap:6px;overflow-x:auto}
  .logo{margin:0 14px 0 0;font-size:19px;white-space:nowrap}
  .nav{display:flex;gap:2px}
- .nav a{white-space:nowrap;padding:7px 10px;font-size:12.5px}
+ .nav a{white-space:nowrap;padding:7px 10px;font-size:12.5px;display:flex;align-items:center;min-height:44px}
+ .tease{display:none}
  .main{padding:16px 14px}
+ .btn{padding:13px 18px}
  .stats{flex-direction:column}
- .tablewrap{overflow-x:auto;border:1px solid var(--line)}
+ .ag-row{gap:8px}
+ .swipehint{display:block;margin:0 0 6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+ .tablewrap{overflow-x:auto;border:1px solid var(--line);
+  background:
+   linear-gradient(90deg,#FFFDF8 30%,rgba(255,253,248,0)),
+   linear-gradient(270deg,#FFFDF8 30%,rgba(255,253,248,0)) 100% 0,
+   linear-gradient(90deg,rgba(38,34,27,.12),rgba(38,34,27,0)),
+   linear-gradient(270deg,rgba(38,34,27,.12),rgba(38,34,27,0)) 100% 0;
+  background-repeat:no-repeat;
+  background-size:40px 100%,40px 100%,14px 100%,14px 100%;
+  background-attachment:local,local,scroll,scroll;
+  background-color:var(--panel)}
  table{min-width:560px}
 }
 </style></head><body>
 <div class="app">
 <div class="side"><p class="logo">Ledgerline</p>
-<nav class="nav"><a class="on" href="#">Invoices</a><a href="#">Clients</a><a href="#">Recurring</a><a href="#">Reports</a><a href="#">Settings</a></nav></div>
+<nav class="nav"><a class="on" href="#">Invoices</a><a class="peek" href="#">Clients <span class="n">5</span></a><a href="#">Recurring</a><a href="#">Reports</a><a href="#">Settings</a></nav>
+<div class="tease"><span class="tz-eye">Next · Clients</span>
+<p>5 clients billed this month. 2 carry an open balance: Ember Café and The Assembly.</p>
+<a href="#">Open Clients</a></div></div>
 <div class="main">
 <div class="top"><h1>Invoices · this month</h1><a class="btn" href="#">New invoice</a></div>
 <div class="stats">
 <div class="s"><b>412,900</b><span>collected this month</span></div>
-<div class="s"><b>86,400</b><span>outstanding</span> <span class="up">3 due this week</span></div>
+<div class="s"><b>86,400</b><span>outstanding</span> <span class="up">due Mar 24 and Mar 27</span></div>
 <div class="s"><b>11 days</b><span>median time to paid</span></div>
 </div>
+<div class="aging">
+<div class="ag-head"><span class="ag-title">Receivable aging · days overdue</span><span class="ag-note">summed from the 2 open invoices below, not typed in · as of Mar 16</span></div>
+<div class="ag-row">
+<div class="ag now"><i></i><b>86,400</b><span>Current</span></div>
+<div class="ag"><i></i><b>0</b><span>1 to 30</span></div>
+<div class="ag"><i></i><b>0</b><span>31 to 60</span></div>
+<div class="ag"><i></i><b>0</b><span>Over 60</span></div>
+</div>
+</div>
+<p class="swipehint">Slide sideways for amount and status</p>
 <div class="tablewrap"><table>
 <tr><th>No.</th><th>Client</th><th>Issued</th><th class="r">Amount</th><th class="r">Status</th></tr>
 <tr><td>0114</td><td>Harborline Films</td><td>Mar 04</td><td class="r">48,000.00</td><td class="r"><span class="chip paid">Paid Mar 09</span></td></tr>
@@ -54,6 +100,7 @@ td.r,th.r{text-align:right}
 <tr><td>0112</td><td>Ember Café</td><td>Feb 27</td><td class="r">22,400.00</td><td class="r"><span class="chip due">Due Mar 27</span></td></tr>
 <tr><td>0111</td><td>The Assembly</td><td>Feb 24</td><td class="r">64,000.00</td><td class="r"><span class="chip due">Due Mar 24</span></td></tr>
 <tr><td>0110</td><td>Quay and Sons</td><td>Feb 20</td><td class="r">18,500.00</td><td class="r"><span class="chip paid">Paid Feb 28</span></td></tr>
+<tr class="empty"><td colspan="5"><div class="er"><span>End of this month. Invoices 0001 to 0109 live in the full ledger.</span><a href="#">Show all 114</a></div></td></tr>
 </table></div>
 </div></div>
 </body></html>

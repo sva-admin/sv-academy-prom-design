@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events · The Assembly</title>
+<meta name="description" content="The Assembly, a fictional members events club: Mar dates, places left, counted from the ledger.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236E3B2A'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23FFFDF8' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F6F3EC;
+  --panel:#FFFDF8;
+  --ink:#26221B;
+  --muted:#8A8172;
+  --line:#E5DFD2;
+  --accent:#6E3B2A;
+  --desk:#ECE6D8;
+  --tabbar-h:58px;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:Archivo,system-ui,sans-serif;
+  font-size:14px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+.app{
+  min-height:100dvh;
+  background:var(--ground);
+  padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 22px);
+}
+.head{
+  padding:20px 18px 10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+}
+.wm{font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;font-weight:600;letter-spacing:.01em}
+.month{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.scarce{margin:0 18px 14px;font-size:12.5px;color:var(--muted)}
+.scarce b{color:var(--accent);font-weight:600}
+.card{
+  display:block;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin:0 18px 10px;
+  padding:14px 16px 13px;
+  color:inherit;
+  text-decoration:none;
+}
+a.card{
+  transition:transform .15s var(--ease), box-shadow .15s var(--ease);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+a.card:active{transform:scale(.985)}
+.row1{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.chip{
+  font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);border:1px solid var(--accent);
+  border-radius:3px;padding:2px 7px;white-space:nowrap;
+}
+.chip.full{color:var(--muted);border-color:var(--line)}
+.price{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;font-weight:500;margin:9px 0 4px;line-height:1.2}
+.meta{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin:0}
+.go{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:10px;padding-top:9px;border-top:1px solid var(--line);
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+}
+.go .arr{font-size:13px;letter-spacing:0}
+.note{
+  margin:18px 18px 0;padding:11px 14px;
+  border-left:2px solid var(--line);
+  font-size:11px;color:var(--muted);line-height:1.55;
+}
+.note a{color:var(--accent);text-underline-offset:2px}
+.tab{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:420px;
+  background:var(--panel);border-top:1px solid var(--line);
+  display:flex;
+  padding-bottom:env(safe-area-inset-bottom);
+  z-index:10;
+}
+.tab a{
+  flex:1;text-align:center;
+  padding:10px 0 12px;min-height:48px;
+  text-decoration:none;color:var(--muted);
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab a span{display:block;font-size:16px;line-height:1;margin-bottom:3px}
+.tab a[aria-current="page"]{color:var(--accent)}
+@media (min-width:480px){
+  body{background:var(--desk)}
+  .app{
+    max-width:420px;margin:0 auto;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+    box-shadow:0 0 40px rgba(38,34,27,.08);
+  }
+  .tab{
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="head">
+    <span class="wm">The Assembly</span>
+    <span class="month">Mar</span>
+  </header>
+
+  <p class="scarce"><b>12 dates open. 84 places left.</b> Eight tables. Every seat has a name.</p>
+
+  <a class="card" href="event-supper.html">
+    <div class="row1"><span class="chip">3 of 12 places</span><span class="price">2,400</span></div>
+    <p class="t">Supper at the long table</p>
+    <p class="meta">Sat Mar 14 · 19:00 to 22:30 · Dining room · 6 min from Harbor Station</p>
+    <div class="go"><span>The table, the menu, the counting</span><span class="arr">&#8594;</span></div>
+  </a>
+
+  <div class="card">
+    <div class="row1"><span class="chip">5 of 16 places</span><span class="price">1,800</span></div>
+    <p class="t">Natural wine, six bottles, one table</p>
+    <p class="meta">Wed Mar 18 · 18:30 to 21:00 · The cellar · 6 min from Harbor Station</p>
+  </div>
+
+  <div class="card">
+    <div class="row1"><span class="chip full">Full · waitlist</span><span class="price">3,600</span></div>
+    <p class="t">Chef's counter, eight seats</p>
+    <p class="meta">Sun Mar 22 · 18:00 to 21:40 · The counter · 8 min from Harbor Station</p>
+  </div>
+
+  <div class="card">
+    <div class="row1"><span class="chip">Open to members</span><span class="price">Free</span></div>
+    <p class="t">Sunday print fair</p>
+    <p class="meta">Sun Mar 29 · 11:00 to 16:00 · Courtyard · bring nothing</p>
+  </div>
+
+  <p class="scarce" style="margin-top:18px"><b>Apr opens to members Mar 25.</b> Guests <a href="join.html" style="color:var(--accent);text-underline-offset:2px">join the waitlist</a>.</p>
+
+  <div class="card">
+    <div class="row1"><span class="chip">Members first</span><span class="price">2,800</span></div>
+    <p class="t">The long lunch, five courses</p>
+    <p class="meta">Sat Apr 04 · 12:30 to 16:00 · Dining room · 6 min from Harbor Station</p>
+  </div>
+
+  <p class="note">How this page counts: the dates and the places left are counted out of the booking ledger as the page is built, not written by hand. When a table fills, the number drops.</p>
+
+</div>
+
+<nav class="tab" aria-label="The Assembly">
+  <a href="tonight.html"><span aria-hidden="true">&#9680;</span>Tonight</a>
+  <a href="events.html" aria-current="page"><span aria-hidden="true">&#9636;</span>Events</a>
+  <a href="you.html"><span aria-hidden="true">&#9673;</span>You</a>
+</nav>
+</body>
+</html>

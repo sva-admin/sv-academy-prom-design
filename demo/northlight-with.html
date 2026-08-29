@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Northlight</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Archivo:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Italianno&family=Archivo:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#121110;color:#F2EEE6;font-family:Archivo,sans-serif}
 .hero{position:relative;height:740px;overflow:hidden}
@@ -24,6 +24,58 @@ h1 i{font-style:italic}
  .meta{text-align:left}
  .honesty{right:10px;top:auto;bottom:10px}
 }
+
+/* below the hero */
+:root{--ink:#F2EEE6;--soft:rgba(242,238,230,.68);--faint:rgba(242,238,230,.46);
+ --line:rgba(242,238,230,.14);--amber:#C89B5A;--panel:#171514;
+ --ease:cubic-bezier(.23,1,.32,1)}
+body{font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.05;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
+::selection{background:var(--amber);color:#121110}
+a{color:inherit}
+img{max-width:100%}
+.band{padding:clamp(64px,9vw,120px) 0}
+.band.alt{background:var(--panel)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--amber);margin:0 0 22px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--amber)}
+h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(32px,4.4vw,56px);line-height:1.08;margin:0 0 18px;max-width:22ch;text-wrap:balance}
+h2 i{font-style:italic}
+.script{font-family:Italianno,cursive;font-size:1.3em;line-height:.9;color:var(--amber)}
+.lede{max-width:58ch;font-size:clamp(15px,1.5vw,17px);line-height:1.75;color:var(--soft);margin:0}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(44px,6vw,72px) clamp(24px,4vw,48px);align-items:start;margin-top:clamp(40px,6vw,64px)}
+.grid figure{margin:0}
+.frame{position:relative;overflow:hidden;background:#1B1917}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92);transform:scale(1.03);transition:transform 1.3s var(--ease)}
+.grid figure:hover .frame img{transform:scale(1)}
+.a45{aspect-ratio:4/5}.a34{aspect-ratio:3/4}.a32{aspect-ratio:3/2}.a11{aspect-ratio:1/1}
+figcaption{margin-top:15px}
+.cap-place{display:block;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
+.cap-note{display:block;font-family:"Cormorant Garamond",serif;font-weight:400;font-size:19px;line-height:1.45;color:rgba(242,238,230,.88);max-width:34ch}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;border-top:1px solid var(--line);margin-top:clamp(36px,5vw,56px);padding-top:clamp(28px,4vw,40px)}
+.stat .n{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(32px,3.4vw,48px);line-height:1.1;color:var(--ink)}
+.stat .l{margin-top:9px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);line-height:2}
+.ledger{max-width:58ch;font-size:15px;line-height:1.75;color:var(--soft);margin:clamp(28px,4vw,40px) 0 0}
+
+.cta{display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:13px 28px;margin-top:clamp(28px,4vw,40px);border:1px solid rgba(242,238,230,.35);border-radius:999px;color:var(--ink);font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;transition:background .5s var(--ease),border-color .5s var(--ease)}
+.cta:hover{background:rgba(242,238,230,.08);border-color:rgba(242,238,230,.6)}
+.cta-note{margin-top:16px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);line-height:2}
+
+.footer{border-top:1px solid var(--line);padding:34px 0 46px}
+.footer .row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap}
+.footer .mark{font-family:"Cormorant Garamond",serif;font-size:19px;letter-spacing:.06em}
+.footer .fine{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.demo-note{margin:16px 0 0;font-size:11px;line-height:1.9;letter-spacing:.04em;color:var(--faint);max-width:64ch}
+
+@media (max-width:768px){
+ .band{padding:56px 0}
+ .grid{grid-template-columns:1fr;gap:44px}
+ .stats{grid-template-columns:1fr 1fr;gap:26px 20px}
+ .footer .row{flex-direction:column;gap:8px}
+}
 </style></head><body>
 <div class="hero">
 <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="">
@@ -34,4 +86,70 @@ h1 i{font-style:italic}
 <h1>Landscapes photographed in the <i>last hour</i> of light.</h1>
 <div class="meta">Fieldwork 2019 to 2026<br>214 frames kept of 41,800 taken<br>Prints edition of 9</div>
 </div></div>
+
+<section class="band" id="fieldwork">
+<div class="wrap">
+<p class="eyebrow">Fieldwork · 2019 to 2026</p>
+<h2>The places that <i>kept</i> a frame.</h2>
+<p class="lede">Of 41,800 frames taken since 2019, 214 survived the edit. 61 of the survivors come from the six places below, each visited until its last hour of light cooperated.</p>
+<div class="grid">
+<figure>
+<div class="frame a45"><img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600&q=80&auto=format&fit=crop" alt="A waterfall dropping between dark cliffs, water blurred by a long exposure" width="1600" height="2000" loading="lazy" decoding="async"></div>
+<figcaption><span class="cap-place">The Grey Stairs · 0.5 sec</span><span class="cap-note">Half a second of exposure, braced against the third ledge.</span></figcaption>
+</figure>
+<figure>
+<div class="frame a34"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop" alt="Tall straight trunks in a dense evergreen stand, light falling between them" width="1600" height="2133" loading="lazy" decoding="async"></div>
+<figcaption><span class="cap-place">The Aldersong Stand · 07:03</span><span class="cap-note">Eleven visits across four winters. One kept frame per visit, at most.</span></figcaption>
+</figure>
+<figure>
+<div class="frame a32"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1600&q=80&auto=format&fit=crop" alt="A cabin at the edge of still water at dusk, one window lit" width="1600" height="1067" loading="lazy" decoding="async"></div>
+<figcaption><span class="cap-place">Lantern Water · 19:48</span><span class="cap-note">One window lit, twelve minutes after the sun left the ridge.</span></figcaption>
+</figure>
+<figure>
+<div class="frame a45"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="Fog threading a pine stand, lit gold from behind at dawn" width="1600" height="2000" loading="lazy" decoding="async"></div>
+<figcaption><span class="cap-place">Vesper Hollow · 06:41</span><span class="cap-note">The frame this page opens on. The fog held for nine minutes.</span></figcaption>
+</figure>
+<figure>
+<div class="frame a32"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80&auto=format&fit=crop" alt="A mown field under low golden light, shadows running long" width="1600" height="1067" loading="lazy" decoding="async"></div>
+<figcaption><span class="cap-place">The Long Mowing · 20:11</span><span class="cap-note">Cut hay holds this colour one evening a year. Frame 12 of 31.</span></figcaption>
+</figure>
+<figure>
+<div class="frame a11"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop" alt="A shallow tide bar at golden hour, wet sand mirroring the sky" width="1600" height="1600" loading="lazy" decoding="async"></div>
+<figcaption><span class="cap-place">Emberline Shore · Low tide</span><span class="cap-note">The bar shows for forty minutes a day. Kept on the thirty-first attempt.</span></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="band alt" id="prints">
+<div class="wrap">
+<p class="eyebrow">Prints · Edition of 9</p>
+<h2>Nine of each frame. Then the file is <i>retired</i>.</h2>
+<p class="lede">Every kept frame is printed in an edition of 9, numbered in pencil on the margin. When the ninth print sells, the edition closes and the file is retired. No artist proofs, no second runs.</p>
+<div class="stats">
+<div class="stat"><div class="n">9</div><div class="l">Prints per frame · never reprinted</div></div>
+<div class="stat"><div class="n">310 gsm</div><div class="l">Cotton rag · pigment ink</div></div>
+<div class="stat"><div class="n">61 x 91</div><div class="l">Largest of three sizes · cm</div></div>
+<div class="stat"><div class="n">10 days</div><div class="l">Printed to order · ships flat</div></div>
+</div>
+<p class="ledger">The edition ledger is open. Ask which numbers of any frame remain and the answer arrives the same day, together with the field notes from the morning it was taken: the time, the weather, and the count of frames that were not kept.</p>
+</div>
+</section>
+
+<section class="band" id="commission">
+<div class="wrap">
+<p class="eyebrow">Commission</p>
+<h2>A place of <span class="script">yours</span>, photographed the same way.</h2>
+<p class="lede">Two commissions are taken each season, never more, because a commissioned place is visited until its light cooperates. The shortest commission to date took three visits. The longest took eleven.</p>
+<a class="cta" href="#">Start a conversation</a>
+<p class="cta-note">On the finished site this opens a plain email · replies within two days</p>
+</div>
+</section>
+
+<footer class="footer">
+<div class="wrap">
+<div class="row"><span class="mark">Northlight</span><span class="fine">Fieldwork 2019 to 2026 · Prints edition of 9</span></div>
+<p class="demo-note">Demonstration imagery: the photographs on this page are placeholders, standing where the finished site carries the photographer's own frames.</p>
+</div>
+</footer>
 </body></html>
