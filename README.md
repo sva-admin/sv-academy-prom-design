@@ -110,9 +110,22 @@ your work costs.
 | <img src="demo/northlight-without.png" width="460"> | <img src="demo/northlight-with.png" width="460"> |
 | Centered Times, blue links, crammed grid | One photograph, one serif, 214 frames kept of 41,800 |
 
+**A florist in a rainy hill town.** The same shop twice, section for
+section: three services, the weekly jar at 340 a month, the testimonial, the
+hours. Hot-pink template slop versus the shop's own window on a wet morning.
+
+| Without | With Prom Design |
+|:---:|:---:|
+| <img src="demo/fern-without.png" width="460"> | <img src="demo/fern-with.png" width="460"> |
+| Dancing Script, emoji, star marquee | Rain-glass green, evidence, one quoted subscriber |
+
 **A mobile web app.** Link soup, versus seats you can count.
 
 <div align="center"><img src="demo/assembly-mobile-pair.png" width="920"></div>
+
+**And the pattern library itself, live.** Every signature component rendered
+and interactive, from the proof strip to the coach overlay:
+**[components.html](https://sva-admin.github.io/sv-academy-prom-design/demo/components.html)**
 
 ## Why one opinionated style, not a toolkit
 
