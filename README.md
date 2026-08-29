@@ -100,7 +100,7 @@ versus an instrument you could run a business on.
 | Without | With Prom Design |
 |:---:|:---:|
 | <img src="demo/ledgerline-without.png" width="460"> | <img src="demo/ledgerline-with.png" width="460"> |
-| Alert banners, Verdana, Delete links | 412,900 collected, 3 due this week, tabular numerals |
+| Alert banners, Verdana, Delete links | 412,900 collected, 2 due this week, tabular numerals |
 
 **A portfolio.** The my-first-website special, versus a page that costs what
 your work costs.
@@ -112,7 +112,7 @@ your work costs.
 
 **A florist in a rainy hill town.** The same shop twice, section for
 section: three services, the weekly jar at 340 a month, the testimonial, the
-hours. Hot-pink template slop versus the shop's own window on a wet morning.
+hours. Hot-pink template slop versus the same flowers taken seriously.
 
 | Without | With Prom Design |
 |:---:|:---:|
