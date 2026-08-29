@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The signature components, live</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='4' fill='%2331564A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens: neutral instrument, so the system reads without a brand on it ---------- */
+:root{
+  --ground:#F2F3F0; --panel:#FBFBF9; --ink:#22261F; --muted:#737B6F;
+  --line:#DEE1D8; --line-soft:#E8EAE3;
+  --accent:#31564A; --accent-soft:#DCE5E0;
+  --few-ink:#6B4E0A; --few-soft:#F0E7CD;
+  --full-ink:#7A4034; --full-soft:#F0E0D9;
+  --serif:'Spectral',Georgia,serif;
+  --sans:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --r-control:10px; --r-media:14px; --r-sheet:18px;
+  --tabbar-h:56px;
+  --z-grain:80; --z-scrim:90; --z-sheet:91;
+  --lift-1:0 1px 0 var(--line-soft);
+  --lift-3:0 18px 44px rgba(24,30,26,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent-soft);color:var(--ink)}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer;touch-action:manipulation}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(20px,4vw,32px)}
+
+/* the grain overlay: one rule, the move that stops a flat ground reading as a default */
+body::after{content:"";position:fixed;inset:0;z-index:var(--z-grain);pointer-events:none;
+  opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* js gating: page fully usable with js off */
+html:not(.js) .needs-js{display:none!important}
+html.js .nojs-fallback{display:none!important}
+
+/* ---------- page head ---------- */
+.pagehead{padding:32px 0 22px}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--accent)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(31px,7vw,44px);
+  line-height:1.12;letter-spacing:.02em;max-width:22ch}
+.lede{margin-top:14px;max-width:58ch;font-size:17px;line-height:1.65}
+.tokensline{margin-top:10px;font-size:12px;color:var(--muted);max-width:58ch}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:16px}
+.toc a{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);
+  padding:4px 0;border-bottom:1px solid transparent;transition:color .25s var(--ease)}
+.toc a:hover,.toc a:focus-visible{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ---------- block scaffold ---------- */
+.block{padding:22px 0 20px;border-top:1px solid var(--line)}
+.bhead{display:flex;align-items:baseline;gap:14px}
+.bnum{font-size:10px;letter-spacing:.3em;color:var(--muted)}
+.block h2{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.02em}
+.bwhat{margin-top:6px;color:var(--muted);max-width:58ch}
+.demo{position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-media);padding:16px;margin-top:12px;box-shadow:var(--lift-1)}
+.bnote{margin-top:8px;font-size:12px;color:var(--muted);max-width:58ch}
+
+/* ---------- 01 proof strip ---------- */
+.proofstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r-control);overflow:hidden}
+.proofstrip>div{background:var(--panel);padding:14px 12px 12px}
+.proofstrip b{display:block;font-family:var(--serif);font-weight:600;font-size:21px;
+  line-height:1.15;font-variant-numeric:tabular-nums}
+.proofstrip span{display:block;margin-top:5px;font-size:8.5px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--muted);line-height:1.6}
+@media (max-width:560px){.proofstrip{grid-template-columns:1fr 1fr}}
+
+/* ---------- 02 chips ---------- */
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chiprow+.chiprow{margin-top:12px}
+.rowlabel{flex-basis:100%;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2px}
+.chip{display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  padding:6px 12px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+  font-variant-numeric:tabular-nums;line-height:1.4;white-space:nowrap}
+.chip.ev{background:rgba(34,38,31,.05);color:var(--ink)}
+.chip.ev.real{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.chip.ev.live{background:var(--accent-soft);color:var(--accent)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+@media (prefers-reduced-motion:no-preference){
+  .dot.pulse{animation:pulse 2.2s var(--ease) infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(49,86,74,.35)}50%{box-shadow:0 0 0 5px rgba(49,86,74,0)}}
+}
+.chip.av.few{background:var(--few-soft);color:var(--few-ink)}
+.chip.av.full{background:var(--full-soft);color:var(--full-ink)}
+.chip.av.open{border:1px solid var(--line);color:var(--muted);background:transparent}
+
+/* ---------- 03 event card ---------- */
+.event{border:1px solid var(--line);border-radius:var(--r-media);background:var(--panel);
+  padding:16px 18px;max-width:420px;box-shadow:var(--lift-1)}
+.etop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.cat{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+.event h3{font-size:17px;font-weight:600;line-height:1.35;letter-spacing:0}
+.meta{margin-top:6px;font-size:12px;color:var(--ink);font-variant-numeric:tabular-nums}
+.transit{margin-top:3px;font-size:12px;color:var(--muted)}
+
+/* ---------- 04 stat tiles ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r-control);overflow:hidden}
+.stats>div{background:var(--panel);padding:16px 12px 13px;text-align:center}
+.stats b{display:block;font-weight:600;font-size:clamp(30px,7vw,38px);line-height:1.05;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.stats span{display:block;margin-top:6px;font-size:9px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--muted)}
+.statnote{margin-top:10px;font-size:12px;color:var(--muted)}
+
+/* ---------- 05 shadow gallery rail ---------- */
+.railhead{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.railhead .aff{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.railhead .chev{color:var(--muted);flex:none}
+@media (prefers-reduced-motion:no-preference){
+  .galwrap:not(.hinted) .chev{animation:nudge 1.6s var(--ease) infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+}
+.galwrap{position:relative}
+.galwrap::after{content:"";position:absolute;top:34px;bottom:0;right:-16px;width:52px;
+  pointer-events:none;background:linear-gradient(90deg,rgba(251,251,249,0),var(--panel));
+  opacity:1;transition:opacity .3s var(--ease)}
+.galwrap.at-end::after,.galwrap.no-overflow::after{opacity:0}
+.gal{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-padding:2px;-webkit-overflow-scrolling:touch;touch-action:pan-x;
+  padding:2px 2px 8px;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.gal>*{flex:0 0 72%;scroll-snap-align:center;border-radius:var(--r-media);
+  overflow:hidden;position:relative;box-shadow:var(--lift-1);
+  transform:scale(.94);filter:saturate(.85);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),filter .45s var(--ease)}
+.gal>*.is-active{transform:scale(1);box-shadow:var(--lift-3);filter:none}
+.gal .ph{aspect-ratio:4/3;background:var(--line-soft)}
+.gal .ph img{width:100%;height:100%;object-fit:cover}
+.caption{position:absolute;left:10px;bottom:10px;font-size:8.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(242,243,240,.92);background:rgba(20,26,24,.5);
+  padding:5px 10px;border-radius:999px;backdrop-filter:blur(2px)}
+.imgchip{position:absolute;top:10px;right:10px;font-size:8px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(242,243,240,.9);background:rgba(20,26,24,.5);
+  padding:4px 9px;border-radius:999px;backdrop-filter:blur(2px)}
+.gal .textcard{background:var(--ground);border:1px solid var(--line);
+  display:grid;place-items:center;aspect-ratio:auto}
+.gal .textcard .inner{text-align:center;padding:18px}
+.gal .textcard .see{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+.gal .textcard .why{margin-top:8px;font-size:12px;color:var(--muted);max-width:22ch}
+
+/* ---------- 06 bottom tab bar, framed ---------- */
+.phone{position:relative;width:min(300px,100%);height:206px;margin:0 auto;
+  background:var(--ground);border:1px solid var(--line);border-radius:22px;
+  overflow:hidden;box-shadow:var(--lift-1)}
+.phone .screen{padding:16px 16px 0}
+.skel{height:10px;border-radius:6px;background:var(--line-soft);margin-bottom:10px}
+.skel.w60{width:60%}.skel.w85{width:85%}
+.minicard{border:1px solid var(--line);background:var(--panel);border-radius:var(--r-control);
+  padding:10px 12px;margin-top:4px}
+.minicard .mc-top{font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent)}
+.minicard .mc-title{font-size:12px;font-weight:600;margin-top:3px}
+.tabbar{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  height:calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  padding-bottom:env(safe-area-inset-bottom);
+  display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+  background:var(--panel);border-top:1px solid var(--line)}
+.tabbar a{display:grid;place-items:center;align-content:center;gap:4px;
+  font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  min-height:48px;-webkit-tap-highlight-color:transparent}
+.tabbar a[aria-current="page"]{color:var(--accent);font-weight:600}
+.tabbar svg{width:18px;height:18px}
+
+/* ---------- 07 coach overlay ---------- */
+.coachframe{position:relative;height:302px;background:var(--ground);
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:16px}
+.coachframe .fr-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px}
+.livecount{display:inline-flex;align-items:center;gap:9px;background:var(--panel);
+  border:1px solid var(--line);border-radius:999px;padding:9px 16px;
+  font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.spotwrap{position:absolute;inset:0;z-index:3;display:none}
+.spotwrap.open{display:block}
+.spot{position:absolute;inset:0;background:rgba(24,30,26,.72);
+  -webkit-mask:radial-gradient(circle at var(--sx,50%) var(--sy,30%),transparent 0 var(--sr,52px),#000 calc(var(--sr,52px) + 1px));
+  mask:radial-gradient(circle at var(--sx,50%) var(--sy,30%),transparent 0 var(--sr,52px),#000 calc(var(--sr,52px) + 1px))}
+.coachcard{position:absolute;left:12px;right:12px;bottom:12px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r-media);padding:14px 16px;
+  box-shadow:var(--lift-3)}
+.coachcard .step{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.coachcard h4{font-size:15px;font-weight:600;margin-top:5px}
+.coachcard p{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.55}
+.coachbtns{display:flex;justify-content:space-between;align-items:center;margin-top:11px}
+.btn-quietlink{background:none;border:0;font-size:9px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--muted);padding:8px 0}
+.btn-block{display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:0 22px;background:var(--ink);color:var(--ground);
+  border:0;border-radius:var(--r-control);font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;transition:background .25s var(--ease)}
+.btn-block:hover{background:#3A4036}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;
+  min-height:44px;padding:0 22px;background:transparent;color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--r-control);font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;transition:border-color .25s var(--ease)}
+.btn-outline:hover{border-color:var(--muted)}
+.btn-outline:disabled{color:var(--muted);cursor:default;border-color:var(--line-soft)}
+.demo .trigger-row{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.coach-static{margin-top:12px;position:static}
+
+/* ---------- 08 sheet ---------- */
+.sheetlayer{position:fixed;inset:0;z-index:var(--z-scrim)}
+.sheetlayer[hidden]{display:none}
+.scrim{position:absolute;inset:0;background:rgba(24,30,26,.45);opacity:0;
+  transition:opacity .35s var(--ease)}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:var(--z-sheet);
+  max-width:480px;margin:0 auto;background:var(--panel);
+  border:1px solid var(--line);border-bottom:0;
+  border-radius:var(--r-sheet) var(--r-sheet) 0 0;padding:10px 20px 22px;
+  transform:translateY(102%);transition:transform .45s var(--ease);outline:none}
+.sheetlayer.open .scrim{opacity:1}
+.sheetlayer.open .sheet{transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  .scrim,.sheet{transition:none}
+}
+.handle{width:38px;height:4px;border-radius:999px;background:var(--line);margin:0 auto 14px}
+.sheet .s-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.sheet h4{font-family:var(--serif);font-weight:600;font-size:21px;margin-top:4px;line-height:1.3}
+.srow{display:flex;justify-content:space-between;gap:12px;font-size:15px;
+  padding:9px 0;border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums}
+.srow:first-of-type{margin-top:8px}
+.srow.total{border-bottom:0;font-weight:600}
+.sheet .btn-block{width:100%;min-height:48px;margin-top:8px}
+.sheet .assure{margin-top:9px;font-size:12px;color:var(--muted);text-align:center}
+.sheet-static{position:static;transform:none;max-width:420px;margin:0;
+  border-bottom:1px solid var(--line);border-radius:var(--r-sheet)}
+
+/* ---------- 09 form row ---------- */
+.frow{max-width:420px}
+.frow label{display:block;font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:8px}
+.frow input{width:100%;height:48px;padding:0 14px;font-family:var(--sans);font-size:16px;
+  color:var(--ink);background:#FDFDFB;border:1px solid var(--line);
+  border-radius:var(--r-control);transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.frow input::placeholder{color:var(--muted)}
+.frow input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.why{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.6}
+
+/* ---------- 10 anti-slop footnote ---------- */
+.pairgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r-control);overflow:hidden}
+.pairgrid>div{background:var(--panel);padding:18px 14px;display:grid;
+  place-items:center;align-content:center;gap:12px;min-height:130px}
+.pairlabel{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.btn-slop{border:0;border-radius:999px;padding:13px 20px;font-size:15px;font-weight:700;
+  color:#fff;background:linear-gradient(135deg,#7C3AED,#3B82F6);
+  box-shadow:0 8px 24px rgba(124,58,237,.35);white-space:nowrap}
+.paircap{margin-top:10px;font-size:12px;color:var(--muted);max-width:58ch}
+
+/* ---------- footer ---------- */
+footer{margin-top:6px;border-top:1px solid var(--line);padding:26px 0 46px}
+footer .fbrands{font-size:12px;color:var(--muted);max-width:58ch}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px}
+footer nav a{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);
+  border-bottom:1px solid var(--accent-soft);padding-bottom:3px}
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="pagehead wrap">
+  <span class="eyebrow">Prom Design, the pattern library</span>
+  <h1>The signature components, live</h1>
+  <p class="lede">Every component below is built by the skill's patterns.md, rendered live. Steal them.</p>
+  <p class="tokensline">Neutral tokens on purpose: ground #F2F3F0, ink #22261F, one accent #31564A, Spectral over Archivo. The point is the system, not a brand.</p>
+  <nav class="toc" aria-label="Components on this page">
+    <a href="#b1">01 Proof strip</a>
+    <a href="#b2">02 Chips</a>
+    <a href="#b3">03 Event card</a>
+    <a href="#b4">04 Stat tiles</a>
+    <a href="#b5">05 Gallery rail</a>
+    <a href="#b6">06 Tab bar</a>
+    <a href="#b7">07 Coach overlay</a>
+    <a href="#b8">08 Sheet</a>
+    <a href="#b9">09 Form row</a>
+    <a href="#b10">10 Anti-slop</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 -->
+  <section class="block" id="b1">
+    <div class="bhead"><span class="bnum">01</span><h2>The proof strip</h2></div>
+    <p class="bwhat">The evidence row: counted facts with hairline separators, no adjectives anywhere near it.</p>
+    <div class="demo">
+      <div class="proofstrip" role="list">
+        <div role="listitem"><b>38</b><span>Suppers hosted since January</span></div>
+        <div role="listitem"><b>3,412</b><span>Places filled, counted nightly</span></div>
+        <div role="listitem"><b>8 min</b><span>From Harbor Station, north exit</span></div>
+        <div role="listitem"><b>0</b><span>Numbers written by hand</span></div>
+      </div>
+    </div>
+    <p class="bnote">Specificity is the luxury signal. Replace one adjective with one number and the page gets more premium with zero CSS changes.</p>
+  </section>
+
+  <!-- 02 -->
+  <section class="block" id="b2">
+    <div class="bhead"><span class="bnum">02</span><h2>Evidence chips and availability chips</h2></div>
+    <p class="bwhat">Provenance chips say where a fact came from. Availability chips say what is left, in numbers.</p>
+    <div class="demo">
+      <div class="chiprow">
+        <span class="rowlabel">Evidence, the provenance chips</span>
+        <span class="chip ev live"><span class="dot pulse" aria-hidden="true"></span>Counted from the database</span>
+        <span class="chip ev real">Photographed on site, 14 Aug</span>
+        <span class="chip ev">Render, not a photograph</span>
+      </div>
+      <div class="chiprow">
+        <span class="rowlabel">Availability, the state chips</span>
+        <span class="chip av few">3 of 12 places</span>
+        <span class="chip av full">Full &middot; waitlist open</span>
+        <span class="chip av open">Open to members</span>
+      </div>
+    </div>
+    <p class="bnote">Only the real thing gets the accent border. The live dot may mount only on genuinely live data, one halo per screen, never on hover.</p>
+  </section>
+
+  <!-- 03 -->
+  <section class="block" id="b3">
+    <div class="bhead"><span class="bnum">03</span><h2>The event card</h2></div>
+    <p class="bwhat">Category, availability, title, one metadata line, then the transit fact. Mostly information, which is why it survives being seen fifty times.</p>
+    <div class="demo">
+      <article class="event">
+        <div class="etop">
+          <span class="cat">Supper</span>
+          <span class="chip av few">3 of 12 places</span>
+        </div>
+        <h3>The long table at the old print works</h3>
+        <p class="meta">Sat 13 Sep &middot; 19:30 to 22:45 &middot; Banyan Hall &middot; 1,900</p>
+        <p class="transit">8 min from Harbor Station, north exit</p>
+      </article>
+    </div>
+    <p class="bnote">Every field is a real fact. If a card needs a paragraph, the card is a page.</p>
+  </section>
+
+  <!-- 04 -->
+  <section class="block" id="b4">
+    <div class="bhead"><span class="bnum">04</span><h2>The stat row, as tiles</h2></div>
+    <p class="bwhat">Real figures at display size over tracked micro labels, tabular numerals throughout. They count up once, and hold still under reduced motion.</p>
+    <div class="demo">
+      <div class="stats">
+        <div><b data-count="1204" data-decimals="0">1,204</b><span>Members seated</span></div>
+        <div><b data-count="96.4" data-decimals="1" data-suffix="%">96.4%</b><span>Arrival rate</span></div>
+        <div><b data-count="38" data-decimals="0">38</b><span>Venues walked</span></div>
+      </div>
+      <p class="statnote">Counted from the database as the page is built, not written by hand.</p>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="block" id="b5">
+    <div class="bhead"><span class="bnum">05</span><h2>The shadow gallery rail</h2></div>
+    <p class="bwhat">Depth does the sorting: the active tile lifts, its neighbours settle back and desaturate. A peeking card, an edge fade, and a swipe cue announce the scroll.</p>
+    <div class="demo">
+      <div class="galwrap" id="galwrap">
+        <div class="railhead">
+          <span class="aff">Swipe or drag</span>
+          <svg class="chev" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M1 5h11M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="gal" id="gal" tabindex="0" aria-label="Gallery of upcoming walks, scrolls sideways">
+          <figure class="is-active">
+            <div class="ph"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&amp;q=75&amp;auto=format&amp;fit=crop" width="800" height="600" alt="Low sun through forested hills" loading="lazy"></div>
+            <figcaption class="caption">Ridge walk, 06:40 start</figcaption>
+            <span class="imgchip">Demonstration imagery</span>
+          </figure>
+          <figure>
+            <div class="ph"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&amp;q=75&amp;auto=format&amp;fit=crop" width="800" height="600" alt="Empty beach at low tide" loading="lazy"></div>
+            <figcaption class="caption">Pier supper, low tide</figcaption>
+          </figure>
+          <figure>
+            <div class="ph"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&amp;q=75&amp;auto=format&amp;fit=crop" width="800" height="600" alt="Mountain under a starred night sky" loading="lazy"></div>
+            <figcaption class="caption">Night hike, 2,100 m</figcaption>
+          </figure>
+          <div class="textcard">
+            <div class="inner">
+              <span class="see">See all 17 dates</span>
+              <p class="why">Disclosure beats rendering seventeen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="bnote">The fade shows only while content is genuinely off screen. A rail of one never gets dressed up as a scrollable list.</p>
+  </section>
+
+  <!-- 06 -->
+  <section class="block" id="b6">
+    <div class="bhead"><span class="bnum">06</span><h2>The bottom tab bar</h2></div>
+    <p class="bwhat">Three to five destinations, icon plus label, safe-area padded. The single change that makes a web page feel like an app.</p>
+    <div class="demo">
+      <div class="phone" aria-label="Phone frame demo of the tab bar">
+        <div class="screen">
+          <div class="skel w60"></div>
+          <div class="skel w85"></div>
+          <div class="minicard">
+            <div class="mc-top">Tonight</div>
+            <div class="mc-title">Long table &middot; 3 of 12 places</div>
+          </div>
+        </div>
+        <nav class="tabbar" aria-label="Demo app navigation">
+          <a href="#b6" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span>Home</span></a>
+          <a href="#b6">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="m15 9-2 4-4 2 2-4 4-2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <span>Explore</span></a>
+          <a href="#b6">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3.2" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="10.5" r="2.4" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c.8-2.8 3-4.3 5.5-4.3s4.7 1.5 5.5 4.3M14.6 14.9c2 .2 3.6 1.5 4.2 3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Clubs</span></a>
+          <a href="#b6">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 19.5c1-3.4 3.6-5 6.5-5s5.5 1.6 6.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>You</span></a>
+        </nav>
+      </div>
+    </div>
+    <p class="bnote">In a real build the bar is position fixed, --tabbar-h is a token, and every scroll container clears it. Here it sits inside the frame so this page keeps one interaction model.</p>
+  </section>
+
+  <!-- 07 -->
+  <section class="block" id="b7">
+    <div class="bhead"><span class="bnum">07</span><h2>The first-run coach overlay</h2></div>
+    <p class="bwhat">The spotlight cutout: a dimmed scrim with a hole punched over the thing being explained. Shown once, and the copy teaches trust, not buttons.</p>
+    <div class="demo">
+      <div class="coachframe" id="coachframe">
+        <div class="fr-eyebrow">Tonight</div>
+        <span class="livecount" id="coachTarget"><span class="dot" aria-hidden="true"></span>3 tables left</span>
+        <div style="margin-top:14px"><div class="skel w85"></div><div class="skel w60"></div></div>
+        <div class="spotwrap" id="spotwrap" role="dialog" aria-modal="true" aria-labelledby="coachTitle">
+          <div class="spot" id="spot"></div>
+          <div class="coachcard">
+            <span class="step">1 of 3</span>
+            <h4 id="coachTitle">This number is counted, not written</h4>
+            <p>The dates and the places left are counted out of the database as the page is built, not written by hand. When a table fills, this number drops.</p>
+            <div class="coachbtns">
+              <button class="btn-quietlink" type="button" data-coach-close>Skip</button>
+              <button class="btn-block" type="button" data-coach-close>Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trigger-row">
+        <button class="btn-outline needs-js" type="button" id="coachBtn">Show the coach mark</button>
+      </div>
+      <div class="coachcard coach-static nojs-fallback">
+        <span class="step">1 of 3</span>
+        <h4>This number is counted, not written</h4>
+        <p>The dates and the places left are counted out of the database as the page is built, not written by hand. When a table fills, this number drops. (Static preview: the live overlay needs JavaScript.)</p>
+      </div>
+    </div>
+    <p class="bnote">Exactly three steps in a real build. Store the dismissal in localStorage and check it before navigating, so every screenshot run can skip it.</p>
+  </section>
+
+  <!-- 08 -->
+  <section class="block" id="b8">
+    <div class="bhead"><span class="bnum">08</span><h2>The bottom sheet</h2></div>
+    <p class="bwhat">Detail stays in place: a sheet instead of a navigation round trip. Esc or the backdrop closes it, and focus comes straight back.</p>
+    <div class="demo">
+      <button class="btn-block needs-js" type="button" id="sheetBtn">Review booking &middot; 2 places</button>
+      <div class="sheet sheet-static nojs-fallback">
+        <div class="handle" aria-hidden="true"></div>
+        <span class="s-eyebrow">Your booking</span>
+        <h4>The long table at the old print works</h4>
+        <div class="srow"><span>Sat 13 Sep</span><span>19:30 to 22:45</span></div>
+        <div class="srow"><span>2 places</span><span>950 each</span></div>
+        <div class="srow total"><span>Total tonight</span><span>1,900</span></div>
+        <button class="btn-block" type="button">Confirm 2 places</button>
+        <p class="assure">Nothing is charged until the host confirms, usually within the hour.</p>
+      </div>
+    </div>
+    <p class="bnote">One commit action, full width, 48px tall, and one line of reassurance under it. Never two action bars.</p>
+  </section>
+
+  <!-- 09 -->
+  <section class="block" id="b9">
+    <div class="bhead"><span class="bnum">09</span><h2>The form row</h2></div>
+    <p class="bwhat">A tracked label, a 48px input, and one line that says why we ask. Fields that explain themselves get filled in.</p>
+    <div class="demo">
+      <div class="frow">
+        <label for="mob">Mobile number</label>
+        <input id="mob" type="tel" inputmode="tel" autocomplete="tel" placeholder="08x xxx xxxx">
+        <p class="why">Why we ask: your table host texts you only if the venue or the time changes. Never marketing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="block" id="b10">
+    <div class="bhead"><span class="bnum">10</span><h2>The anti-slop footnote</h2></div>
+    <p class="bwhat">The same job, twice. One button begs, the other states.</p>
+    <div class="demo">
+      <div class="pairgrid">
+        <div>
+          <span class="pairlabel">The reflex</span>
+          <button class="btn-slop" type="button">&#10024; Book Now &#128640;</button>
+        </div>
+        <div>
+          <span class="pairlabel">The house answer</span>
+          <button class="btn-block" type="button">Reserve a place</button>
+        </div>
+      </div>
+      <p class="paircap">The gradient pill is guessable from the category name, which is the definition of slop. The block button is the maximum-contrast object on the page, states the action, and appears once per screen.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fbrands">Every brand and number on this page is fictional. The Assembly, AURA Heights, Banyan Hall and the rest exist so the patterns can be shown at full specificity without exposing client work.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/sva-admin/sv-academy-prom-design">github.com/sva-admin/sv-academy-prom-design</a>
+      <a href="../index.html">Back to the gallery</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- the live sheet, mounted at the page root on the named z ladder -->
+<div class="sheetlayer needs-js" id="sheetLayer" hidden>
+  <div class="scrim" data-sheet-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1" id="sheetPanel">
+    <div class="handle" aria-hidden="true"></div>
+    <span class="s-eyebrow">Your booking</span>
+    <h4 id="sheetTitle">The long table at the old print works</h4>
+    <div class="srow"><span>Sat 13 Sep</span><span>19:30 to 22:45</span></div>
+    <div class="srow"><span>2 places</span><span>950 each</span></div>
+    <div class="srow total"><span>Total tonight</span><span>1,900</span></div>
+    <button class="btn-block" type="button" data-sheet-close>Confirm 2 places</button>
+    <p class="assure">Nothing is charged until the host confirms, usually within the hour.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- 04: count-up, once, tabular, static under reduced motion ---- */
+  try{
+    var stats = [].slice.call(document.querySelectorAll('[data-count]'));
+    if (stats.length && !reduce && 'IntersectionObserver' in window){
+      var fmt = function(n, dec, suf){
+        var s = dec > 0 ? n.toFixed(dec) : Math.round(n).toLocaleString('en-US');
+        return s + (suf || '');
+      };
+      var run = function(el){
+        var to = parseFloat(el.getAttribute('data-count'));
+        var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        var suf = el.getAttribute('data-suffix') || '';
+        var t0 = null, dur = 750;
+        var tick = function(t){
+          if (t0 === null) t0 = t;
+          var p = Math.min((t - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3); /* ease out cubic */
+          el.textContent = fmt(to * e, dec, suf);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      var seen = false;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting && !seen){
+            seen = true;
+            stats.forEach(run);
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(stats[0]);
+    }
+  }catch(e){}
+
+  /* ---- 05: shadow gallery, active tile + honest edge fade + one-time hint ---- */
+  try{
+    var gal = document.getElementById('gal');
+    var wrap = document.getElementById('galwrap');
+    if (gal && wrap){
+      var tiles = [].slice.call(gal.children);
+      if ('IntersectionObserver' in window){
+        var gio = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if (en.isIntersecting){
+              tiles.forEach(function(t){ t.classList.remove('is-active'); });
+              en.target.classList.add('is-active');
+            }
+          });
+        }, { root: gal, threshold: 0.6 });
+        tiles.forEach(function(t){ gio.observe(t); });
+      }
+      var fade = function(){
+        var over = gal.scrollWidth - gal.clientWidth;
+        wrap.classList.toggle('no-overflow', over <= 4);
+        wrap.classList.toggle('at-end', over - gal.scrollLeft < 8);
+      };
+      gal.addEventListener('scroll', function(){
+        wrap.classList.add('hinted');
+        fade();
+      }, { passive: true });
+      window.addEventListener('resize', fade);
+      fade();
+    }
+  }catch(e){}
+
+  /* ---- 07: coach overlay, spotlight cutout, shown once ---- */
+  try{
+    var coachBtn = document.getElementById('coachBtn');
+    var spotwrap = document.getElementById('spotwrap');
+    var spot = document.getElementById('spot');
+    var target = document.getElementById('coachTarget');
+    var frame = document.getElementById('coachframe');
+    var coachShown = false;
+    if (coachBtn && spotwrap && spot && target && frame){
+      var openCoach = function(){
+        if (coachShown) return;
+        var f = frame.getBoundingClientRect();
+        var t = target.getBoundingClientRect();
+        var cx = t.left - f.left + t.width / 2;
+        var cy = t.top - f.top + t.height / 2;
+        var r = Math.max(t.width, t.height) / 2 + 14;
+        spot.style.setProperty('--sx', cx + 'px');
+        spot.style.setProperty('--sy', cy + 'px');
+        spot.style.setProperty('--sr', r + 'px');
+        spotwrap.classList.add('open');
+      };
+      var closeCoach = function(){
+        spotwrap.classList.remove('open');
+        coachShown = true;
+        coachBtn.disabled = true;
+        coachBtn.textContent = 'Shown once, as designed';
+        coachBtn.focus();
+      };
+      coachBtn.addEventListener('click', openCoach);
+      spotwrap.addEventListener('click', closeCoach);
+    }
+  }catch(e){}
+
+  /* ---- 08: bottom sheet, esc and backdrop close, focus returned ---- */
+  try{
+    var sheetBtn = document.getElementById('sheetBtn');
+    var layer = document.getElementById('sheetLayer');
+    var panel = document.getElementById('sheetPanel');
+    if (sheetBtn && layer && panel){
+      var openSheet = function(){
+        layer.hidden = false;
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){ layer.classList.add('open'); });
+        });
+        panel.focus();
+        document.addEventListener('keydown', onKey);
+      };
+      var closeSheet = function(){
+        layer.classList.remove('open');
+        document.removeEventListener('keydown', onKey);
+        var done = function(){ layer.hidden = true; sheetBtn.focus(); };
+        if (reduce){ done(); }
+        else { setTimeout(done, 460); }
+      };
+      var onKey = function(ev){
+        if (ev.key === 'Escape'){ ev.stopPropagation(); closeSheet(); }
+      };
+      sheetBtn.addEventListener('click', openSheet);
+      [].slice.call(layer.querySelectorAll('[data-sheet-close]')).forEach(function(el){
+        el.addEventListener('click', closeSheet);
+      });
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

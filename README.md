@@ -92,13 +92,13 @@ full specificity.
 | <img src="demo/ember-without.png" width="460"> | <img src="demo/ember-with.png" width="460"> |
 | "The BEST dining experience in town!!!" | Eight chairs, one seating, doors 18:40 sharp |
 
-**A SaaS dashboard.** The neon glassmorphism special, versus an instrument
-you could run a business on.
+**A SaaS dashboard.** The same five invoices twice: the admin-panel special,
+versus an instrument you could run a business on.
 
 | Without | With Prom Design |
 |:---:|:---:|
 | <img src="demo/ledgerline-without.png" width="460"> | <img src="demo/ledgerline-with.png" width="460"> |
-| "Supercharge your workflow" | 412,900 collected, 3 due this week, tabular numerals |
+| Alert banners, Verdana, Delete links | 412,900 collected, 3 due this week, tabular numerals |
 
 **A portfolio.** The my-first-website special, versus a page that costs what
 your work costs.

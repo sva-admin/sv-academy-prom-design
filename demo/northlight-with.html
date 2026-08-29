@@ -1,20 +1,32 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Northlight</title>
+<link rel="icon" href="data:,">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,300&family=Italianno&family=Archivo:wght@400&display=swap" rel="stylesheet">
+<script>/* runs before paint so JS-gated affordances (arrows, tap hints, lightbox cursor)
+   never flash on a page where the main script later dies */
+document.documentElement.classList.add('js')</script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0E1113;color:#E8EDEF;font-family:Archivo,sans-serif}
 .hero{position:relative;height:740px;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.88)}
 .grade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,11,13,.72) 0%,rgba(8,11,13,.08) 42%),linear-gradient(180deg,rgba(8,11,13,.42) 0%,rgba(8,11,13,0) 26%)}
 .honesty{position:absolute;right:18px;top:18px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,237,239,.85);background:rgba(8,11,13,.45);padding:5px 10px}
-.top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:30px 48px}
+.top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:30px 48px;z-index:2}
 .wordmark{font-family:"Newsreader",serif;font-size:21px;letter-spacing:.06em}
 .nav{display:flex;gap:30px}
 .nav a{color:rgba(232,237,239,.75);text-decoration:none;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
 .nav a:hover{color:#9FB6BF}
 .foot{position:absolute;left:48px;right:48px;bottom:40px;display:flex;justify-content:space-between;align-items:flex-end}
 h1{font-family:"Newsreader",serif;font-weight:300;font-size:66px;line-height:1.05;margin:0;max-width:13ch;text-wrap:balance}
-h1 i{font-style:italic}
+h1 i,h2 i{font-style:italic}
 .meta{text-align:right;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9FB6BF;line-height:2}
+
+/* the quiet scroll cue: a hairline with one travelling glint, nothing that shouts */
+.cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;z-index:2}
+.cue-t{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(167,180,186,.75)}
+.cue-l{position:relative;width:1px;height:44px;background:rgba(232,237,239,.22);overflow:hidden}
+.cue-l::after{content:"";position:absolute;left:0;top:-16px;width:1px;height:16px;background:rgba(232,237,239,.85)}
+@media (prefers-reduced-motion:no-preference){.cue-l::after{animation:cue 2.4s cubic-bezier(.23,1,.32,1) infinite}}
+@keyframes cue{0%{top:-16px}70%{top:44px}100%{top:44px}}
 
 @media (max-width:768px){
  .top{padding:18px 20px;flex-wrap:wrap;gap:10px}
@@ -24,42 +36,142 @@ h1 i{font-style:italic}
  h1{font-size:clamp(28px,8.6vw,66px)}
  .meta{text-align:left}
  .honesty{right:10px;top:auto;bottom:10px}
+ .cue{display:none} /* the stacked hero foot owns this corner at 390; the cue would sit on the meta lines */
 }
 
 /* below the hero */
 :root{--ink:#E8EDEF;--soft:#A7B4BA;--faint:rgba(167,180,186,.72);
  --line:rgba(159,182,191,.16);--accent:#9FB6BF;--panel:#14181B;
+ --gutter:clamp(20px,5vw,56px);
  --ease:cubic-bezier(.23,1,.32,1)}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
 body{font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.05;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
 ::selection{background:var(--accent);color:#0E1113}
 a{color:inherit}
-img{max-width:100%}
-.band{padding:clamp(64px,9vw,120px) 0}
+img{max-width:100%;height:auto}
+.band{padding:clamp(56px,7vw,100px) 0}
 .band.alt{background:var(--panel)}
-.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gutter)}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--soft);margin:0 0 22px}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--soft)}
 h2{font-family:"Newsreader",serif;font-weight:300;font-size:clamp(32px,4.4vw,56px);line-height:1.08;margin:0 0 18px;max-width:22ch;text-wrap:balance}
-h2 i{font-style:italic}
 .script{font-family:Italianno,cursive;font-size:1.3em;line-height:.9;color:var(--accent)}
 .lede{max-width:58ch;font-size:clamp(15px,1.5vw,17px);line-height:1.75;color:var(--soft);margin:0}
+.chip{display:inline-block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.js-only{display:none}
+html.js .js-only{display:inline}
 
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(44px,6vw,72px) clamp(24px,4vw,48px);align-items:start;margin-top:clamp(40px,6vw,64px)}
-.grid figure{margin:0}
+/* ---- filmstrip rail: the side-scroll shadow gallery, affordance-labelled ---- */
+.railhead{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:clamp(28px,4vw,44px)}
+.hint-label{margin:0;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
+.rail-tools{display:none;align-items:center;gap:10px}
+html.js .rail-tools{display:flex}
+.rbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--soft);font-size:19px;line-height:1;cursor:pointer;transition:border-color .5s var(--ease),color .5s var(--ease)}
+.rbtn:hover{border-color:rgba(159,182,191,.5);color:var(--ink)}
+.railwrap{position:relative}
+.filmwrap{margin-top:18px}
+/* edge fades exist only while frames are genuinely off-screen; JS measures the
+   overflow, so a rail that happens to fit is never dressed up as scrollable */
+.railwrap::before,.railwrap::after{content:"";position:absolute;top:0;bottom:0;width:64px;z-index:4;pointer-events:none;opacity:0;transition:opacity .5s var(--ease)}
+.railwrap::before{left:0;background:linear-gradient(90deg,#0E1113,rgba(14,17,19,0))}
+.railwrap::after{right:0;background:linear-gradient(270deg,#0E1113,rgba(14,17,19,0))}
+html.js .railwrap.fade-l::before{opacity:1}
+html.js .railwrap.fade-r::after{opacity:1}
+/* the prints rail sits on the panel surface, so its fade must match that ground */
+.railwrap-panel::before{background:linear-gradient(90deg,#14181B,rgba(20,24,27,0))}
+.railwrap-panel::after{background:linear-gradient(270deg,#14181B,rgba(20,24,27,0))}
+.rail{display:flex;gap:clamp(14px,1.8vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;
+ padding:14px max(var(--gutter),calc((100% - 1240px)/2 + var(--gutter))) 22px;
+ scroll-padding-inline:max(var(--gutter),calc((100% - 1240px)/2 + var(--gutter)));
+ -webkit-overflow-scrolling:touch}
+.rail.dragging{scroll-snap-type:none;cursor:grabbing;user-select:none}
+.rail::-webkit-scrollbar{height:0}
+.fr{flex:0 0 min(62vw,320px);margin:0;scroll-snap-align:center}
+.fr-frame{position:relative;overflow:hidden;background:#181D20;aspect-ratio:4/5}
+.fr-frame img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.78) brightness(.86)}
+.fr figcaption{margin-top:11px;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft)}
+/* shadow-gallery depth: the active frame sits lit and lifted, its neighbours
+   recede; the resting state is flat so a no-JS page is simply a plain strip */
+html.js .fr{cursor:zoom-in}
+html.js .fr-frame{transform:scale(.94);filter:saturate(.78) brightness(.86);box-shadow:0 10px 28px rgba(4,8,10,.35);transition:transform .45s var(--ease),filter .45s var(--ease),box-shadow .45s var(--ease)}
+html.js .fr.is-active .fr-frame{transform:scale(1);filter:none;box-shadow:0 26px 64px rgba(4,8,10,.5)}
+html.js .fr:focus-visible{outline:none}
+html.js .fr:focus-visible .fr-frame{box-shadow:0 0 0 2px var(--accent)}
+/* the one-time swipe hint: taught once, stored, never shown again */
+.swipe-hint{position:absolute;right:clamp(20px,6vw,72px);top:42%;z-index:5;pointer-events:none;
+ font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+ background:rgba(8,11,13,.72);border:1px solid rgba(159,182,191,.35);border-radius:999px;
+ padding:10px 18px;backdrop-filter:blur(4px)}
+@media (prefers-reduced-motion:no-preference){.swipe-hint{animation:nudge 1.8s var(--ease) infinite}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-14px)}}
+.swipe-hint.bye{opacity:0;transition:opacity .5s var(--ease)}
+
+/* ---- lightbox: one layer, JS-owned, absent without it ---- */
+.lb{position:fixed;inset:0;z-index:70;background:rgba(8,11,13,.93);display:grid;place-items:center;padding:clamp(16px,4vw,56px)}
+.lb[hidden]{display:none}
+.lb-fig{margin:0;max-width:min(1100px,100%);width:100%}
+.lb-img{width:100%;max-height:76svh;object-fit:contain;display:block;background:#181D20}
+.lb-cap{margin-top:16px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+.lb-place{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft)}
+.lb-count{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+.lb button{position:absolute;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,182,191,.35);background:rgba(8,11,13,.55);color:var(--ink);font-size:19px;line-height:1;cursor:pointer;transition:border-color .5s var(--ease)}
+.lb button:hover{border-color:rgba(159,182,191,.7)}
+.lb-x{top:18px;right:18px}
+.lb-prev{left:12px;top:50%;transform:translateY(-50%)}
+.lb-next{right:12px;top:50%;transform:translateY(-50%)}
+body.lb-open{overflow:hidden}
+
+/* ---- fieldwork: editorial grid, hover captions ---- */
+.shead{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,2vw,26px);margin-top:clamp(36px,5vw,56px)}
+.grid figure{margin:0;position:relative}
+.g5{grid-column:span 5}.g7{grid-column:span 7}.g4{grid-column:span 4}.g12{grid-column:span 12}
 .frame{position:relative;overflow:hidden;background:#181D20}
-.frame img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85) brightness(.88);transform:scale(1.03);transition:transform 1.3s var(--ease)}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.78) brightness(.86);transform:scale(1.03);transition:transform 1.3s var(--ease)}
 .grid figure:hover .frame img{transform:scale(1)}
-.a45{aspect-ratio:4/5}.a34{aspect-ratio:3/4}.a32{aspect-ratio:3/2}.a11{aspect-ratio:1/1}
-figcaption{margin-top:15px}
+.a45{aspect-ratio:4/5}.a34{aspect-ratio:3/4}.a43{aspect-ratio:4/3}.a32{aspect-ratio:3/2}.a11{aspect-ratio:1/1}.a219{aspect-ratio:21/9}
+.gcap{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;background:linear-gradient(0deg,rgba(8,11,13,.82),rgba(8,11,13,0));}
 .cap-place{display:block;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin-bottom:7px}
 .cap-note{display:block;font-family:"Newsreader",serif;font-weight:400;font-size:19px;line-height:1.45;color:rgba(232,237,239,.88);max-width:34ch}
+/* captions ride the image and are always present where there is no hover;
+   a hover-only reveal does not exist on a phone */
+@media (hover:hover){
+ .gcap{transform:translateY(102%);transition:transform .7s var(--ease)}
+ .grid figure:hover .gcap,.grid figure:focus-within .gcap{transform:none}
+}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;border-top:1px solid var(--line);margin-top:clamp(36px,5vw,56px);padding-top:clamp(28px,4vw,40px)}
-.stat .n{font-family:"Newsreader",serif;font-weight:300;font-size:clamp(32px,3.4vw,48px);line-height:1.1;color:var(--ink)}
-.stat .l{margin-top:9px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);line-height:2}
+/* ---- prints: three edition cards in the instrument register ---- */
+.ed-swipe{display:none;margin:clamp(24px,4vw,40px) 0 0;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
+.editions{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,26px);margin-top:clamp(36px,5vw,56px)}
+.ed{border:1px solid var(--line);background:rgba(14,17,19,.45);padding:clamp(20px,2.4vw,30px)}
+.ed-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px}
+.ed-no{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.avail{border-radius:999px;padding:4px 11px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.avail.few{color:var(--accent);border:1px solid rgba(159,182,191,.45)}
+.avail.out{color:var(--faint);border:1px solid var(--line)}
+.ed-name{margin:0 0 8px;font-family:"Newsreader",serif;font-weight:300;font-size:21px;line-height:1.2}
+.ed-meta{margin:0 0 18px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);line-height:2}
+.ed-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.ed-size{font-size:15px;color:var(--soft);white-space:nowrap}
+.ed-size span{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:5px}
+.ed-price{text-align:right}
+.ed-price .p{display:block;font-family:"Newsreader",serif;font-weight:300;font-size:clamp(30px,2.6vw,36px);line-height:1;color:var(--ink)}
+.ed-price .cur{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:7px}
 .ledger{max-width:58ch;font-size:15px;line-height:1.75;color:var(--soft);margin:clamp(28px,4vw,40px) 0 0}
+
+/* ---- the count: proof over promise, counted up once on arrival ---- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;border-top:1px solid var(--line);margin-top:clamp(36px,5vw,56px);padding-top:clamp(28px,4vw,40px)}
+.stat .n{font-family:"Newsreader",serif;font-weight:300;font-size:clamp(32px,3.4vw,48px);line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat .l{margin-top:9px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);line-height:2}
+
+/* ---- journal: two quiet cards ---- */
+.jgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px);margin-top:clamp(36px,5vw,56px)}
+.jcard{border-top:1px solid var(--line);padding-top:22px}
+.jdate{margin:0 0 12px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
+.jtitle{margin:0 0 12px;font-family:"Newsreader",serif;font-weight:300;font-size:21px;line-height:1.3}
+.jex{margin:0;font-size:15px;line-height:1.75;color:var(--soft);max-width:48ch}
 
 .cta{display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:13px 28px;margin-top:clamp(28px,4vw,40px);border:1px solid rgba(232,237,239,.35);border-radius:999px;color:var(--ink);font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;transition:background .5s var(--ease),border-color .5s var(--ease)}
 .cta:hover{background:rgba(232,237,239,.08);border-color:rgba(232,237,239,.6)}
@@ -71,52 +183,125 @@ figcaption{margin-top:15px}
 .footer .fine{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
 .demo-note{margin:16px 0 0;font-size:11px;line-height:1.9;letter-spacing:.04em;color:var(--faint);max-width:64ch}
 
+@media (max-width:899px){
+ .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+ .g5,.g7,.g4{grid-column:span 1}
+ /* mixed ratios in a two-column grid leave ragged holes at this width, so the
+    singles unify to one portrait ratio and only the two wide tiles differ */
+ .grid .frame{aspect-ratio:4/5}
+ .gw2{grid-column:span 2}
+ .gw2 .frame{aspect-ratio:3/2}
+ /* the three edition cards become a peeking rail: the phone reads sideways
+    so the page does not spend three screens reading downward */
+ .ed-swipe{display:block}
+ .editions{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;
+  margin:14px calc(-1*var(--gutter)) 0;padding:4px var(--gutter) 16px;
+  scroll-padding-inline:var(--gutter);-webkit-overflow-scrolling:touch}
+ .editions::-webkit-scrollbar{height:0}
+ .ed{flex:0 0 82%;scroll-snap-align:center}
+ .jgrid{grid-template-columns:1fr}
+ /* on half-width tiles the serif note would bury the photograph, so the
+    narrow tiles keep only the place line and the wide tiles keep the story */
+ .grid figure:not(.gw2) .cap-note{display:none}
+ .grid figure:not(.gw2) .gcap{padding:26px 12px 10px}
+ .grid figure:not(.gw2) .cap-place{margin-bottom:0}
+}
 @media (max-width:768px){
- .band{padding:56px 0}
- .grid{grid-template-columns:1fr;gap:44px}
- .stats{grid-template-columns:1fr 1fr;gap:26px 20px}
+ .band{padding:46px 0}
+ .railhead{margin-top:16px}
+ /* the thumb swipes here; arrow buttons are a mouse's affordance */
+ html.js .rail-tools{display:none}
+ .stats{grid-template-columns:1fr 1fr;gap:22px 20px;margin-top:28px;padding-top:24px}
+ .stats .stat:first-child{grid-column:span 2}
  .footer .row{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
 }
 </style></head><body>
 <div class="hero">
-<img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="">
+<img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=75&auto=format&fit=crop" alt="Fog threading a pine stand, lit gold from behind at dawn">
 <div class="grade"></div><span class="honesty">Demonstration imagery</span>
 <div class="top"><span class="wordmark">Northlight</span>
-<nav class="nav"><a href="#">Fieldwork</a><a href="#">Prints</a><a href="#">Journal</a><a href="#">Commission</a></nav></div>
+<nav class="nav"><a href="#fieldwork">Fieldwork</a><a href="#prints">Prints</a><a href="#journal">Journal</a><a href="#commission">Commission</a></nav></div>
 <div class="foot">
 <h1>Landscapes photographed in the <i>last hour</i> of light.</h1>
 <div class="meta">Fieldwork 2019 to 2026<br>214 frames kept of 41,800 taken<br>Prints edition of 9</div>
-</div></div>
+</div>
+<a class="cue" href="#latest" aria-label="Scroll to the filmstrip"><span class="cue-t">Scroll</span><span class="cue-l"></span></a>
+</div>
+
+<section class="band" id="latest">
+<div class="wrap">
+<div class="shead">
+<div>
+<p class="eyebrow">Filmstrip · Twelve months</p>
+<h2>One kept frame for every <i>month</i> of the year.</h2>
+<p class="lede">The most recent twelve months of fieldwork, one surviving frame from each, September first.</p>
+</div>
+<span class="chip">Demonstration imagery</span>
+</div>
+</div>
+<div class="railhead wrap">
+<p class="hint-label">Swipe or drag<span class="js-only"> · tap a frame to enlarge</span></p>
+<div class="rail-tools">
+<button class="rbtn" type="button" data-dir="-1" aria-label="Previous frames">&#8249;</button>
+<button class="rbtn" type="button" data-dir="1" aria-label="Next frames">&#8250;</button>
+</div>
+</div>
+<div class="railwrap filmwrap">
+<div class="rail" id="rail" tabindex="0" aria-label="Filmstrip of twelve frames, scrolls sideways">
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?w=1600&q=75&auto=format&fit=crop" alt="Harefoot Ridge in September: fog banked below a dark ridge line at first light" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>Harefoot Ridge · September</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=75&auto=format&fit=crop" alt="The Second Saddle in October: snow catching the day's last direct light" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>The Second Saddle · October</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=75&auto=format&fit=crop" alt="Coldbarrow Fell in November: a summit standing above evening cloud" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>Coldbarrow Fell · November</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1600&q=75&auto=format&fit=crop" alt="The Wading Light in December: a long exposure smoothing the tide at dusk" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>The Wading Light · December</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=75&auto=format&fit=crop" alt="Vesper Hollow in January: sunbeams breaking over a valley wall" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>Vesper Hollow · January</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1600&q=75&auto=format&fit=crop" alt="Smokewater Gap in February: cloud pouring through a col at sunset" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>Smokewater Gap · February</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=1600&q=75&auto=format&fit=crop" alt="The Grey Stairs in Mar: falling water blurred to silk by a long exposure" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>The Grey Stairs · Mar</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?w=1600&q=75&auto=format&fit=crop" alt="Marrowfield Tarn in April: soft evening colour over low hills" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>Marrowfield Tarn · April</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1542202229-7d93c33f5d07?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1542202229-7d93c33f5d07?w=1600&q=75&auto=format&fit=crop" alt="The Salt Meadow in May: grasses holding the last warm light" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>The Salt Meadow · May</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600&q=75&auto=format&fit=crop" alt="The Aldersong Stand in June: sun reaching the forest floor between trunks" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>The Aldersong Stand · June</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1600&q=75&auto=format&fit=crop" alt="Emberline Shore in July: the tide flat under a heavy dusk sky" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>Emberline Shore · July</figcaption></figure>
+<figure class="fr"><div class="fr-frame"><img src="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=700&q=75&auto=format&fit=crop" data-full="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=1600&q=75&auto=format&fit=crop" alt="The Long Mowing in August: cut ground under a burning evening sky" width="700" height="875" loading="lazy" decoding="async"></div><figcaption>The Long Mowing · August</figcaption></figure>
+</div>
+</div>
+</section>
 
 <section class="band" id="fieldwork">
 <div class="wrap">
+<div class="shead">
+<div>
 <p class="eyebrow">Fieldwork · 2019 to 2026</p>
 <h2>The places that <i>kept</i> a frame.</h2>
-<p class="lede">Of 41,800 frames taken since 2019, 214 survived the edit. 61 of the survivors come from the six places below, each visited until its last hour of light cooperated.</p>
+<p class="lede">Of 41,800 frames taken since 2019, 214 survived the edit. 63 of the survivors come from the eight places below, each visited until its last hour of light cooperated.</p>
+</div>
+<span class="chip">Demonstration imagery</span>
+</div>
 <div class="grid">
-<figure>
-<div class="frame a45"><img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1600&q=80&auto=format&fit=crop" alt="A waterfall dropping between dark cliffs, water blurred by a long exposure" width="1600" height="2000" loading="lazy" decoding="async"></div>
-<figcaption><span class="cap-place">The Grey Stairs · 0.5 sec</span><span class="cap-note">Half a second of exposure, braced against the third ledge.</span></figcaption>
+<figure class="g5 gw2">
+<div class="frame a45"><img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=900&q=75&auto=format&fit=crop" alt="A waterfall dropping between dark cliffs, water blurred by a long exposure" width="900" height="1125" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">The Grey Stairs · 0.5 sec</span><span class="cap-note">Half a second of exposure, braced against the third ledge.</span></div></div>
 </figure>
-<figure>
-<div class="frame a34"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop" alt="Tall straight trunks in a dense evergreen stand, light falling between them" width="1600" height="2133" loading="lazy" decoding="async"></div>
-<figcaption><span class="cap-place">The Aldersong Stand · 07:03</span><span class="cap-note">Eleven visits across four winters. One kept frame per visit, at most.</span></figcaption>
+<figure class="g7">
+<div class="frame a43"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900&q=75&auto=format&fit=crop" alt="A cabin at the edge of still water at dusk, one window lit" width="900" height="675" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">Lantern Water · 19:48</span><span class="cap-note">One window lit, twelve minutes after the sun left the ridge.</span></div></div>
 </figure>
-<figure>
-<div class="frame a32"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1600&q=80&auto=format&fit=crop" alt="A cabin at the edge of still water at dusk, one window lit" width="1600" height="1067" loading="lazy" decoding="async"></div>
-<figcaption><span class="cap-place">Lantern Water · 19:48</span><span class="cap-note">One window lit, twelve minutes after the sun left the ridge.</span></figcaption>
+<figure class="g4">
+<div class="frame a34"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=75&auto=format&fit=crop" alt="Tall straight trunks in a dense evergreen stand, light falling between them" width="900" height="1200" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">The Aldersong Stand · 07:03</span><span class="cap-note">Eleven visits across four winters. One kept frame per visit, at most.</span></div></div>
 </figure>
-<figure>
-<div class="frame a45"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&q=80&auto=format&fit=crop" alt="Fog threading a pine stand, lit gold from behind at dawn" width="1600" height="2000" loading="lazy" decoding="async"></div>
-<figcaption><span class="cap-place">Vesper Hollow · 06:41</span><span class="cap-note">The frame this page opens on. The fog held for nine minutes.</span></figcaption>
+<figure class="g4">
+<div class="frame a45"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=75&auto=format&fit=crop" alt="A shallow tide bar at golden hour, wet sand mirroring the sky" width="900" height="1125" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">Emberline Shore · Low tide</span><span class="cap-note">The bar shows for forty minutes a day. Kept on the thirty-first attempt.</span></div></div>
 </figure>
-<figure>
-<div class="frame a32"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600&q=80&auto=format&fit=crop" alt="A mown field under low golden light, shadows running long" width="1600" height="1067" loading="lazy" decoding="async"></div>
-<figcaption><span class="cap-place">The Long Mowing · 20:11</span><span class="cap-note">Cut hay holds this colour one evening a year. Frame 12 of 31.</span></figcaption>
+<figure class="g4">
+<div class="frame a34"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=900&q=75&auto=format&fit=crop" alt="Cloud lying in layers below a high rock shelf at first light" width="900" height="1200" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">The Quiet Shelf · 06:12</span><span class="cap-note">The cloud sat a hundred metres below the ledge and held until sunrise.</span></div></div>
 </figure>
-<figure>
-<div class="frame a11"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80&auto=format&fit=crop" alt="A shallow tide bar at golden hour, wet sand mirroring the sky" width="1600" height="1600" loading="lazy" decoding="async"></div>
-<figcaption><span class="cap-place">Emberline Shore · Low tide</span><span class="cap-note">The bar shows for forty minutes a day. Kept on the thirty-first attempt.</span></figcaption>
+<figure class="g7">
+<div class="frame a32"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=900&q=75&auto=format&fit=crop" alt="A grass meadow with rings of gathered stones, the sun low behind the ridge" width="900" height="600" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">The Ring Meadow · 19:52</span><span class="cap-note">Stones gathered into rings by hands nobody remembers. Frame 12 of 31.</span></div></div>
+</figure>
+<figure class="g5">
+<div class="frame a11"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=75&auto=format&fit=crop" alt="Rowing boats crossing a green mountain lake as the light leaves the water" width="900" height="900" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">Marrowfield Tarn · 19:12</span><span class="cap-note">The last boats coming in as the light left the water.</span></div></div>
+</figure>
+<figure class="g12 gw2">
+<div class="frame a219"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=75&auto=format&fit=crop" alt="A snow ridge under stars, long after sunset" width="1600" height="686" loading="lazy" decoding="async"><div class="gcap"><span class="cap-place">Harefoot Ridge · 23:20</span><span class="cap-note">Past the last hour and into the first: a two-minute exposure under stars.</span></div></div>
 </figure>
 </div>
 </div>
@@ -127,13 +312,71 @@ figcaption{margin-top:15px}
 <p class="eyebrow">Prints · Edition of 9</p>
 <h2>Nine of each frame. Then the file is <i>retired</i>.</h2>
 <p class="lede">Every kept frame is printed in an edition of 9, numbered in pencil on the margin. When the ninth print sells, the edition closes and the file is retired. No artist proofs, no second runs.</p>
-<div class="stats">
-<div class="stat"><div class="n">9</div><div class="l">Prints per frame · never reprinted</div></div>
-<div class="stat"><div class="n">310 gsm</div><div class="l">Cotton rag · pigment ink</div></div>
-<div class="stat"><div class="n">61 x 91</div><div class="l">Largest of three sizes · cm</div></div>
-<div class="stat"><div class="n">10 days</div><div class="l">Printed to order · ships flat</div></div>
+<p class="ed-swipe">Swipe · 3 editions this season</p>
+<div class="railwrap railwrap-panel">
+<div class="editions" id="editions">
+<article class="ed">
+<div class="ed-top"><span class="ed-no">Frame 141 of 214</span><span class="avail few">2 of 9 left</span></div>
+<h3 class="ed-name">Vesper Hollow</h3>
+<p class="ed-meta">Edition of 9 · Pigment on 310 gsm cotton rag</p>
+<div class="ed-row">
+<div class="ed-size">61 x 91 cm<span>Printed size</span></div>
+<div class="ed-price"><span class="p">18,000</span><span class="cur">THB · Unframed · Ships flat in 10 days</span></div>
 </div>
-<p class="ledger">The edition ledger is open. Ask which numbers of any frame remain and the answer arrives the same day, together with the field notes from the morning it was taken: the time, the weather, and the count of frames that were not kept.</p>
+</article>
+<article class="ed">
+<div class="ed-top"><span class="ed-no">Frame 96 of 214</span><span class="avail few">5 of 9 left</span></div>
+<h3 class="ed-name">The Grey Stairs</h3>
+<p class="ed-meta">Edition of 9 · Pigment on 310 gsm cotton rag</p>
+<div class="ed-row">
+<div class="ed-size">40 x 60 cm<span>Printed size</span></div>
+<div class="ed-price"><span class="p">9,500</span><span class="cur">THB · Unframed · Ships flat in 10 days</span></div>
+</div>
+</article>
+<article class="ed">
+<div class="ed-top"><span class="ed-no">Frame 187 of 214</span><span class="avail out">Sold out</span></div>
+<h3 class="ed-name">Lantern Water</h3>
+<p class="ed-meta">Edition of 9 · Pigment on 310 gsm cotton rag</p>
+<div class="ed-row">
+<div class="ed-size">100 x 150 cm<span>Printed size</span></div>
+<div class="ed-price"><span class="p">9 of 9</span><span class="cur">Placed · Edition closed May 2026</span></div>
+</div>
+</article>
+</div>
+</div>
+<p class="ledger">Availability is copied from the pencil ledger on the first of each month; where the ledger and this page disagree, the ledger wins. Ask which numbers of any frame remain and the answer arrives the same day.</p>
+</div>
+</section>
+
+<section class="band" id="count">
+<div class="wrap">
+<p class="eyebrow">The count</p>
+<h2>The keep rate, in plain <i>numbers</i>.</h2>
+<div class="stats">
+<div class="stat"><div class="n count-n" data-count="41800">41,800</div><div class="l">Frames taken · 2019 to 2026</div></div>
+<div class="stat"><div class="n count-n" data-count="214">214</div><div class="l">Frames kept</div></div>
+<div class="stat"><div class="n count-n" data-count="9">9</div><div class="l">Prints per edition · then retired</div></div>
+</div>
+<p class="ledger">A keep rate of one frame in 195. The counts are read from the catalogue file, not written by hand; the journal below explains the 41,586 that did not make it.</p>
+</div>
+</section>
+
+<section class="band alt" id="journal">
+<div class="wrap">
+<p class="eyebrow">Journal</p>
+<h2>Field notes, written the same <i>evening</i>.</h2>
+<div class="jgrid">
+<article class="jcard">
+<p class="jdate">12 August 2026 · 4 min read</p>
+<h3 class="jtitle">Why 41,586 frames were not kept</h3>
+<p class="jex">Most losses are weather. The rest are haste: arriving at 19:40 for light that peaked at 19:31. The discard pile teaches more than the keep pile ever has.</p>
+</article>
+<article class="jcard">
+<p class="jdate">22 January 2026 · 6 min read</p>
+<h3 class="jtitle">Three winters at the Aldersong Stand</h3>
+<p class="jex">Eleven visits for four kept frames. Notes on waiting in a wood where the light arrives late, leaves early, and owes you nothing.</p>
+</article>
+</div>
 </div>
 </section>
 
@@ -153,4 +396,195 @@ figcaption{margin-top:15px}
 <p class="demo-note">Demonstration imagery: the photographs on this page are placeholders, standing where the finished site carries the photographer's own frames.</p>
 </div>
 </footer>
+
+<div class="lb" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged frame">
+<figure class="lb-fig">
+<img class="lb-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+<figcaption class="lb-cap"><span class="lb-place"></span><span class="lb-count"></span></figcaption>
+</figure>
+<button class="lb-x" type="button" aria-label="Close">&#215;</button>
+<button class="lb-prev" type="button" aria-label="Previous frame">&#8249;</button>
+<button class="lb-next" type="button" aria-label="Next frame">&#8250;</button>
+</div>
+
+<script>
+(function(){
+'use strict'
+var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/* ---------- filmstrip rail ---------- */
+var rail = document.getElementById('rail')
+var wrapEl = rail ? rail.parentElement : null
+var frames = rail ? [].slice.call(rail.querySelectorAll('.fr')) : []
+
+// the fade mask only dresses a scroller that genuinely overflows, so the
+// prints rail (a grid on desktop) never gets fades it has not earned
+function bindFades(scroller){
+ var w = scroller.parentElement
+ var f = function(){
+  var over = scroller.scrollWidth - scroller.clientWidth > 4
+  w.classList.toggle('fade-l', over && scroller.scrollLeft > 8)
+  w.classList.toggle('fade-r', over && scroller.scrollLeft < scroller.scrollWidth - scroller.clientWidth - 8)
+ }
+ scroller.addEventListener('scroll', f, {passive:true})
+ window.addEventListener('resize', f)
+ f()
+}
+var editions = document.getElementById('editions')
+if(editions) bindFades(editions)
+if(rail){
+ bindFades(rail)
+
+ // shadow-gallery depth: the frame most in view carries the light
+ if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+   entries.forEach(function(e){ e.target.classList.toggle('is-active', e.intersectionRatio >= 0.6) })
+  }, {root:rail, threshold:[0.6]})
+  frames.forEach(function(f){ io.observe(f) })
+ } else {
+  frames.forEach(function(f){ f.classList.add('is-active') })
+ }
+
+ // arrows, for the mouse that cannot swipe
+ ;[].forEach.call(document.querySelectorAll('.rbtn'), function(b){
+  b.addEventListener('click', function(){
+   var step = (frames[0] ? frames[0].offsetWidth + 18 : 340) * 2
+   rail.scrollBy({left: step * (+b.dataset.dir), behavior: reduce ? 'auto' : 'smooth'})
+  })
+ })
+
+ // mouse drag; snap is suspended while dragging or every pixel of drag re-snaps
+ var down=false, moved=false, sx=0, sl=0
+ rail.addEventListener('pointerdown', function(e){
+  if(e.pointerType !== 'mouse') return
+  down=true; moved=false; sx=e.clientX; sl=rail.scrollLeft
+ })
+ window.addEventListener('pointermove', function(e){
+  if(!down) return
+  var dx = e.clientX - sx
+  if(Math.abs(dx) > 6){ moved=true; rail.classList.add('dragging') }
+  if(moved) rail.scrollLeft = sl - dx
+ })
+ window.addEventListener('pointerup', function(){
+  down=false
+  rail.classList.remove('dragging')
+ })
+
+ // the one-time swipe hint: shown on first arrival, dismissed by the first
+ // gesture, then remembered so it never nags a returning visitor
+ var KEY='nl-rail-hint', seen=false
+ try{ seen = !!localStorage.getItem(KEY) }catch(e){}
+ if(!seen && 'IntersectionObserver' in window){
+  var hinted=false
+  var hio = new IntersectionObserver(function(entries){
+   if(hinted || !entries.some(function(e){return e.isIntersecting})) return
+   hinted=true; hio.disconnect()
+   var chip = document.createElement('div')
+   chip.className='swipe-hint'; chip.setAttribute('role','status')
+   chip.textContent='Swipe or drag · 12 frames'
+   wrapEl.appendChild(chip)
+   var gone=false
+   function bye(){
+    if(gone) return
+    gone=true
+    try{ localStorage.setItem(KEY,'1') }catch(e){}
+    chip.classList.add('bye')
+    setTimeout(function(){ chip.remove() }, 600)
+   }
+   rail.addEventListener('scroll', bye, {once:true, passive:true})
+   rail.addEventListener('pointerdown', bye, {once:true})
+   setTimeout(bye, 6000)
+  }, {threshold:0.4})
+  hio.observe(rail)
+ }
+}
+
+/* ---------- lightbox ---------- */
+var lb = document.getElementById('lightbox')
+if(lb && frames.length){
+ var lbImg = lb.querySelector('.lb-img'),
+     lbPlace = lb.querySelector('.lb-place'),
+     lbCount = lb.querySelector('.lb-count'),
+     idx = 0, opener = null
+
+ function show(i){
+  idx = (i + frames.length) % frames.length
+  var img = frames[idx].querySelector('img'),
+      cap = frames[idx].querySelector('figcaption')
+  lbImg.src = img.getAttribute('data-full') || img.src
+  lbImg.alt = img.alt
+  lbPlace.textContent = cap ? cap.textContent : ''
+  lbCount.textContent = 'Frame ' + (idx+1) + ' of ' + frames.length
+ }
+ function open(i, from){
+  opener = from || null
+  show(i)
+  lb.hidden = false
+  document.body.classList.add('lb-open')
+  lb.querySelector('.lb-x').focus()
+ }
+ var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+ function close(){
+  lb.hidden = true
+  document.body.classList.remove('lb-open')
+  // reset to the 1x1 placeholder, never '', or the closed overlay keeps a
+  // full-size download alive and the empty src re-requests the page itself
+  lbImg.src = BLANK
+  if(opener && opener.focus) opener.focus()
+ }
+ frames.forEach(function(f, i){
+  f.setAttribute('tabindex','0')
+  f.setAttribute('role','button')
+  var cap = f.querySelector('figcaption')
+  f.setAttribute('aria-label', 'Enlarge: ' + (cap ? cap.textContent : 'frame ' + (i+1)))
+  f.addEventListener('click', function(e){
+   // a mouse drag that ends on a frame is a scroll, not a request to open
+   if(rail && rail.classList.contains('dragging')) return
+   open(i, f)
+  })
+  f.addEventListener('keydown', function(e){
+   if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(i, f) }
+  })
+ })
+ lb.querySelector('.lb-x').addEventListener('click', close)
+ lb.querySelector('.lb-prev').addEventListener('click', function(){ show(idx-1) })
+ lb.querySelector('.lb-next').addEventListener('click', function(){ show(idx+1) })
+ lb.addEventListener('click', function(e){ if(e.target===lb || e.target.classList.contains('lb-fig')) close() })
+ document.addEventListener('keydown', function(e){
+  if(lb.hidden) return
+  if(e.key==='Escape') close()
+  else if(e.key==='ArrowLeft') show(idx-1)
+  else if(e.key==='ArrowRight') show(idx+1)
+ })
+}
+
+/* ---------- the count ---------- */
+// the true totals are already in the markup, so a dead script or a
+// reduced-motion setting still leaves the page telling the truth
+var counters = [].slice.call(document.querySelectorAll('.count-n'))
+if(counters.length && !reduce && 'IntersectionObserver' in window){
+ var ran = false
+ var cio = new IntersectionObserver(function(entries){
+  if(ran || !entries.some(function(e){return e.isIntersecting})) return
+  ran = true; cio.disconnect()
+  counters.forEach(function(el){
+   var target = parseInt(el.getAttribute('data-count'), 10)
+   var final = el.textContent
+   var t0 = null
+   function tick(t){
+    if(t0===null) t0 = t
+    var p = Math.min((t - t0)/1100, 1)
+    var eased = 1 - Math.pow(1-p, 3)
+    el.textContent = Math.round(target*eased).toLocaleString('en-US')
+    if(p < 1) requestAnimationFrame(tick)
+    else el.textContent = final
+   }
+   el.textContent = '0'
+   requestAnimationFrame(tick)
+  })
+ }, {threshold:0.5})
+ cio.observe(counters[0])
+}
+})()
+</script>
 </body></html>
