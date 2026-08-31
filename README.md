@@ -19,9 +19,12 @@ design; you only need to recognize which version you like.*
 ## The 50 millisecond problem
 
 People form a verdict on your page in about 50 milliseconds, and they rarely
-revise it (Lindgaard et al., 2006). Stanford's Web Credibility Project found
-roughly 75% of users judge an organisation's credibility by its visual design
-(Fogg, 2002). Your product gets judged before anyone reads a word of it.
+revise it (Lindgaard et al., 2006). When Stanford's Web Credibility Project
+asked 2,684 people why they did or did not trust a site, the look of the design
+was the single most cited reason, present in 46.1% of their comments, ahead of
+information structure at 28.5% (Fogg et al., 2002). Your product gets judged
+before anyone reads a word of it. Both figures, and the widely repeated 75%
+misquote of the second one, are sourced in [CITATIONS.md](CITATIONS.md).
 
 AI coding agents make this worse, because they all default to the same look:
 the purple gradient, the emoji card grid, the rounded pill button, copy that
@@ -167,9 +170,10 @@ agent output already converges on one look, and it is the bad one. Two
 registers plus your own brand tokens diverge far more than the purple
 gradient ever will. The four demos above are the proof.
 
-**"My MVP does not need design."** Your MVP needs trust, and 75% of that
-judgment is visual. A page that looks cheap makes the product underneath it
-look cheap. That is the whole reason this skill exists.
+**"My MVP does not need design."** Your MVP needs trust, and the look of the
+design is the first thing people reach for when they explain why they trust a
+site or do not. A page that looks cheap makes the product underneath it look
+cheap. That is the whole reason this skill exists.
 
 **"I cannot judge design."** You do not have to generate taste, only
 recognize it. You just did, four times, in the gallery above.
