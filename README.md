@@ -197,3 +197,5 @@ slop. More open skills: [github.com/sva-admin](https://github.com/sva-admin?tab=
 MIT licensed. All example brands are fictional. Landscape and interior
 photographs in the demos are Unsplash stock, labelled "demonstration imagery"
 on the page itself, exactly as the skill's own honesty rules require.
+
+SV Academy is the education brand of [Silicon Valley Innovation](https://svinnovation.com), a Bangkok software and AI company that can build this for your business.
